@@ -6,7 +6,7 @@
 /*   By: debizhan <debizhan@student.42wolfsburg.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/03 10:29:35 by rkrechun          #+#    #+#             */
-/*   Updated: 2024/05/06 18:32:10 by debizhan         ###   ########.fr       */
+/*   Updated: 2024/05/06 19:28:55 by debizhan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,9 @@ int main()
 
         if (strcmp(input, "exit") == 0)
             exit(0);
-        
+        line = line_read(input);
+		if (strcmp(line[1], ">") == 0)
+			ft_redirect_cmd_to_file(line);
         free(input);
     }
 }
