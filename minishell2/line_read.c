@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   line_read.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rkrechun <rkrechun@student.42.fr>          +#+  +:+       +#+        */
+/*   By: debizhan <debizhan@student.42wolfsburg.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/03 14:04:20 by rkrechun          #+#    #+#             */
-/*   Updated: 2024/05/06 14:43:58 by rkrechun         ###   ########.fr       */
+/*   Updated: 2024/05/06 17:42:05 by debizhan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,7 @@ static void free_arv(char **arv)
     int i;
 
     i = 0;
-    while(arv[i] != '\0')
+    while(arv[i])
     {
         free(arv[i]);
         i++;
