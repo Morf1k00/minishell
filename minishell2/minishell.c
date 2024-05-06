@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rkrechun <rkrechun@student.42.fr>          +#+  +:+       +#+        */
+/*   By: debizhan <debizhan@student.42wolfsburg.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/03 10:29:35 by rkrechun          #+#    #+#             */
-/*   Updated: 2024/05/06 14:38:15 by rkrechun         ###   ########.fr       */
+/*   Updated: 2024/05/06 17:39:21 by debizhan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,12 +23,18 @@ int main()
 
     while(1)
     {
+        char **line;
         input = readline("minishell: ");
         add_history(input);
 
         if (strcmp(input, "exit") == 0)
             exit(0);
-        line_read(input);
+        line = line_read(input);
+        for (size_t i = 0; i < 3; i++)
+        {
+            printf("%s\n", line[i]);
+        }
+        
         free(input);
     }
 }
