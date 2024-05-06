@@ -6,7 +6,7 @@
 /*   By: rkrechun <rkrechun@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/03 14:04:20 by rkrechun          #+#    #+#             */
-/*   Updated: 2024/05/06 14:43:58 by rkrechun         ###   ########.fr       */
+/*   Updated: 2024/05/06 17:16:06 by rkrechun         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,19 +30,20 @@
 //     }
 //     // printf("%i\n", i);
 // }
-static void free_arv(char **arv)
-{
-    int i;
+// static void free_arv(char **arv)
+// {
+//     // int i;
 
-    i = 0;
-    while(arv[i] != '\0')
-    {
-        free(arv[i]);
-        i++;
-    }
-}
+//     // i = 0;
+//     while(arv != '\0')
+//     {
+//         free(*arv);
+//         arv++;
+//     }
+// }
 
-void line_read(char *line)
+
+char **line_read(char *line)
 {
     char    **arv;
     int     i;
@@ -52,9 +53,14 @@ void line_read(char *line)
 
     i = 0;
     w = 0;
-    arv = malloc(sizeof(char*) * strlen(line) + 1);
+    j = strlen(line) + 1;
+    arv = malloc(sizeof(char*) * (j));
+    //arv[j] = '\0';
     if (arv == NULL)
+    {
         printf("error with alloc memory string\n");
+        return (0);
+    }
     //printf("%li\n", strlen(line) - 1);
     while(line[i] != '\0')
     {
@@ -64,7 +70,11 @@ void line_read(char *line)
         j = i - c;
         arv[w] = malloc(sizeof(char) * j + 1);
         if(arv[w] == NULL)
+        {
             printf("error with alloc memory argument\n");
+            //free(arv);
+            return (0);
+        }
         strncpy(arv[w], &line[c], j);
         arv[w][j] = '\0';
         printf("arv[%d]: %s\n", w, arv[w]);
@@ -72,7 +82,7 @@ void line_read(char *line)
             i++;
         w++;
     }
-    free_arv(arv);
-    printf("%i\n",w);
-    free(arv);
+    return(arv);
 }
+
+    //free(arv);
