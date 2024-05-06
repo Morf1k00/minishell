@@ -6,7 +6,7 @@
 /*   By: debizhan <debizhan@student.42wolfsburg.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/03 14:04:20 by rkrechun          #+#    #+#             */
-/*   Updated: 2024/05/06 17:39:47 by debizhan         ###   ########.fr       */
+/*   Updated: 2024/05/06 18:14:17 by debizhan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,17 +30,17 @@
 //     }
 //     // printf("%i\n", i);
 // }
-// static void free_arv(char **arv)
-// {
-//     // int i;
+static void free_arv(char **arv)
+{
+    int i;
 
-//     // i = 0;
-//     while(arv)
-//     {
-//         free(*arv);
-//         arv++;
-//     }
-// }
+    i = 0;
+    while(arv[i])
+    {
+        free(arv[i]);
+        i++;
+    }
+}
 
 
 char **line_read(char *line)
@@ -72,7 +72,7 @@ char **line_read(char *line)
         if(arv[w] == NULL)
         {
             printf("error with alloc memory argument\n");
-            //free(arv);
+            free(arv);
             return (0);
         }
         strncpy(arv[w], &line[c], j);
@@ -85,4 +85,3 @@ char **line_read(char *line)
     return(arv);
 }
 
-    //free(arv);

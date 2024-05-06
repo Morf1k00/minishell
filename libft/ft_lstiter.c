@@ -1,26 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   minishell.h                                        :+:      :+:    :+:   */
+/*   ft_lstiter.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: debizhan <debizhan@student.42wolfsburg.    +#+  +:+       +#+        */
+/*   By: debizhan <debizhan@students.42wolfsburg    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/05/02 16:02:53 by rkrechun          #+#    #+#             */
-/*   Updated: 2024/05/06 17:38:20 by debizhan         ###   ########.fr       */
+/*   Created: 2023/02/23 16:35:55 by debizhan          #+#    #+#             */
+/*   Updated: 2023/02/23 17:49:17 by debizhan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <stdio.h>
-#include "unistd.h"
-#include "stdlib.h"
-#include <readline/readline.h>
-#include <readline/history.h>
+#include "libft.h"
 
-typedef struct s_tokens
+void	ft_lstiter(t_list *lst, void (*f)(void *))
 {
-    int index_token;
-    char    *token;
-    
-}              t_token;
+	t_list	*tmp;
 
-char** line_read(char *line);
+	if (!lst || !f)
+		return ;
+	while (lst != NULL)
+	{
+		tmp = lst->next;
+		f(lst->content);
+		lst = tmp;
+	}
+}

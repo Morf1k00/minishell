@@ -6,7 +6,7 @@
 /*   By: debizhan <debizhan@student.42wolfsburg.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/03 14:04:20 by rkrechun          #+#    #+#             */
-/*   Updated: 2024/05/06 17:42:05 by debizhan         ###   ########.fr       */
+/*   Updated: 2024/05/06 18:39:15 by debizhan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,7 +42,7 @@ static void free_arv(char **arv)
     }
 }
 
-void line_read(char *line)
+char** line_read(char *line)
 {
     char    **arv;
     int     i;
@@ -64,7 +64,10 @@ void line_read(char *line)
         j = i - c;
         arv[w] = malloc(sizeof(char) * j + 1);
         if(arv[w] == NULL)
+        {
             printf("error with alloc memory argument\n");
+            free_arv(arv);
+        }
         strncpy(arv[w], &line[c], j);
         arv[w][j] = '\0';
         printf("arv[%d]: %s\n", w, arv[w]);
@@ -72,7 +75,16 @@ void line_read(char *line)
             i++;
         w++;
     }
-    free_arv(arv);
-    printf("%i\n",w);
-    free(arv);
+    return (arv);
+}
+
+void    ft_redirect_cmd_to_file(char **line)
+{
+    int i;
+
+    i = 0;
+    while (line[i] != "")
+    {
+        
+    }
 }
