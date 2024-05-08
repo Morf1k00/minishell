@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: rkrechun <rkrechun@student.42.fr>          +#+  +:+       +#+         #
+#    By: debizhan <debizhan@student.42wolfsburg.    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/05/03 14:11:32 by rkrechun          #+#    #+#              #
-#    Updated: 2024/05/06 14:16:53 by rkrechun         ###   ########.fr        #
+#    Updated: 2024/05/08 15:34:03 by debizhan         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -18,7 +18,7 @@ RM		= rm -rf
 
 HEADER	= minishell.h
 
-MPATH	= minishell.c line_read.c
+MPATH	= minishell.c line_read.c redirection.c
 OBJ_M	= $(MPATH:.c=.o)
 
 %.o: %.c $(HEADER) Makefile

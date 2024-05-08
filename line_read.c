@@ -6,12 +6,11 @@
 /*   By: debizhan <debizhan@student.42wolfsburg.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/03 14:04:20 by rkrechun          #+#    #+#             */
-/*   Updated: 2024/05/06 19:36:37 by debizhan         ###   ########.fr       */
+/*   Updated: 2024/05/08 15:33:25 by debizhan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
-#include <sys/stat.h>
 
 // static void pars_cmd(char **line)
 // {
@@ -79,45 +78,3 @@ char** line_read(char *line)
     return (arv);
 }
 
-void	ft_redirect_cmd_to_file(char **line)
-{
-	pid_t	pid;
-
-	pid = fork();
-    if (pid < 0)
-	{
-        perror("fork");
-        exit(EXIT_FAILURE);
-    }
-	else if (pid == 0)
-	{
-        int fd = open(line[2], O_WRONLY | O_CREAT | O_TRUNC, S_IRUSR | S_IWUSR);
-        if (fd == -1)
-		{
-            perror("open");
-            exit(EXIT_FAILURE);
-        }
-        if (dup2(fd, STDOUT_FILENO) == -1)
-		{
-            perror("dup2");
-            exit(EXIT_FAILURE);
-        }
-        close(fd);
-        execvp("usr/bin/ls", &line[0]);
-        perror("execlp");
-        exit(EXIT_FAILURE);
-    }
-	else
-	{
-        int status;
-        if (waitpid(pid, &status, 0) == -1)
-		{
-            perror("waitpid");
-            exit(EXIT_FAILURE);
-        }
-        if (WIFEXITED(status))
-            printf("Child process exited with status %d\n", WEXITSTATUS(status));
-		else
-            printf("Child process terminated abnormally\n");
-    }
-}
