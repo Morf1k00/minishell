@@ -6,7 +6,7 @@
 /*   By: rkrechun <rkrechun@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/03 10:29:35 by rkrechun          #+#    #+#             */
-/*   Updated: 2024/05/06 19:05:06 by rkrechun         ###   ########.fr       */
+/*   Updated: 2024/05/07 13:20:49 by rkrechun         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,6 +66,7 @@ int main(int argc, char **argv, char **env)
         // data.cmd_args;
         data.cmd_args = ft_split(line[0], ' ');
         printf("data.cmd :%s\n", data.cmd);
+        fork();
         execve(data.cmd, data.cmd_args, env);
         // while (line[i])
         // {
