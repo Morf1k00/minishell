@@ -6,15 +6,13 @@
 /*   By: rkrechun <rkrechun@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/03 14:04:20 by rkrechun          #+#    #+#             */
-/*   Updated: 2024/05/06 18:30:50 by rkrechun         ###   ########.fr       */
+/*   Updated: 2024/05/08 13:23:13 by rkrechun         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-
-
-char **line_read(char *line)
+static void **line_read(char *line, t_line data)
 {
     char    **arv;
     int     i;
@@ -43,6 +41,17 @@ char **line_read(char *line)
             i++;
         w++;
     }
-    //printf("%i\n",w);
-    return(arv);
+    data.arg_c = w;
+    data.line_trim = strdup(arv);
+
+}
+
+void line_init()
+{
+    char *input;
+    t_line data;
+
+    input = readline("minishell: ");
+    add_history(input);
+    data.line_trim = line_read(input, data);
 }

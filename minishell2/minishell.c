@@ -6,73 +6,64 @@
 /*   By: rkrechun <rkrechun@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/03 10:29:35 by rkrechun          #+#    #+#             */
-/*   Updated: 2024/05/07 13:20:49 by rkrechun         ###   ########.fr       */
+/*   Updated: 2024/05/08 16:00:35 by rkrechun         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
-#include <unistd.h>
-#include <stdio.h>
-#include <stdlib.h>
-#include <readline/readline.h>
-#include <readline/history.h>
 
-static char	*get_path(char **env)
+void init_mem_env(char **env, char **tmp, int i)
 {
-	while (ft_strncmp("PATH", *env, 4))
-		env++;
-	return (*env + 5);
+    tmp = malloc(sizeof(char *)* 1000);
+    i = 0;
+
+    while(env[i])
+    {
+        tmp[i] = NULL;
+        i++;
+    }
 }
 
-static char	*get_command(char **paths, char *cmd)
+void init_env(char **env)
 {
-	char	*tmp;
-	char	*command;
+    t_env_path dat_env;
+    int i;
+    int c;
+    char **tmp;
 
-	while (*paths)
-	{
-		tmp = ft_strjoin(*paths, "/");
-		command = ft_strjoin(tmp, cmd);
-		free(tmp);
-		if (access(command, F_OK) == 0)
-			return (command);
-		free(command);
-		paths++;
-	}
-	return (NULL);
+    memset(&dat_env, 0, sizeof(t_env_path));
+    init_mem_env(env, tmp, c);
+    i = 0;
+    while(i != c)
+    {
+        tmp[i]= strdup(env[i]);
+        i++;
+    }
+    dat_env.env_paths = tmp;
+    dat_env.count = c;
+}
+
+void init_int(int argc, char **argv, char **env)
+{
+    (void)argc;
+    (void)argv;
+    init_env(env);
 }
 
 int main(int argc, char **argv, char **env)
 {
-    (void)argc;
-    (void)argv;
     char *input;
     char **line;
-    //int i;
-    t_cmd_data data;
-
-    //i = 0;
-    data.env_paths = get_path(env);
-    data.cmd_paths = ft_split(data.env_paths, ':');
+    
+    init_arg(argc, argv, env);
     while(1)
     {
         input = readline("minishell: ");
         add_history(input);
-
         if (strcmp(input, "exit") == 0)
             exit(0);
         line = line_read(input);
-        data.cmd = get_command(data.cmd_paths, line[0]);
-        // data.cmd_args;
-        data.cmd_args = ft_split(line[0], ' ');
-        printf("data.cmd :%s\n", data.cmd);
-        fork();
-        execve(data.cmd, data.cmd_args, env);
-        // while (line[i])
-        // {
-        //     printf("%s\n", line[i]);
-        //     i++;
-        // }
+
         free(input);
     }
 }
