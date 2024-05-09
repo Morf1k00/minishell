@@ -6,19 +6,19 @@
 #    By: rkrechun <rkrechun@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/05/03 14:11:32 by rkrechun          #+#    #+#              #
-#    Updated: 2024/05/08 13:10:31 by rkrechun         ###   ########.fr        #
+#    Updated: 2024/05/08 17:17:49 by rkrechun         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME = minihell
-CC		= gcc -g -fsanitize=address
+CC		= gcc #-g -fsanitize=address
 FLAGS	= -Wall -Wextra -Werror
 LIBS	= -lreadline
 RM		= rm -rf
 
 HEADER	= minishell.h
 
-MPATH	= minishell.c line_read.c ft_split.c ft_strjoin.c path_env.c
+MPATH	= minishell.c line_read.c ft_split.c ft_strjoin.c #path_env.c
 OBJ_M	= $(MPATH:.c=.o)
 
 %.o: %.c $(HEADER) Makefile

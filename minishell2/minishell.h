@@ -6,7 +6,7 @@
 /*   By: rkrechun <rkrechun@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/02 16:02:53 by rkrechun          #+#    #+#             */
-/*   Updated: 2024/05/08 16:08:35 by rkrechun         ###   ########.fr       */
+/*   Updated: 2024/05/09 16:21:07 by rkrechun         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,34 +17,32 @@
 #include <readline/history.h>
 # include <fcntl.h>
 
-
 typedef struct s_pipes
 {
 	char **arv;
 	char *cmd;
 	char input;
 	char output;
-	int fd;
+	int fd[2];
 	char *heredoc;
 }				t_pipes;
 
 typedef struct s_env_path
 {
 	char	**env_paths;
-	char	**env_cmd_path;
-	char	**cmd_paths;
 	int		count;
 	int last;
 }				t_env_path;
 
+extern t_env_path *env_shell;
+
 typedef struct s_line
 {
-	char	*line_1;
-	char	**line_trim;
+	char	**line_arg;
 	int		arg_c;
 }				t_line;
 
-//char	**line_read(char *line);
+char	**line_read(char *line);
 char	**ft_split(char const *s, char c);
 char	*ft_strjoin(char const *s1, char const *s2);
 int		ft_strncmp(char *s1, char *s2, unsigned int n);
