@@ -6,10 +6,11 @@
 #    By: debizhan <debizhan@student.42wolfsburg.    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/05/03 14:11:32 by rkrechun          #+#    #+#              #
-#    Updated: 2024/05/10 15:49:40 by debizhan         ###   ########.fr        #
+#    Updated: 2024/05/10 15:59:35 by debizhan         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
+NAME = minihell
 CC		= gcc -g -fsanitize=address
 FLAGS	= -Wall -Wextra -Werror
 LIBS	= -lreadline
