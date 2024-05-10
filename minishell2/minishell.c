@@ -6,7 +6,7 @@
 /*   By: rkrechun <rkrechun@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/03 10:29:35 by rkrechun          #+#    #+#             */
-/*   Updated: 2024/05/10 15:38:43 by rkrechun         ###   ########.fr       */
+/*   Updated: 2024/05/10 16:17:03 by rkrechun         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,6 @@ static void init_arg(int argc, char **argv, char **env, t_env_path *env_shell)
 {
     (void)argc;
     (void)argv;
-    // (void)env;
     init_path(env, env_shell);
 }
 
@@ -35,8 +34,8 @@ int main(int argc, char **argv, char **env)
             exit(0);
         for (int c = 0; line[c] != NULL; c++) // test how readarguments
             printf("%s\t : number arg %d \n", line[c], c);
-        for (int d = 0; env_shell->env_paths[d] != NULL; d++) // test how copy env 
-            printf("env_shell->env_paths : %s\n", env_shell->env_paths[d]);
+        // for (int d = 0; env_shell->env_paths[d] != NULL; d++) // test how copy env 
+        //     printf("env_shell->env_paths : %s\n", env_shell->env_paths[d]);
     }
     free(input);
 }
