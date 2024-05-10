@@ -6,7 +6,7 @@
 /*   By: rkrechun <rkrechun@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/03 10:29:35 by rkrechun          #+#    #+#             */
-/*   Updated: 2024/05/10 12:00:29 by rkrechun         ###   ########.fr       */
+/*   Updated: 2024/05/10 14:08:53 by rkrechun         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,9 +30,9 @@ int main(int argc, char **argv, char **env)
     init_arg(argc, argv, env, env_shell);
     input = readline("minishell: ");
     line  = split_arg(input);
-    for (int c = 0; line[c] != NULL; c++)
-        printf("%s\n", line[c]);
-    for (int d = 0; env_shell->env_paths[d] != NULL; d++)
-        printf("env_shell->env_paths : %s\n", env_shell->env_paths[d]);
+    // for (int c = 0; line[c] != NULL; c++)
+    //     printf("%s\n", line[c]);
+    // for (int d = 0; env_shell->env_paths[d] != NULL; d++)
+    //     printf("env_shell->env_paths : %s\n", env_shell->env_paths[d]);
     free(input);
 }
