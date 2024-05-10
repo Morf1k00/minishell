@@ -1,35 +1,34 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   env_init.c                                         :+:      :+:    :+:   */
+/*   word_cpy.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: rkrechun <rkrechun@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/05/08 13:06:34 by rkrechun          #+#    #+#             */
-/*   Updated: 2024/05/10 14:05:25 by rkrechun         ###   ########.fr       */
+/*   Created: 2024/05/09 15:35:10 by rkrechun          #+#    #+#             */
+/*   Updated: 2024/05/09 15:35:17 by rkrechun         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-void init_path(char **env, t_env_path *env_shell)
+char *word_cpy(char *line)
 {
-    char **tmp;
-    int count;
     int i;
+    char *tmp;
+    int len;
 
-    count = 0;
     i = 0;
-    tmp = malloc(sizeof(char *) * 100);
-    while (env[count])
-        count++;
-    while(i != count)
+    len = 0;
+    while(line[len] != '\'' && line[len] != '\"' && line[len] != '\n'
+            && line[len] != '\t' && line[len] != '\0' && line[len] != ' ')
+            len++;
+    tmp = malloc(sizeof(char) * (len + 1));
+    tmp[len] = '\0';
+    while(i < len)
     {
-        tmp[i] = strdup(env[i]);
+        tmp[i] = line[i];
         i++;
     }
-    tmp[i] = NULL;
-    env_shell->count = count;
-    env_shell->env_paths = tmp;
+    return(tmp);
 }
-

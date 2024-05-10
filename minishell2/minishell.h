@@ -6,7 +6,7 @@
 /*   By: rkrechun <rkrechun@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/02 16:02:53 by rkrechun          #+#    #+#             */
-/*   Updated: 2024/05/09 16:21:07 by rkrechun         ###   ########.fr       */
+/*   Updated: 2024/05/10 11:59:02 by rkrechun         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,18 +34,22 @@ typedef struct s_env_path
 	int last;
 }				t_env_path;
 
-extern t_env_path *env_shell;
+//extern t_env_path *env_shell;
 
 typedef struct s_line
 {
 	char	**line_arg;
 	int		arg_c;
 }				t_line;
-
+		
 char	**line_read(char *line);
 char	**ft_split(char const *s, char c);
 char	*ft_strjoin(char const *s1, char const *s2);
 int		ft_strncmp(char *s1, char *s2, unsigned int n);
-void	init_path(char **env);
+// void    path_e(char ***tmp, int *i, int *count, char **env);
+void 	init_path(char **env, t_env_path *env_shell);
+char 	*word_cpy(char *line);
+char	**split_arg(char *line);
+
 
 
