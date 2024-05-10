@@ -6,7 +6,7 @@
 /*   By: debizhan <debizhan@student.42wolfsburg.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/08 15:55:40 by debizhan          #+#    #+#             */
-/*   Updated: 2024/05/08 16:12:42 by debizhan         ###   ########.fr       */
+/*   Updated: 2024/05/08 18:21:16 by debizhan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,6 +41,5 @@ void	ft_redirect_cmd_to_file(char **command, char *output_file)
 //     char *command[] = {"/bin/ls", NULL};
 //     char *output_file = "output.txt";
 //     execute_command_with_output_redirection(command, output_file);
-
 //     return 0;
 // }
