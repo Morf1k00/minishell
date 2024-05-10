@@ -6,64 +6,37 @@
 /*   By: debizhan <debizhan@student.42wolfsburg.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/03 10:29:35 by rkrechun          #+#    #+#             */
-/*   Updated: 2024/05/10 15:54:52 by debizhan         ###   ########.fr       */
+/*   Updated: 2024/05/10 16:01:22 by debizhan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-void init_mem_env(char **env, char **tmp, int i)
-{
-    tmp = malloc(sizeof(char *)* 1000);
-    i = 0;
-
-    while(env[i])
-    {
-        tmp[i] = NULL;
-        i++;
-    }
-}
-
-void init_env(char **env)
-{
-    t_env_path dat_env;
-    int i;
-    int c;
-    char **tmp;
-
-    memset(&dat_env, 0, sizeof(t_env_path));
-    init_mem_env(env, tmp, c);
-    i = 0;
-    while(i != c)
-    {
-        tmp[i]= strdup(env[i]);
-        i++;
-    }
-    dat_env.env_paths = tmp;
-    dat_env.count = c;
-}
-
-void init_int(int argc, char **argv, char **env)
+static void init_arg(int argc, char **argv, char **env, t_env_path *env_shell)
 {
     (void)argc;
     (void)argv;
-    init_env(env);
+    // (void)env;
+    init_path(env, env_shell);
 }
 
 int main(int argc, char **argv, char **env)
 {
     char *input;
-    char **line;
-    
-    init_int(argc, argv, env);
+    char        **line;
+    t_env_path *env_shell;
     while(1)
     {
-        char **line;
+        env_shell = malloc(sizeof(t_env_path));
+        init_arg(argc, argv, env, env_shell);
         input = readline("minishell: ");
-        add_history(input);
-        if (strcmp(input, "exit") == 0)
+        line  = split_arg(input);
+        if (strcmp(line[0], "exit") == 0)
             exit(0);
-        line = line_read(input);
-        free(input);
+        for (int c = 0; line[c] != NULL; c++) // test how readarguments
+            printf("%s\t : number arg %d \n", line[c], c);
+        for (int d = 0; env_shell->env_paths[d] != NULL; d++) // test how copy env 
+            printf("env_shell->env_paths : %s\n", env_shell->env_paths[d]);
     }
+    free(input);
 }

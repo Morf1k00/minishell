@@ -6,7 +6,7 @@
 /*   By: debizhan <debizhan@student.42wolfsburg.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/02 16:02:53 by rkrechun          #+#    #+#             */
-/*   Updated: 2024/05/10 15:52:13 by debizhan         ###   ########.fr       */
+/*   Updated: 2024/05/10 16:08:24 by debizhan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,60 +19,64 @@
 #include <readline/history.h>
 #include "libft/libft.h"
 #include <fcntl.h>
-#include <sys/wait.h>
-#include <sys/stat.h>
-
-typedef struct s_pipes
-{
-	char	**arv;
-	char	*cmd;
-	char	input;
-	char	output;
-	int		fd;
-	char	*heredoc;
-}				t_pipes;
+# include <dirent.h>
+# include <sys/stat.h>
+# include <sys/types.h>
 
 typedef enum e_token
 {
-	SPACE_T,
 	WORD,
 	PIPE,
-	GREAT,
-	LESS,
-	GREATGREAT,
-	LESSLESS,
-	G_AMP,
-	AMPERSAND,
-	QUOTES,
-	D_QUOTES
-} t_type;
+	//SPACE,
+	GREATER_THEN,
+	LESS_THEN,
+	HEREDOC,
+	APPEND,
+	DOUBLE_QUOTES,
+	SINGLE_QUOTES,
+}		t_type;
 
-typedef struct s_token
+typedef struct s_pipes
 {
-	int				type;
-	char			*rprsnt;
-	struct s_token	*next;
-}	t_token;
+	char **arv;
+	char *cmd;
+	char input;
+	char output;
+	int fd[2];
+	char *heredoc;
+}				t_pipes;
+
+typedef struct s_vars
+{
+	int	lenght;
+	char *token;
+	int type;
+	struct s_vars *next;
+}			t_vars;
 
 typedef struct s_env_path
 {
 	char	**env_paths;
-	char	**env_cmd_path;
-	char	**cmd_paths;
 	int		count;
-	int		last;
+	int last;
+	t_pipes *pipes;
+	t_vars	*vars;
 }				t_env_path;
 
+//extern t_env_path *env_shell;
 typedef struct s_line
 {
-	char	*line_1;
-	char	**line_trim;
+	char	**line_arg;
 	int		arg_c;
 }				t_line;
-
-//char	**line_read(char *line);
+		
+char	**line_read(char *line);
 char	**ft_split(char const *s, char c);
-void	init_path(char **env);
+// void    path_e(char ***tmp, int *i, int *count, char **env);
+void 	init_path(char **env, t_env_path *env_shell);
+char 	*word_cpy(char *line);
+char	**split_arg(char *line);
+
 char**	line_read(char *line);
 void	ft_redirect_cmd_to_file(char **command, char *output_file);
 void	error_exit(char *str);
