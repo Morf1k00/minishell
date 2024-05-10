@@ -6,10 +6,8 @@
 /*   By: debizhan <debizhan@student.42wolfsburg.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/08 18:32:54 by debizhan          #+#    #+#             */
-/*   Updated: 2024/05/08 18:33:26 by debizhan         ###   ########.fr       */
+/*   Updated: 2024/05/10 15:54:17 by debizhan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
-
-void	ft_

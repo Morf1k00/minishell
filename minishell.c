@@ -6,7 +6,7 @@
 /*   By: debizhan <debizhan@student.42wolfsburg.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/03 10:29:35 by rkrechun          #+#    #+#             */
-/*   Updated: 2024/05/08 17:13:34 by debizhan         ###   ########.fr       */
+/*   Updated: 2024/05/10 15:54:52 by debizhan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,7 +55,7 @@ int main(int argc, char **argv, char **env)
     char *input;
     char **line;
     
-    init_arg(argc, argv, env);
+    init_int(argc, argv, env);
     while(1)
     {
         char **line;
