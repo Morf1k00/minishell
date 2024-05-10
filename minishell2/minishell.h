@@ -6,7 +6,7 @@
 /*   By: rkrechun <rkrechun@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/02 16:02:53 by rkrechun          #+#    #+#             */
-/*   Updated: 2024/05/10 11:59:02 by rkrechun         ###   ########.fr       */
+/*   Updated: 2024/05/10 15:33:00 by rkrechun         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,22 @@
 #include <readline/readline.h>
 #include <readline/history.h>
 # include <fcntl.h>
+# include <dirent.h>
+# include <sys/stat.h>
+# include <sys/types.h>
+
+typedef enum e_token
+{
+	WORD,
+	PIPE,
+	//SPACE,
+	GREATER_THEN,
+	LESS_THEN,
+	HEREDOC,
+	APPEND,
+	DOUBLE_QUOTES,
+	SINGLE_QUOTES,
+}		t_type;
 
 typedef struct s_pipes
 {
@@ -27,15 +43,24 @@ typedef struct s_pipes
 	char *heredoc;
 }				t_pipes;
 
+typedef struct s_vars
+{
+	int	lenght;
+	char *token;
+	int type;
+	struct s_vars *next;
+}			t_vars;
+
 typedef struct s_env_path
 {
 	char	**env_paths;
 	int		count;
 	int last;
+	t_pipes *pipes;
+	t_vars	*vars;
 }				t_env_path;
 
 //extern t_env_path *env_shell;
-
 typedef struct s_line
 {
 	char	**line_arg;

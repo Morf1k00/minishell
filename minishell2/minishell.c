@@ -6,7 +6,7 @@
 /*   By: rkrechun <rkrechun@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/03 10:29:35 by rkrechun          #+#    #+#             */
-/*   Updated: 2024/05/10 14:08:53 by rkrechun         ###   ########.fr       */
+/*   Updated: 2024/05/10 15:38:43 by rkrechun         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,14 +25,18 @@ int main(int argc, char **argv, char **env)
     char *input;
     char        **line;
     t_env_path *env_shell;
-
-    env_shell = malloc(sizeof(t_env_path));
-    init_arg(argc, argv, env, env_shell);
-    input = readline("minishell: ");
-    line  = split_arg(input);
-    // for (int c = 0; line[c] != NULL; c++)
-    //     printf("%s\n", line[c]);
-    // for (int d = 0; env_shell->env_paths[d] != NULL; d++)
-    //     printf("env_shell->env_paths : %s\n", env_shell->env_paths[d]);
+    while(1)
+    {
+        env_shell = malloc(sizeof(t_env_path));
+        init_arg(argc, argv, env, env_shell);
+        input = readline("minishell: ");
+        line  = split_arg(input);
+        if (strcmp(line[0], "exit") == 0)
+            exit(0);
+        for (int c = 0; line[c] != NULL; c++) // test how readarguments
+            printf("%s\t : number arg %d \n", line[c], c);
+        for (int d = 0; env_shell->env_paths[d] != NULL; d++) // test how copy env 
+            printf("env_shell->env_paths : %s\n", env_shell->env_paths[d]);
+    }
     free(input);
 }
