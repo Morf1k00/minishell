@@ -6,7 +6,7 @@
 #    By: rkrechun <rkrechun@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/05/03 14:11:32 by rkrechun          #+#    #+#              #
-#    Updated: 2024/05/14 16:45:44 by rkrechun         ###   ########.fr        #
+#    Updated: 2024/05/14 19:48:54 by rkrechun         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -25,7 +25,9 @@ OBJ_M	= $(MPATH:.c=.o)
 	@$(CC) $(FLAGS) -c $< -o $@
 
 $(NAME): $(OBJ_M)
-	@$(CC) $(OBJ_M) $(LIBS) -o $(NAME)
+	@make bonus -C libft
+	@mv libft/libft.a .
+	@$(CC) $(OBJ_M) $(LIBS) libft.a -o $(NAME)
 
 all: $(NAME)
 

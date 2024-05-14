@@ -6,11 +6,12 @@
 /*   By: rkrechun <rkrechun@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/10 14:48:06 by rkrechun          #+#    #+#             */
-/*   Updated: 2024/05/14 16:53:28 by rkrechun         ###   ########.fr       */
+/*   Updated: 2024/05/14 19:48:15 by rkrechun         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
+#include "libft/libft.h"
 
 static void copy_arv(char s, char **line, char **tmp, int *i, int *j)
 {
@@ -24,7 +25,7 @@ static void copy_arv(char s, char **line, char **tmp, int *i, int *j)
 		len += strlen(line[d]);
 		d++;
 	}
-	tmp[*j] = malloc(sizeof(char) * (len + 3));
+	tmp[*j] = malloc(sizeof(char) * (len + 2));
 	while(*i <= d)
 	{
 		strcat(tmp[*j], line[*i]);
@@ -93,7 +94,9 @@ void lexer(char **line, t_env_path *env_shell)
 	while(i < word)
 	{
 		if (line[i][0] == '\'' || line[i][0] == '\"')
+		{
 			copy_arv(line[i][0], line, tmp, &i, &j);
+		}
 		else
 		{
 			tmp[j] = strdup(line[i]);
@@ -101,6 +104,7 @@ void lexer(char **line, t_env_path *env_shell)
 		}
 		j++;
 	}
-	tmp[j] = NULL;
+			tmp[j] = 0;
 	env_shell->pipes->arv = tmp;
+	//free(tmp);
 }
