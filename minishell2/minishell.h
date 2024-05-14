@@ -6,7 +6,7 @@
 /*   By: rkrechun <rkrechun@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/02 16:02:53 by rkrechun          #+#    #+#             */
-/*   Updated: 2024/05/10 15:33:00 by rkrechun         ###   ########.fr       */
+/*   Updated: 2024/05/14 16:39:02 by rkrechun         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,7 @@
 # include <dirent.h>
 # include <sys/stat.h>
 # include <sys/types.h>
+#include <string.h>
 
 typedef enum e_token
 {
@@ -75,6 +76,7 @@ int		ft_strncmp(char *s1, char *s2, unsigned int n);
 void 	init_path(char **env, t_env_path *env_shell);
 char 	*word_cpy(char *line);
 char	**split_arg(char *line);
+void lexer(char **line, t_env_path *env_shell);
 
 
 
