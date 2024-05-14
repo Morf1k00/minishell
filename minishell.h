@@ -6,7 +6,7 @@
 /*   By: debizhan <debizhan@student.42wolfsburg.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/02 16:02:53 by rkrechun          #+#    #+#             */
-/*   Updated: 2024/05/10 16:08:24 by debizhan         ###   ########.fr       */
+/*   Updated: 2024/05/10 18:14:01 by debizhan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,11 +17,12 @@
 #include <stdlib.h>
 #include <readline/readline.h>
 #include <readline/history.h>
-#include "libft/libft.h"
 #include <fcntl.h>
 # include <dirent.h>
 # include <sys/stat.h>
 # include <sys/types.h>
+#include "libft/libft.h"
+
 
 typedef enum e_token
 {
@@ -76,9 +77,9 @@ char	**ft_split(char const *s, char c);
 void 	init_path(char **env, t_env_path *env_shell);
 char 	*word_cpy(char *line);
 char	**split_arg(char *line);
-
+// void	ft_redirect_cmd_to_file(char **command, char *output_file, t_env_path *envp);
 char**	line_read(char *line);
-void	ft_redirect_cmd_to_file(char **command, char *output_file);
 void	error_exit(char *str);
+char	*get_pathm(char **env);
 
 #endif

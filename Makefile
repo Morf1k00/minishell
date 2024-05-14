@@ -6,7 +6,7 @@
 #    By: debizhan <debizhan@student.42wolfsburg.    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/05/03 14:11:32 by rkrechun          #+#    #+#              #
-#    Updated: 2024/05/10 16:00:53 by debizhan         ###   ########.fr        #
+#    Updated: 2024/05/10 17:49:16 by debizhan         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -18,7 +18,7 @@ RM		= rm -rf
 NAME	= minishell
 HEADER	= minishell.h
 
-MPATH	= minishell.c  ft_split.c ft_strjoin.c env_init.c split_arg.c word_cpy.c redirection.c #line_read.c
+MPATH	= minishell.c  ft_split.c env_init.c split_arg.c word_cpy.c redirection.c error_handler.c utils.c #line_read.c
 OBJ_M	= $(MPATH:.c=.o)
 
 %.o: %.c $(HEADER) Makefile
