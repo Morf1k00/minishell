@@ -3,15 +3,15 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: rkrechun <rkrechun@student.42.fr>          +#+  +:+       +#+         #
+#    By: debizhan <debizhan@student.42wolfsburg.    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/05/03 14:11:32 by rkrechun          #+#    #+#              #
-#    Updated: 2024/05/14 13:35:25 by rkrechun         ###   ########.fr        #
+#    Updated: 2024/05/14 17:18:31 by debizhan         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME = minihell
-CC		= gcc -g -fsanitize=address
+CC		= gcc -g #-fsanitize=address
 FLAGS	= -Wall -Wextra -Werror
 LIBS	= -lreadline
 RM		= rm -rf
@@ -25,7 +25,9 @@ OBJ_M	= $(MPATH:.c=.o)
 	@$(CC) $(FLAGS) -c $< -o $@
 
 $(NAME): $(OBJ_M)
-	@$(CC) $(OBJ_M) $(LIBS) -o $(NAME)
+	@make bonus libft
+	@mv libft/libft.a .
+	@$(CC) $(OBJ_M) $(LIBS) libft.a -o $(NAME)
 
 all: $(NAME)
 

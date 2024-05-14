@@ -3,14 +3,15 @@
 /*                                                        :::      ::::::::   */
 /*   lexer.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rkrechun <rkrechun@student.42.fr>          +#+  +:+       +#+        */
+/*   By: debizhan <debizhan@student.42wolfsburg.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/10 14:48:06 by rkrechun          #+#    #+#             */
-/*   Updated: 2024/05/14 16:37:31 by rkrechun         ###   ########.fr       */
+/*   Updated: 2024/05/14 17:13:42 by debizhan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
+#include "libft/libft.h"
 
 static void copy_arv(char s, char **line, char **tmp, int *i, int *j)
 {
@@ -25,13 +26,11 @@ static void copy_arv(char s, char **line, char **tmp, int *i, int *j)
 		d++;
 	}
 	tmp[*j] = malloc(sizeof(char) * (len + 3));
-	tmp[*j][0] = s;
 	while(*i <= d)
 	{
-		strlcat(tmp[*j], line[*i], len + 3);
+		ft_strlcat(tmp[*j], line[*i], len + 3);
 		(*i)++;
 	}
-	tmp[*j][len + 2] = s;
 	tmp[*j][len + 3] = '\0';
 }
 
