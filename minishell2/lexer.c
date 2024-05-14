@@ -6,7 +6,7 @@
 /*   By: rkrechun <rkrechun@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/10 14:48:06 by rkrechun          #+#    #+#             */
-/*   Updated: 2024/05/14 16:37:31 by rkrechun         ###   ########.fr       */
+/*   Updated: 2024/05/14 16:53:28 by rkrechun         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ static void copy_arv(char s, char **line, char **tmp, int *i, int *j)
 	int len;
 	int d;
 	
-	len = 0;
+	len = 1;
 	d = *i + 1;
 	while(line[d][0] != s)
 	{
@@ -25,14 +25,12 @@ static void copy_arv(char s, char **line, char **tmp, int *i, int *j)
 		d++;
 	}
 	tmp[*j] = malloc(sizeof(char) * (len + 3));
-	tmp[*j][0] = s;
 	while(*i <= d)
 	{
-		strlcat(tmp[*j], line[*i], len + 3);
+		strcat(tmp[*j], line[*i]);
 		(*i)++;
 	}
-	tmp[*j][len + 2] = s;
-	tmp[*j][len + 3] = '\0';
+	tmp[*j][len + 1] = '\0';
 }
 
 // static void copy_arv2(char **line, char **tmp, int *i, int *j)
