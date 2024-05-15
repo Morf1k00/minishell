@@ -6,7 +6,7 @@
 /*   By: rkrechun <rkrechun@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/10 14:48:06 by rkrechun          #+#    #+#             */
-/*   Updated: 2024/05/15 15:17:17 by rkrechun         ###   ########.fr       */
+/*   Updated: 2024/05/15 15:36:42 by rkrechun         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ static void copy_arv(char s, char **line, char **tmp, int *i, int *j)
 	tmp[*j][0] = '\0';
 	while(*i <= d)
 	{
-		//printf("hello\n");
+		printf("hello\n");
 		strcat(tmp[*j], line[*i]);
 		(*i)++;
 	}
@@ -89,7 +89,7 @@ void lexer(char **line, t_env_path *env_shell)
 	i = 0;
 	j = 0;
 	if (close_quote(line) == 1)
-		// quote_heredoc(line[i]);
+
 		write(1, "2", 1);
 	word = word_count(line);
 	tmp = malloc(sizeof(char *) * (word + 1));
