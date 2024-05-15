@@ -6,7 +6,7 @@
 /*   By: debizhan <debizhan@student.42wolfsburg.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/08 15:55:40 by debizhan          #+#    #+#             */
-/*   Updated: 2024/05/10 18:17:59 by debizhan         ###   ########.fr       */
+/*   Updated: 2024/05/14 19:21:34 by debizhan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,8 +22,8 @@ void	ft_redirect_cmd_to_file(char **command, char *output_file)
 	char	*cmd;
 
 	pid = fork();
-	path = get_pathm(envp->env_paths);
-	cmd = ft_strjoin(path, command[0]);
+	// path = get_pathm(envp->env_paths);
+	// cmd = ft_strjoin(path, command[0]);
 	if (pid < 0)
 		error_exit("fork");
 	else if (pid == 0)
@@ -34,7 +34,7 @@ void	ft_redirect_cmd_to_file(char **command, char *output_file)
 		if (dup2(fd, STDOUT_FILENO) == -1)
 			error_exit("dup2");
 		close(fd);
-		if (execve(cmd, command, NULL) == -1)
+		if (execve(command[0], command, NULL) == -1)
 			error_exit("execve");
 	}
 	// else
