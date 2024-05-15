@@ -6,13 +6,13 @@
 /*   By: debizhan <debizhan@student.42wolfsburg.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/15 15:47:07 by debizhan          #+#    #+#             */
-/*   Updated: 2024/05/15 16:52:54 by debizhan         ###   ########.fr       */
+/*   Updated: 2024/05/15 16:54:52 by debizhan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-static t_vars	new_list(char *arg)
+static t_vars	*new_list(char *arg)
 {
 	t_vars	*list;
 
