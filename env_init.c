@@ -6,7 +6,7 @@
 /*   By: debizhan <debizhan@student.42wolfsburg.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/08 13:06:34 by rkrechun          #+#    #+#             */
-/*   Updated: 2024/05/10 16:04:45 by debizhan         ###   ########.fr       */
+/*   Updated: 2024/05/15 15:40:38 by debizhan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,7 @@ void init_path(char **env, t_env_path *env_shell)
     tmp[i] = NULL;
     env_shell->count = count;
     env_shell->env_paths = tmp;
-    env_shell->pipes = NULL;
-    env_shell->vars = NULL;
+    env_shell->pipes = malloc(sizeof(t_pipes ));
+    env_shell->vars = malloc(sizeof(t_vars));
 }
 
