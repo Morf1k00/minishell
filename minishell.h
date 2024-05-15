@@ -6,19 +6,23 @@
 /*   By: rkrechun <rkrechun@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/02 16:02:53 by rkrechun          #+#    #+#             */
-/*   Updated: 2024/05/15 16:57:42 by rkrechun         ###   ########.fr       */
+/*   Updated: 2024/05/15 17:03:00 by rkrechun         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+#ifndef MINISHELL_H
+# define MINISHELL_H
 #include <stdio.h>
-#include "unistd.h"
-#include "stdlib.h"
+#include <unistd.h>
+#include <stdlib.h>
 #include <readline/readline.h>
 #include <readline/history.h>
-# include <fcntl.h>
+#include <fcntl.h>
 # include <dirent.h>
 # include <sys/stat.h>
 # include <sys/types.h>
+#include "libft/libft.h"
+
 #include <string.h>
 
 typedef enum e_token
@@ -71,12 +75,10 @@ typedef struct s_line
 		
 char	**line_read(char *line);
 char	**ft_split(char const *s, char c);
-char	*ft_strjoin(char const *s1, char const *s2);
-// int		ft_strncmp(char *s1, char *s2, unsigned int n);
 // void    path_e(char ***tmp, int *i, int *count, char **env);
 void 	init_path(char **env, t_env_path *env_shell);
 char 	*word_cpy(char *line);
 char	**split_arg(char *line);
 void lexer(char **line, t_env_path *env_shell);
 
-
+#endif
