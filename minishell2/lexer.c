@@ -6,7 +6,7 @@
 /*   By: rkrechun <rkrechun@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/10 14:48:06 by rkrechun          #+#    #+#             */
-/*   Updated: 2024/05/15 15:36:42 by rkrechun         ###   ########.fr       */
+/*   Updated: 2024/05/15 15:59:30 by rkrechun         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -108,5 +108,6 @@ void lexer(char **line, t_env_path *env_shell)
 	}
 	tmp[j] = NULL;
 	env_shell->pipes->arv = tmp;
+	env_shell->pipes->count = j;
 	//free(tmp);
 }

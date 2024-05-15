@@ -6,7 +6,7 @@
 /*   By: rkrechun <rkrechun@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/02 16:02:53 by rkrechun          #+#    #+#             */
-/*   Updated: 2024/05/15 15:41:54 by rkrechun         ###   ########.fr       */
+/*   Updated: 2024/05/15 15:58:57 by rkrechun         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,15 +42,16 @@ typedef struct s_pipes
 	char output;
 	int fd[2];
 	char *heredoc;
-}				t_pipes;
+	int count;
+}				t_pipes; //пайпы и что с ними делать, исполнение в дальнейшем команд
 
 typedef struct s_vars
 {
 	int	lenght;
-	char *token;
-	int type;
+	char *token;// значения, аргумента
+	int type;// тип токена Word, space итд
 	struct s_vars *next;
-}			t_vars;
+}			t_vars; // листы с токенами и их значения 
 
 typedef struct s_env_path
 {
@@ -59,7 +60,7 @@ typedef struct s_env_path
 	int last;
 	t_pipes *pipes;
 	t_vars	*vars;
-}				t_env_path;
+}				t_env_path; // основная структура 
 
 //extern t_env_path *env_shell;
 typedef struct s_line
