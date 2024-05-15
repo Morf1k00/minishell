@@ -6,7 +6,7 @@
 /*   By: rkrechun <rkrechun@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/10 14:48:06 by rkrechun          #+#    #+#             */
-/*   Updated: 2024/05/14 19:48:15 by rkrechun         ###   ########.fr       */
+/*   Updated: 2024/05/15 15:17:17 by rkrechun         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,14 +20,16 @@ static void copy_arv(char s, char **line, char **tmp, int *i, int *j)
 	
 	len = 1;
 	d = *i + 1;
-	while(line[d][0] != s)
+	while(line[d][0] != s && line[d] != NULL)
 	{
 		len += strlen(line[d]);
 		d++;
 	}
-	tmp[*j] = malloc(sizeof(char) * (len + 2));
+	tmp[*j] = malloc(sizeof(char) * (len + 3));
+	tmp[*j][0] = '\0';
 	while(*i <= d)
 	{
+		//printf("hello\n");
 		strcat(tmp[*j], line[*i]);
 		(*i)++;
 	}
@@ -104,7 +106,7 @@ void lexer(char **line, t_env_path *env_shell)
 		}
 		j++;
 	}
-			tmp[j] = 0;
+	tmp[j] = NULL;
 	env_shell->pipes->arv = tmp;
 	//free(tmp);
 }

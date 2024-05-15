@@ -6,12 +6,12 @@
 #    By: rkrechun <rkrechun@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/05/03 14:11:32 by rkrechun          #+#    #+#              #
-#    Updated: 2024/05/14 19:48:54 by rkrechun         ###   ########.fr        #
+#    Updated: 2024/05/15 15:17:28 by rkrechun         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME = minihell
-CC		= gcc #-g -fsanitize=address
+CC		= gcc -g -fsanitize=address
 FLAGS	= -Wall -Wextra -Werror
 LIBS	= -lreadline
 RM		= rm -rf
