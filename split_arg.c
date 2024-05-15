@@ -6,7 +6,7 @@
 /*   By: rkrechun <rkrechun@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/08 16:42:03 by rkrechun          #+#    #+#             */
-/*   Updated: 2024/05/09 15:52:56 by rkrechun         ###   ########.fr       */
+/*   Updated: 2024/05/14 18:40:06 by rkrechun         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,14 +18,14 @@ static void word(char **tmp, char **line, int *i)
     (*i)++;
     while(**line != '\'' && **line != '\"' && **line != '\n'
             && **line != '\t' && **line != '\0' && **line != ' ')
-        (*line)++;
+        ++(*line);
 }
 
 char *quote(char *line)
 {
     char *word;
 
-    word = malloc(sizeof(char) * 2);
+    word = malloc(2);
     if (*line == '\'')
         word[0] = '\'';
     else
@@ -52,7 +52,7 @@ void init_word(char **tmp, char *line)
         }
         if (*line == ' ')
         {
-            tmp[i] = malloc(sizeof(char) * 2);
+            tmp[i] = malloc(2);
             tmp[i][0] = ' ';
             tmp[i][1] = '\0';
             i++;
@@ -66,20 +66,21 @@ void init_word(char **tmp, char *line)
 int count(char *line)
 {
     int word;
+
     word = 0;
     while(*line == ' ' || *line == '\t' || *line == '\n')
-        line++;
+        ++line;
     while(*line != '\0')
     {
-        word++;
-        if (*line =='\'' || *line == '\"' || *line == ' ')
+        ++word;
+        if (*line == '\'' || *line == '\"' || *line == ' ')
         {
-            line++;
+            ++line;
             continue ;
         }
         while(*line != '\'' && *line != '\"' && *line != '\n'
                 && *line != '\t' && *line != '\0' && *line != ' ')
-            line++;
+            ++line;
     }
     return(word);
 }
@@ -91,8 +92,6 @@ char **split_arg(char *line)
     
     word = count(line);
     tmp = malloc(sizeof(char *) * (word + 1));
-    if (tmp == NULL)
-        printf("memory error\n");
     init_word(tmp, line);
     tmp[word] = NULL;
     return (tmp);

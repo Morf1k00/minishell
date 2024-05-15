@@ -6,7 +6,7 @@
 /*   By: debizhan <debizhan@student.42wolfsburg.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/02 16:02:53 by rkrechun          #+#    #+#             */
-/*   Updated: 2024/05/15 16:12:51 by debizhan         ###   ########.fr       */
+/*   Updated: 2024/05/15 16:57:12 by debizhan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,15 +46,16 @@ typedef struct s_pipes
 	char output;
 	int fd[2];
 	char *heredoc;
-}				t_pipes;
+	int count;
+}				t_pipes; //пайпы и что с ними делать, исполнение в дальнейшем команд
 
 typedef struct s_vars
 {
 	int	lenght;
-	char *token;
-	int type;
+	char *token;// значения, аргумента
+	int type;// тип токена Word, space итд
 	struct s_vars *next;
-}			t_vars;
+}			t_vars; // листы с токенами и их значения 
 
 typedef struct s_env_path
 {
@@ -63,7 +64,7 @@ typedef struct s_env_path
 	int last;
 	t_pipes *pipes;
 	t_vars	*vars;
-}				t_env_path;
+}				t_env_path; // основная структура 
 
 //extern t_env_path *env_shell;
 typedef struct s_line
@@ -78,11 +79,6 @@ char	**ft_split(char const *s, char c);
 void 	init_path(char **env, t_env_path *env_shell);
 char 	*word_cpy(char *line);
 char	**split_arg(char *line);
-void	lexer(char **line, t_env_path *env_shell);
-// void	ft_redirect_cmd_to_file(char **command, char *output_file, t_env_path *envp);
-char**	line_read(char *line);
-void	error_exit(char *str);
-char	*get_pathm(char **env);
-int	create_list(t_vars **list, char **arv);
+void lexer(char **line, t_env_path *env_shell);
 
 #endif

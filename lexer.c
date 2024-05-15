@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   lexer.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: debizhan <debizhan@student.42wolfsburg.    +#+  +:+       +#+        */
+/*   By: rkrechun <rkrechun@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/10 14:48:06 by rkrechun          #+#    #+#             */
-/*   Updated: 2024/05/14 17:13:42 by debizhan         ###   ########.fr       */
+/*   Updated: 2024/05/15 15:59:30 by rkrechun         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,20 +18,22 @@ static void copy_arv(char s, char **line, char **tmp, int *i, int *j)
 	int len;
 	int d;
 	
-	len = 0;
+	len = 1;
 	d = *i + 1;
-	while(line[d][0] != s)
+	while(line[d][0] != s && line[d] != NULL)
 	{
 		len += strlen(line[d]);
 		d++;
 	}
 	tmp[*j] = malloc(sizeof(char) * (len + 3));
+	tmp[*j][0] = '\0';
 	while(*i <= d)
 	{
-		ft_strlcat(tmp[*j], line[*i], len + 3);
+		printf("hello\n");
+		strcat(tmp[*j], line[*i]);
 		(*i)++;
 	}
-	tmp[*j][len + 3] = '\0';
+	tmp[*j][len + 1] = '\0';
 }
 
 // static void copy_arv2(char **line, char **tmp, int *i, int *j)
@@ -87,14 +89,16 @@ void lexer(char **line, t_env_path *env_shell)
 	i = 0;
 	j = 0;
 	if (close_quote(line) == 1)
-		// quote_heredoc(line[i]);
+
 		write(1, "2", 1);
 	word = word_count(line);
 	tmp = malloc(sizeof(char *) * (word + 1));
 	while(i < word)
 	{
 		if (line[i][0] == '\'' || line[i][0] == '\"')
+		{
 			copy_arv(line[i][0], line, tmp, &i, &j);
+		}
 		else
 		{
 			tmp[j] = strdup(line[i]);
@@ -104,4 +108,6 @@ void lexer(char **line, t_env_path *env_shell)
 	}
 	tmp[j] = NULL;
 	env_shell->pipes->arv = tmp;
+	env_shell->pipes->count = j;
+	//free(tmp);
 }

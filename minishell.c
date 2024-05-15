@@ -6,7 +6,7 @@
 /*   By: debizhan <debizhan@student.42wolfsburg.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/03 10:29:35 by rkrechun          #+#    #+#             */
-/*   Updated: 2024/05/15 15:41:29 by debizhan         ###   ########.fr       */
+/*   Updated: 2024/05/15 16:56:11 by debizhan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,14 +29,17 @@ int main(int argc, char **argv, char **env)
         env_shell = malloc(sizeof(t_env_path));
         init_arg(argc, argv, env, env_shell);
         input = readline("minishell: ");
+        add_history(input);
         line  = split_arg(input);
         if (strcmp(line[0], "exit") == 0)
             exit(0);
         lexer(line, env_shell);
-        for (int c = 0; env_shell->pipes->arv[c] != NULL; c++) // test how readarguments
-            printf("%s\t : number arg %d \n", env_shell->pipes->arv[c], c);
-        // for (int d = 0; env_shell->env_paths[d] != NULL; d++) // test how copy env 
-        //     printf("env_shell->env_paths : %s\n", env_shell->env_paths[d]);
+        for (int c = 0; line[c] != NULL; c++) // test how readarguments
+            printf("%s\t : number arg %d \n", line[c], c);
+        for (int d = 0; env_shell->pipes->arv[d] != NULL; d++) // test how copy env 
+            printf("env_shell->env_paths : %s\t %d\n", env_shell->pipes->arv[d], d);
+        // for (int k = 0; env_shell->env_paths[k] != NULL; k++) // test how copy env 
+        //     printf("env_shell->env_paths : %s\n", env_shell->env_paths[k]);
     }
     free(input);
 }

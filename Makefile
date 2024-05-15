@@ -6,12 +6,12 @@
 #    By: debizhan <debizhan@student.42wolfsburg.    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/05/03 14:11:32 by rkrechun          #+#    #+#              #
-#    Updated: 2024/05/15 15:41:09 by debizhan         ###   ########.fr        #
+#    Updated: 2024/05/15 16:55:46 by debizhan         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME = minihell
-CC		= gcc -g #-fsanitize=address
+CC		= gcc -g -fsanitize=address
 FLAGS	= -Wall -Wextra -Werror
 LIBS	= -lreadline
 RM		= rm -rf
@@ -25,7 +25,7 @@ OBJ_M	= $(MPATH:.c=.o)
 	@$(CC) $(FLAGS) -c $< -o $@
 
 $(NAME): $(OBJ_M)
-	@make bonus libft
+	@make bonus -C libft
 	@mv libft/libft.a .
 	@$(CC) $(OBJ_M) $(LIBS) libft.a -o $(NAME)
 
