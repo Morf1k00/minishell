@@ -6,7 +6,7 @@
 /*   By: debizhan <debizhan@student.42wolfsburg.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/02 16:02:53 by rkrechun          #+#    #+#             */
-/*   Updated: 2024/05/15 15:46:40 by debizhan         ###   ########.fr       */
+/*   Updated: 2024/05/15 16:12:51 by debizhan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,5 +83,6 @@ void	lexer(char **line, t_env_path *env_shell);
 char**	line_read(char *line);
 void	error_exit(char *str);
 char	*get_pathm(char **env);
+int	create_list(t_vars **list, char **arv);
 
 #endif
