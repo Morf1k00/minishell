@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   lexer.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rkrechun <rkrechun@student.42.fr>          +#+  +:+       +#+        */
+/*   By: debizhan <debizhan@student.42wolfsburg.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/10 14:48:06 by rkrechun          #+#    #+#             */
-/*   Updated: 2024/05/15 15:59:30 by rkrechun         ###   ########.fr       */
+/*   Updated: 2024/05/15 17:08:06 by debizhan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,6 @@ static void copy_arv(char s, char **line, char **tmp, int *i, int *j)
 	tmp[*j][0] = '\0';
 	while(*i <= d)
 	{
-		printf("hello\n");
 		strcat(tmp[*j], line[*i]);
 		(*i)++;
 	}

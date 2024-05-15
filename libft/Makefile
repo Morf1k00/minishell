@@ -6,7 +6,7 @@
 #    By: debizhan <debizhan@student.42wolfsburg.    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/12/16 12:46:43 by dbizjano          #+#    #+#              #
-#    Updated: 2023/05/26 13:46:33 by debizhan         ###   ########.fr        #
+#    Updated: 2024/05/15 18:56:52 by debizhan         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -25,12 +25,12 @@ NAME	= 		libft.a
 all:			$(NAME)
 
 $(NAME):		$(OBJ)
-				ar rcs	$(NAME) $(OBJ)
+				@ar rcs	$(NAME) $(OBJ)
 bonus: 			$(OBJ) $(BOBJ)
-				ar rcs	$(NAME) $(OBJ) $(BOBJ)
+				@ar rcs	$(NAME) $(OBJ) $(BOBJ)
 clean: 
-				$(RM)	$(OBJ)  $(BOBJ)
+				@$(RM)	$(OBJ)  $(BOBJ)
 
 fclean:			clean
-				$(RM)	$(NAME)			
+				@$(RM)	$(NAME)			
 re: 			fclean all
