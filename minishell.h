@@ -6,7 +6,7 @@
 /*   By: debizhan <debizhan@student.42wolfsburg.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/02 16:02:53 by rkrechun          #+#    #+#             */
-/*   Updated: 2024/05/16 18:04:39 by debizhan         ###   ########.fr       */
+/*   Updated: 2024/05/16 18:13:05 by debizhan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,7 @@
 # include <sys/stat.h>
 # include <sys/types.h>
 #include "libft/libft.h"
+#include <stdbool.h>
 
 #include <string.h>
 
@@ -80,11 +81,13 @@ void 	init_path(char **env, t_env_path *env_shell);
 char 	*word_cpy(char *line);
 char	**split_arg(char *line);
 void	lexer(char **line, t_env_path *env_shell);
-int		tokens_init(char *arv);
 int		create_list(t_vars **list, char **arv);
+int 	tokens_init(char *arv);
+bool	close_quote(char **line);
 void	echo(t_vars **lst);
 void	ft_listclear(t_vars **head);
 void	ft_env(t_env_path *ep);
-
-
+char	*get_pathd(char **env, int i, char *cmd);
+int		len_pat(char *arv);
+int		len_cats(char *arv, int len_path);
 #endif

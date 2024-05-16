@@ -6,7 +6,7 @@
 #    By: debizhan <debizhan@student.42wolfsburg.    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/05/03 14:11:32 by rkrechun          #+#    #+#              #
-#    Updated: 2024/05/16 17:57:52 by debizhan         ###   ########.fr        #
+#    Updated: 2024/05/16 18:11:13 by debizhan         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -28,15 +28,16 @@ MPATH	=	minishell.c \
 			tokens2.c \
 			echo.c \
 			utils.c \
-			env.c
+			env.c \
+			quots.c \
 OBJ_M	= $(MPATH:.c=.o)
 
 %.o: %.c $(HEADER) Makefile
 	@$(CC) $(FLAGS) -c $< -o $@
 
 $(NAME): $(OBJ_M)
-	@make bonus -C libft
-	@mv libft/libft.a .
+	@ make bonus -C libft
+	@ mv libft/libft.a .
 	@$(CC) $(OBJ_M) $(LIBS) libft.a -o $(NAME)
 
 all: $(NAME)
