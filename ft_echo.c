@@ -6,33 +6,43 @@
 /*   By: debizhan <debizhan@student.42wolfsburg.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/15 17:22:14 by debizhan          #+#    #+#             */
-/*   Updated: 2024/05/15 20:04:08 by debizhan         ###   ########.fr       */
+/*   Updated: 2024/05/16 17:45:21 by debizhan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-static int	check_n(char *str)
+void	skip_spaces(t_vars **tmp)
+{
+	if (!(*tmp))
+		return ;
+	while (*tmp)
+	{
+		if ((*tmp)->token[0] == ' ')
+			*tmp = (*tmp)->next;
+		else
+			break ;
+	}
+}
+
+static int	check_n(t_vars **str)
 {
 	int	i;
 
 	i = 0;
-	if (str[0] == '-')
-			i++;
-	while(str[i])
+	if (!*str)
+		return 0;
+	if ((*str)->token[0] == '-')
+		i++;
+	while ((*str)->token[i])
 	{
-		if (str[i] == 'n')
+		if ((*str)->token[i] == 'n')
 			i++;
 		else
 			return (0);
 	}
+	*str = (*str)->next;
 	return (1);
-}
-
-void	skip_spaces(t_vars *tmp)
-{
-	while (tmp && tmp->token[0] == ' ')
-		tmp = tmp->next;
 }
 
 void	ft_echo(t_vars **lst)
@@ -45,19 +55,25 @@ void	ft_echo(t_vars **lst)
 	if (tmp->next)
 	{
 		tmp = tmp->next;
-		skip_spaces(tmp);
-		if (check_n(tmp->token))
+		skip_spaces(&tmp);
+		if (check_n(&tmp))
 			nl = 0;
-		skip_spaces(tmp);
+		skip_spaces(&tmp);
 		while (tmp)
 		{
-			if (tmp->type == WORD)
+			if (tmp && tmp->type == WORD)
+			{
 				ft_putstr_fd(tmp->token, 1);
-			if (tmp->type == SPACE_T)
-				write(1, "\n", 1);
-			if (tmp->type != WORD && tmp->type != SPACE_T)
+				tmp = tmp->next;
+			}
+			else if (tmp && tmp->type == SPACE_T)
+			{
+				skip_spaces(&tmp);
+				if (tmp)
+					ft_putchar_fd(' ', 1);
+			}
+			else if (!tmp || (tmp->type != WORD && tmp->type != SPACE_T))
 				break ;
-			tmp = tmp->next;
 		}
 	}
 	if (nl == 1)

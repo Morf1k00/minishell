@@ -6,7 +6,7 @@
 /*   By: debizhan <debizhan@student.42wolfsburg.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/03 10:29:35 by rkrechun          #+#    #+#             */
-/*   Updated: 2024/05/15 19:43:49 by debizhan         ###   ########.fr       */
+/*   Updated: 2024/05/16 17:02:23 by debizhan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,8 +58,12 @@ int main(int argc, char **argv, char **env)
 		{
 			if (strcmp(list->token, "echo") == 0)
 				ft_echo(&list);
-			list = list->next;
+			if (list->next)
+				list = list->next;
+			else
+				break ;
 		}
+		ft_listclear(&list);
         // for (int c = 0; line[c] != NULL; c++) // test how readarguments
         //     printf("%s\t : number arg %d \n", line[c], c);
         // for (int d = 0; env_shell->pipes->arv[d] != NULL; d++) // test how copy env 
