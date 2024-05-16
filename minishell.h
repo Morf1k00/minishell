@@ -6,7 +6,7 @@
 /*   By: rkrechun <rkrechun@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/02 16:02:53 by rkrechun          #+#    #+#             */
-/*   Updated: 2024/05/16 14:29:06 by rkrechun         ###   ########.fr       */
+/*   Updated: 2024/05/16 15:52:55 by rkrechun         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@ typedef enum e_token
 {
 	WORD,
 	PIPE,
-	//SPACE,
+	SPACE_T,
 	GREATER_THEN,
 	LESS_THEN,
 	HEREDOC,
