@@ -6,7 +6,7 @@
 /*   By: rkrechun <rkrechun@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/02 16:02:53 by rkrechun          #+#    #+#             */
-/*   Updated: 2024/05/16 15:52:55 by rkrechun         ###   ########.fr       */
+/*   Updated: 2024/05/16 16:21:29 by rkrechun         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@
 
 #include <string.h>
 
-typedef enum e_token
+typedef enum	e_token
 {
 	WORD,
 	PIPE,
@@ -39,7 +39,7 @@ typedef enum e_token
 	SINGLE_QUOTES,
 }		t_type;
 
-typedef struct s_pipes
+typedef struct	s_pipes
 {
 	char **arv;
 	char *cmd;
@@ -50,7 +50,7 @@ typedef struct s_pipes
 	int count;
 }				t_pipes; //пайпы и что с ними делать, исполнение в дальнейшем команд
 
-typedef struct s_vars
+typedef struct	s_vars
 {
 	int	lenght;
 	char *token;// значения, аргумента
@@ -68,12 +68,12 @@ typedef struct s_env_path
 }				t_env_path; // основная структура 
 
 //extern t_env_path *env_shell;
-typedef struct s_line
+typedef struct	s_line
 {
 	char	**line_arg;
 	int		arg_c;
 }				t_line;
-		
+
 char	**line_read(char *line);
 char	**ft_split(char const *s, char c);
 // void    path_e(char ***tmp, int *i, int *count, char **env);
@@ -81,8 +81,9 @@ void 	init_path(char **env, t_env_path *env_shell);
 char 	*word_cpy(char *line);
 char	**split_arg(char *line);
 void lexer(char **line, t_env_path *env_shell);
-int	create_list(t_vars **list, char **arv);
-int tokens_init(char *arv);
+int		create_list(t_vars **list, char **arv);
+int 	tokens_init(char *arv);
 bool close_quote(char **line);
+void	ft_echo(t_vars **lst);
 
 #endif

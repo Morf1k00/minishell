@@ -6,7 +6,7 @@
 /*   By: rkrechun <rkrechun@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/15 15:24:57 by rkrechun          #+#    #+#             */
-/*   Updated: 2024/05/15 17:18:40 by rkrechun         ###   ########.fr       */
+/*   Updated: 2024/05/16 16:21:50 by rkrechun         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,12 +14,19 @@
 
 int tokens_init(char *arv)
 {
+	// int	length;
+
+	// length = ft_strlen(arv);
 	if (arv[0] == '<' && !arv[1])
 		return(LESS_THEN);
 	else if (arv[0] == '<' && arv[1] == '<' && !arv[2])
 		return(HEREDOC);
 	else if (arv[0] == '>' && !arv[1])
 		return(GREATER_THEN);
+	// else if (arv[0] == '\"' && arv[length - 1] == '\"')
+	// 	return (DOUBLE_QUOTES);
+	// else if (arv[0] == '\'' && arv[length - 1] == '\'')
+	// 	return (SINGLE_QUOTES);
 	else if (arv[0] == '>' && arv[1] == '>' && !arv[2])
 		return(APPEND);
 	else if (arv[0] == '|' && !arv[1])
@@ -27,5 +34,5 @@ int tokens_init(char *arv)
 	else if (arv[0] != ' ')
 		return (WORD);
 	else
-		return(SPACE);
+		return(SPACE_T);
 }

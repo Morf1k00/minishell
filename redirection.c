@@ -6,7 +6,7 @@
 /*   By: debizhan <debizhan@student.42wolfsburg.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/08 15:55:40 by debizhan          #+#    #+#             */
-/*   Updated: 2024/05/14 19:21:34 by debizhan         ###   ########.fr       */
+/*   Updated: 2024/05/15 18:52:53 by debizhan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,11 +40,4 @@ void	ft_redirect_cmd_to_file(char **command, char *output_file)
 	// else
 	// 	if (waitpid(pid, &status, 0) == -1)
 	// 		error_exit("waitpid");
-}
-
-int main() {
-    char *command[] = {"/bin/ls", NULL};
-    char *output_file = "output.txt";
-    ft_redirect_cmd_to_file(command, output_file);
-    return 0;
 }

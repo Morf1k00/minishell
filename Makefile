@@ -6,7 +6,7 @@
 #    By: rkrechun <rkrechun@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/05/03 14:11:32 by rkrechun          #+#    #+#              #
-#    Updated: 2024/05/16 15:02:12 by rkrechun         ###   ########.fr        #
+#    Updated: 2024/05/16 16:23:11 by rkrechun         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -18,7 +18,16 @@ RM		= rm -rf
 
 HEADER	= minishell.h
 
-MPATH	= minishell.c  ft_split.c env_init.c split_arg.c word_cpy.c lexer.c tokens.c tokens2.c quots.c #line_read.c
+MPATH	= minishell.c \
+		 ft_split.c \
+		 env_init.c \
+		 split_arg.c \
+		 word_cpy.c \
+		 lexer.c \
+		 tokens.c \
+		 tokens2.c \
+		ft_echo.c 
+		quots.c
 OBJ_M	= $(MPATH:.c=.o)
 
 %.o: %.c $(HEADER) Makefile
@@ -33,9 +42,9 @@ all: $(NAME)
 
 clean:
 	@$(RM) $(OBJ_M)
-
+	@make clean -C libft
+	@rm libft.a
 fclean: clean
 	@$(RM) $(NAME)
-	
-	
+	@make fclean -C libft	
 .PHONY: all clean fclean
