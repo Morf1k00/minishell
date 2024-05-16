@@ -6,7 +6,7 @@
 /*   By: debizhan <debizhan@student.42wolfsburg.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/03 10:29:35 by rkrechun          #+#    #+#             */
-/*   Updated: 2024/05/16 17:02:23 by debizhan         ###   ########.fr       */
+/*   Updated: 2024/05/16 18:03:43 by debizhan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,10 +54,12 @@ int main(int argc, char **argv, char **env)
 			exit(1);
 		}
 		// print_list(&list);
-		while (list)
+		while (list) // GOING THROUGH THE LIST AND LOOKING FOR "ECHO" TO EXECUTE THE COMMAND. CLEANING THE LIST.
 		{
 			if (strcmp(list->token, "echo") == 0)
-				ft_echo(&list);
+				echo(&list);
+			else if (strcmp(list->token, "env") == 0)
+				ft_env(env_shell);
 			if (list->next)
 				list = list->next;
 			else

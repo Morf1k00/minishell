@@ -6,7 +6,7 @@
 #    By: debizhan <debizhan@student.42wolfsburg.    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/05/03 14:11:32 by rkrechun          #+#    #+#              #
-#    Updated: 2024/05/16 16:55:34 by debizhan         ###   ########.fr        #
+#    Updated: 2024/05/16 17:57:52 by debizhan         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -26,8 +26,9 @@ MPATH	=	minishell.c \
 			lexer.c \
 			tokens.c \
 			tokens2.c \
-			ft_echo.c \
-			utils.c
+			echo.c \
+			utils.c \
+			env.c
 OBJ_M	= $(MPATH:.c=.o)
 
 %.o: %.c $(HEADER) Makefile

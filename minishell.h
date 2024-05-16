@@ -6,7 +6,7 @@
 /*   By: debizhan <debizhan@student.42wolfsburg.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/02 16:02:53 by rkrechun          #+#    #+#             */
-/*   Updated: 2024/05/16 16:54:19 by debizhan         ###   ########.fr       */
+/*   Updated: 2024/05/16 18:04:39 by debizhan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,7 +82,9 @@ char	**split_arg(char *line);
 void	lexer(char **line, t_env_path *env_shell);
 int		tokens_init(char *arv);
 int		create_list(t_vars **list, char **arv);
-void	ft_echo(t_vars **lst);
+void	echo(t_vars **lst);
 void	ft_listclear(t_vars **head);
+void	ft_env(t_env_path *ep);
+
 
 #endif
