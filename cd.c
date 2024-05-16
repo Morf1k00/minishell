@@ -6,62 +6,47 @@
 /*   By: rkrechun <rkrechun@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/16 15:13:09 by rkrechun          #+#    #+#             */
-/*   Updated: 2024/05/16 17:40:09 by rkrechun         ###   ########.fr       */
+/*   Updated: 2024/05/16 18:42:27 by rkrechun         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-void absolute_path(char *list)
-{
-	
-}
-
 void parent_dir(char *list, t_env_path *env_shell)
 {
-	char *path;
-	char *old_path;
-	int len_path;
-	int len_cat;
+	char *new_dir;
+	char *curent_dir;
 
-	path = get_pathd(env_shell->env_paths, 3, "PWD");
-	old_path = path;
-	len_path = len_pat(path);
-	len_cat = len_cats(path, len_path);
-	ft_substr()
-	
+	curent_dir = get_pathd(env_shell->env_paths, 4, "PWD=");
+	while (ft_strncmp(env_shell->*env_paths, "PWD=", 4))
+		env_shell->env_paths++;
+	curent_dir = env_shell->*env_paths;
+	if (*list[0] == '/')
+		new_dir = ft_strdup(list);
+	else
+	{
+		strcpy(new_dir, curent_dir);
+		strcat(new_dir, "/");
+		strcat(new_dir, list);
+	}
+	if (chdir(new_dir) != 0)
+	{
+		ft_putchar_fd("bash: cd:", 1);
+		ft_putchar_fd(list, 1);
+		ft_putstr_fd("Not a directory", 1);
+	}
+	free(env_shell->*env_paths);
+	env_shell->*env_paths = strdup(new_dir);
 }
 
-void change_dir(t_env_path *env_shell)
+void change_dir(t_env_path *env_shell, t_vars **list)
 {
-	t_vars **list;
-	char **tmp;
-
 	while (list->next)
 	{
-		//list = list->next
 		if (list->type == SPACE_T)
 			list = list->next;
 		if (list->type == WORD)
-		{
-			if(list->token[0] == '/')
-				absolute_path(list->token);
-			else if (list->token[0] == '~')
-				
-			else if (list->token[0] == '.' && list->token[1] == '.')
-				parent_dir(list->token, env_shell);
-			else if ((list->token[0] == '\'' || list->token[0] == '\"') &&
-					(list->token[1] == '.' && list->token[2] == '.'))
-					
-			else if ((list->token[0] == '\'' || list->token[0] == '\"')
-						&& list->token[0] != ' ')
-						
-			else if (list->token[0] != ' ')
-				
-		}
+			parent_dir(list, env_shell);
+			
 	}
 }
-
-OLDPWD=/
-SHELL=/bin/zsh
-PWD=/home/rkrechun/Desktop/minishell
