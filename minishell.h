@@ -6,7 +6,7 @@
 /*   By: rkrechun <rkrechun@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/02 16:02:53 by rkrechun          #+#    #+#             */
-/*   Updated: 2024/05/16 16:21:29 by rkrechun         ###   ########.fr       */
+/*   Updated: 2024/05/16 17:39:51 by rkrechun         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,10 +80,12 @@ char	**ft_split(char const *s, char c);
 void 	init_path(char **env, t_env_path *env_shell);
 char 	*word_cpy(char *line);
 char	**split_arg(char *line);
-void lexer(char **line, t_env_path *env_shell);
+void	lexer(char **line, t_env_path *env_shell);
 int		create_list(t_vars **list, char **arv);
 int 	tokens_init(char *arv);
-bool close_quote(char **line);
+bool	close_quote(char **line);
 void	ft_echo(t_vars **lst);
-
+char	*get_pathd(char **env, int i, char *cmd);
+int		len_pat(char *arv);
+int		len_cats(char *arv, int len_path);
 #endif

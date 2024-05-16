@@ -6,7 +6,7 @@
 /*   By: rkrechun <rkrechun@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/16 14:57:06 by rkrechun          #+#    #+#             */
-/*   Updated: 2024/05/16 15:08:31 by rkrechun         ###   ########.fr       */
+/*   Updated: 2024/05/16 16:55:48 by rkrechun         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -116,9 +116,9 @@ bool close_quote(char **line)
 		if (line[i][0] == '\'')
 		{
 			sq++;
+			i++;
 			if (!line[i])
 				return(false);
-			i++;
 			while (line[i][0] != '\'' && line[i])
 				i++;
 			if (!line[i])
