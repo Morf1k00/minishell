@@ -6,12 +6,13 @@
 /*   By: rkrechun <rkrechun@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/10 14:48:06 by rkrechun          #+#    #+#             */
-/*   Updated: 2024/05/15 15:59:30 by rkrechun         ###   ########.fr       */
+/*   Updated: 2024/05/16 15:09:46 by rkrechun         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 #include "libft/libft.h"
+#include <stdbool.h>
 
 static void copy_arv(char s, char **line, char **tmp, int *i, int *j)
 {
@@ -29,7 +30,7 @@ static void copy_arv(char s, char **line, char **tmp, int *i, int *j)
 	tmp[*j][0] = '\0';
 	while(*i <= d)
 	{
-		printf("hello\n");
+		// printf("hello\n");
 		strcat(tmp[*j], line[*i]);
 		(*i)++;
 	}
@@ -57,27 +58,6 @@ static int word_count(char **line)
 	return(i);
 }
 
-static int close_quote(char **line)
-{
-	int i;
-	int sq;
-	int dq;
-
-	i = 0;
-	sq = 0;
-	dq = 0;
-	while (line[i] != NULL)
-	{
-		if (line[i][0] == '\'')
-			sq++;
-		else if (line[i][0] == '\"')
-			dq++;
-		i++;
-	}
-	if (sq % 2 != 0 || dq % 2 != 0 )
-		return(1);
-	return(0);
-}	
 
 void lexer(char **line, t_env_path *env_shell)
 {
@@ -88,9 +68,8 @@ void lexer(char **line, t_env_path *env_shell)
 
 	i = 0;
 	j = 0;
-	if (close_quote(line) == 1)
-
-		write(1, "2", 1);
+	
+	printf("HI im in  ELSE\n");
 	word = word_count(line);
 	tmp = malloc(sizeof(char *) * (word + 1));
 	while(i < word)
@@ -109,5 +88,5 @@ void lexer(char **line, t_env_path *env_shell)
 	tmp[j] = NULL;
 	env_shell->pipes->arv = tmp;
 	env_shell->pipes->count = j;
-	//free(tmp);
 }
+
