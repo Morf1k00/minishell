@@ -6,7 +6,7 @@
 /*   By: rkrechun <rkrechun@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/03 10:29:35 by rkrechun          #+#    #+#             */
-/*   Updated: 2024/05/17 16:01:02 by rkrechun         ###   ########.fr       */
+/*   Updated: 2024/05/17 17:07:31 by rkrechun         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,7 @@ int main(int argc, char **argv, char **env)
     t_env_path	*env_shell;
 	// t_vars		*list;
 
-	// list = NULL;
+	list = NULL;
     while(1)
     {
         env_shell = malloc(sizeof(t_env_path));
@@ -52,11 +52,12 @@ int main(int argc, char **argv, char **env)
             lexer(line, env_shell);
         else
             printf("quote not close\n"); 
-		// if (!create_list(&list, env_shell->pipes->arv))
-		// {
-		// 	printf("smth went wrong\n");
-		// // 	exit(1);
-		// }
+		if (!create_list(&list, env_shell->pipes->arv))
+		{
+			printf("smth went wrong\n");
+			exit(1);
+		}
+			// printf("%s\n", list->token);
 		// print_list(&list);
 		// check_cmd_line(&list);
 		/* while (list) // GOING THROUGH THE LIST AND LOOKING FOR "ECHO" TO EXECUTE THE COMMAND. CLEANING THE LIST.

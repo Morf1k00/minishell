@@ -6,7 +6,7 @@
 /*   By: rkrechun <rkrechun@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/16 14:57:06 by rkrechun          #+#    #+#             */
-/*   Updated: 2024/05/17 16:42:30 by rkrechun         ###   ########.fr       */
+/*   Updated: 2024/05/17 17:08:49 by rkrechun         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,8 +63,12 @@ bool	close_quote(char **line)
 		}
 		if (line[i] != NULL)
 			i++;
+			i++;
 	}
 	if (sq % 2 == 0 && dq % 2 == 0)
 		return (true);
 	return (false);
+		return (true);
+	return (false);
 }
+

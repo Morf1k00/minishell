@@ -6,12 +6,11 @@
 /*   By: rkrechun <rkrechun@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/10 17:42:36 by debizhan          #+#    #+#             */
-/*   Updated: 2024/05/17 15:45:01 by rkrechun         ###   ########.fr       */
+/*   Updated: 2024/05/17 17:09:33 by rkrechun         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
-#include "libft/ft_strncmp.c"
 
 char	*get_pathm(char **env)
 {

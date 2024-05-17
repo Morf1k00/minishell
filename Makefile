@@ -6,7 +6,7 @@
 #    By: rkrechun <rkrechun@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/05/03 14:11:32 by rkrechun          #+#    #+#              #
-#    Updated: 2024/05/17 15:41:18 by rkrechun         ###   ########.fr        #
+#    Updated: 2024/05/17 17:07:47 by rkrechun         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -30,6 +30,7 @@ MPATH	=	minishell.c \
 			utils.c \
 			env.c \
 			quots.c \
+			
 			
 OBJ_M	= $(MPATH:.c=.o)
 
