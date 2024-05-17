@@ -6,7 +6,7 @@
 /*   By: rkrechun <rkrechun@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/10 17:42:36 by debizhan          #+#    #+#             */
-/*   Updated: 2024/05/17 14:49:58 by rkrechun         ###   ########.fr       */
+/*   Updated: 2024/05/17 15:45:01 by rkrechun         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,7 @@ int lenpath(char *arv)
 	int len;
 
 	len = 0;
-	while (arv[len] != NULL)
+	while (arv[len])
 		len++;
 	return (len);
 }
@@ -49,4 +49,19 @@ int lencat(char *arv, int len_path)
 		len++;
 	}
 	return(len);	
+}
+
+void	ft_listclear(t_vars **head)
+{
+	t_vars	*current;
+	t_vars	*next;
+
+	current = *head;
+	while (current != NULL)
+	{
+		next = current->next;
+		free(current);
+		current = next;
+	}
+	*head = NULL;
 }

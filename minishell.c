@@ -6,7 +6,7 @@
 /*   By: rkrechun <rkrechun@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/03 10:29:35 by rkrechun          #+#    #+#             */
-/*   Updated: 2024/05/16 17:55:22 by rkrechun         ###   ########.fr       */
+/*   Updated: 2024/05/17 16:01:02 by rkrechun         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,17 +58,24 @@ int main(int argc, char **argv, char **env)
 		// // 	exit(1);
 		// }
 		// print_list(&list);
-		// while (list)
-		// {
-		// 	if (strcmp(list->token, "echo") == 0)
-		// 		ft_echo(&list);
-		// 	list = list->next;
-		// }
-        for (int c = 0; line[c] != NULL; c++) // test how readarguments
+		// check_cmd_line(&list);
+		/* while (list) // GOING THROUGH THE LIST AND LOOKING FOR "ECHO" TO EXECUTE THE COMMAND. CLEANING THE LIST.
+		{
+			if (strcmp(list->token, "echo") == 0)
+				echo(&list);
+			else if (strcmp(list->token, "env") == 0)
+				ft_env(env_shell);
+			if (list->next)
+				list = list->next;
+			else
+				break ;
+		}
+		ft_listclear(&list); */ 
+		for (int c = 0; line[c] != NULL; c++) // test how readarguments
             printf("%s\t : number arg %d \n", line[c], c);
-        if ( env_shell->pipes->arv != NULL)
-        for (int d = 0; env_shell->pipes->arv[d] != NULL; d++) // test how copy env 
-            printf("env_shell->env_paths : %s\t %d\n", env_shell->pipes->arv[d], d);
+        if (env_shell->pipes->arv != NULL)
+			for (int d = 0; env_shell->pipes->arv[d] != NULL; d++) // test how copy env 
+            	printf("env_shell->env_paths : %s\t %d\n", env_shell->pipes->arv[d], d);
         // for (int k = 0; env_shell->env_paths[k] != NULL; k++) // test how copy env 
         //     printf("env_shell->env_paths : %s\n", env_shell->env_paths[k]);
     }

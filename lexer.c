@@ -6,22 +6,31 @@
 /*   By: rkrechun <rkrechun@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/10 14:48:06 by rkrechun          #+#    #+#             */
-/*   Updated: 2024/05/16 17:58:16 by rkrechun         ###   ########.fr       */
+/*   Updated: 2024/05/17 16:37:57 by rkrechun         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
-#include "libft/libft.h"
-#include <stdbool.h>
 
-static void	copy_arv(char s, char **line, char **tmp, int *i, int *j)
+static char	check_char(char c)
 {
-	int	len;
-	int	d;
+	if (c == '\'')
+		return ('\'');
+	else if (c == '\"')
+		return ('\"');
+	return ('\0');
+}
+
+static void	copy_arv(char **line, char **tmp, int *i, int *j)
+{
+	int		len;
+	int		d;
+	char	s;
 
 	len = 1;
-	d = *i + 1;
 	(*i)++;
+	d = *i;
+	s = check_char(line[d - 1][0]);
 	while (line[d][0] != s && line[d] != NULL)
 	{
 		len += strlen(line[d]);
@@ -62,7 +71,7 @@ void	lexer(char **line, t_env_path *env_shell)
 	while (i < word)
 	{
 		if (line[i][0] == '\'' || line[i][0] == '\"')
-			copy_arv(line[i][0], line, tmp, &i, &j);
+			copy_arv(line, tmp, &i, &j);
 		else
 		{
 			tmp[j] = strdup(line[i]);

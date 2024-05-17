@@ -6,16 +6,16 @@
 /*   By: rkrechun <rkrechun@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/16 15:13:09 by rkrechun          #+#    #+#             */
-/*   Updated: 2024/05/17 15:14:27 by rkrechun         ###   ########.fr       */
+/*   Updated: 2024/05/17 16:47:23 by rkrechun         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-void child_dir(char *list, t_env_path *env_shell)
+static void	child_dir(char *list, t_env_path *env_shell)
 {
-	char *new_dir;
-	char *curent_dir;
+	char	*new_dir;
+	char	*curent_dir;
 
 	curent_dir = get_pathd(env_shell->env_paths, 4, "PWD=");
 	while (ft_strncmp(env_shell->*env_paths, "PWD=", 4))
@@ -40,12 +40,12 @@ void child_dir(char *list, t_env_path *env_shell)
 	env_shell->*env_paths = strdup(new_dir);
 }
 
-void parent_dir(char *list, t_env_path *env_shell)
+static void	parent_dir(char *list, t_env_path *env_shell)
 {
-	char *new_dir;
-	char *current_dir;
-	int i;
-	int ct;
+	char	*new_dir;
+	char	*current_dir;
+	int		i;
+	int		ct;
 
 	current_dir = get_pathd(env_shell->env_paths, 4, "PWD=");
 	while (ft_strncmp(env_shell->*env_paths, "PWD=", 4))
@@ -54,21 +54,21 @@ void parent_dir(char *list, t_env_path *env_shell)
 	i = lenpath(current_dir);
 	ct = lencat(current_dir, i);
 	strncpy(new_dir, current_dir, i - ct);
-	if(chdir(new_dir) != 0)
+	if (chdir(new_dir) != 0)
 	{
 		ft_putchar_fd("bash: cd:", 1);
 		ft_putchar_fd(list, 1);
 		ft_putstr_fd("Not a directory", 1);
-		break;
+		break ;
 	}
 	free(env_shell->*env_paths);
 	env_shell->*env_paths = strdup(new_dir);
 }
 
-void change_dir(t_env_path *env_shell, t_vars **list)
+void	change_dir(t_env_path *env_shell, t_vars **list)
 {
 	if (list->next)
-	{	
+	{
 		while (list->next)
 		{
 			list = list->next;

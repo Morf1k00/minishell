@@ -6,28 +6,31 @@
 #    By: rkrechun <rkrechun@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/05/03 14:11:32 by rkrechun          #+#    #+#              #
-#    Updated: 2024/05/16 16:52:17 by rkrechun         ###   ########.fr        #
+#    Updated: 2024/05/17 15:41:18 by rkrechun         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME = minihell
-CC		= gcc #-g -fsanitize=address
-FLAGS	= -Wall -Wextra -Werror
-LIBS	= -lreadline
-RM		= rm -rf
+CC		=	gcc #-g -fsanitize=address
+FLAGS	=	-Wall -Wextra -Werror
+LIBS	=	-lreadline
+RM		=	rm -rf
 
-HEADER	= minishell.h
-MPATH	= minishell.c \
-		ft_split.c \
-		env_init.c \
-		split_arg.c \
-		word_cpy.c \
-		lexer.c \
-		tokens.c \
-		tokens2.c \
-		ft_echo.c \
-		quots.c \
-		
+HEADER	=	minishell.h
+
+MPATH	=	minishell.c \
+			ft_split.c \
+			env_init.c \
+			split_arg.c \
+			word_cpy.c \
+			lexer.c \
+			tokens.c \
+			tokens2.c \
+			echo.c \
+			utils.c \
+			env.c \
+			quots.c \
+			
 OBJ_M	= $(MPATH:.c=.o)
 
 %.o: %.c $(HEADER) Makefile

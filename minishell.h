@@ -6,7 +6,7 @@
 /*   By: rkrechun <rkrechun@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/02 16:02:53 by rkrechun          #+#    #+#             */
-/*   Updated: 2024/05/16 17:39:51 by rkrechun         ###   ########.fr       */
+/*   Updated: 2024/05/17 15:42:49 by rkrechun         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,6 +37,7 @@ typedef enum	e_token
 	APPEND,
 	DOUBLE_QUOTES,
 	SINGLE_QUOTES,
+	CMD,
 }		t_type;
 
 typedef struct	s_pipes
@@ -84,7 +85,9 @@ void	lexer(char **line, t_env_path *env_shell);
 int		create_list(t_vars **list, char **arv);
 int 	tokens_init(char *arv);
 bool	close_quote(char **line);
-void	ft_echo(t_vars **lst);
+void	echo(t_vars **lst);
+void	ft_listclear(t_vars **head);
+void	ft_env(t_env_path *ep);
 char	*get_pathd(char **env, int i, char *cmd);
 int		len_pat(char *arv);
 int		len_cats(char *arv, int len_path);
