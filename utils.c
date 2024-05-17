@@ -6,7 +6,7 @@
 /*   By: rkrechun <rkrechun@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/10 17:42:36 by debizhan          #+#    #+#             */
-/*   Updated: 2024/05/16 18:31:12 by rkrechun         ###   ########.fr       */
+/*   Updated: 2024/05/17 14:49:58 by rkrechun         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,25 +28,25 @@ char	*get_pathd(char **env, int i, char *cmd)
 	return (*env + i);
 }
 
-// int len_pat(char *arv)
-// {
-// 	int len;
+int lenpath(char *arv)
+{
+	int len;
 
-// 	len = 0;
-// 	while (arv[len] != NULL)
-// 		len++;
-// 	return (len);
-// }
+	len = 0;
+	while (arv[len] != NULL)
+		len++;
+	return (len);
+}
 
-// int len_cats(char *arv, int len_path)
-// {
-// 	int len;
+int lencat(char *arv, int len_path)
+{
+	int len;
 
-// 	len = 0;
-// 	while (arv[len_path] != '/')
-// 	{	
-// 		len_path--;
-// 		len++;
-// 	}
-// 	return(len);	
-// }
+	len = 0;
+	while (arv[len_path] != '/')
+	{	
+		len_path--;
+		len++;
+	}
+	return(len);	
+}
