@@ -6,13 +6,13 @@
 /*   By: debizhan <debizhan@student.42wolfsburg.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/08 16:04:43 by debizhan          #+#    #+#             */
-/*   Updated: 2024/05/08 17:14:46 by debizhan         ###   ########.fr       */
+/*   Updated: 2024/05/17 14:59:28 by debizhan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-void	error_exit(char *str)
+void	ft_error_exit(char *str)
 {
 	perror(str);
 	exit(EXIT_FAILURE);
