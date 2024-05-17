@@ -6,7 +6,7 @@
 /*   By: debizhan <debizhan@student.42wolfsburg.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/08 15:55:40 by debizhan          #+#    #+#             */
-/*   Updated: 2024/05/17 15:05:24 by debizhan         ###   ########.fr       */
+/*   Updated: 2024/05/17 15:50:42 by debizhan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,8 +24,6 @@ void	ft_redirect_cmd_to_file(char **command, char *output_file)
 	char	*cmd;
 
 	pid = fork();
-	// path = get_pathm(envp->env_paths);
-	// cmd = ft_strjoin(path, command[0]);
 	if (pid < 0)
 		ft_error_exit("fork");
 	else if (pid == 0)
@@ -39,16 +37,13 @@ void	ft_redirect_cmd_to_file(char **command, char *output_file)
 		if (execve(command[0], command, NULL) == -1)
 			ft_error_exit("execve");
 	}
-	// else
-	// 	if (waitpid(pid, &status, 0) == -1)
-	// 		ft_error_exit("waitpid");
 }
 
-int	main()
-{
-	
-	char *command[] = {"/bin/ls", NULL};
-    char *output_file = "output.txt";
+// int	main()
+// {
 
-	ft_redirect_cmd_to_file(command, output_file);
-}
+// 	char *command[] = {"/bin/ls", NULL};
+//     char *output_file = "output.txt";
+
+// 	ft_redirect_cmd_to_file(command, output_file);
+// }

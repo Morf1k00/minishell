@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   quots.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rkrechun <rkrechun@student.42.fr>          +#+  +:+       +#+        */
+/*   By: debizhan <debizhan@student.42wolfsburg.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/16 14:57:06 by rkrechun          #+#    #+#             */
-/*   Updated: 2024/05/16 16:55:48 by rkrechun         ###   ########.fr       */
+/*   Updated: 2024/05/17 15:52:41 by debizhan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -102,15 +102,15 @@
 //     return true;
 // }
 
-bool close_quote(char **line)
+bool	close_quote(char **line)
 {
-	int i;
-	int sq;
-	int dq;
+	int	i;
+	int	sq;
+	int	dq;
 
 	i = 0;
- 	sq = 0;
- 	dq = 0;
+	sq = 0;
+	dq = 0;
 	while (line[i])
 	{
 		if (line[i][0] == '\'')
@@ -118,11 +118,11 @@ bool close_quote(char **line)
 			sq++;
 			i++;
 			if (!line[i])
-				return(false);
+				return (false);
 			while (line[i][0] != '\'' && line[i])
 				i++;
 			if (!line[i])
-				return(false);
+				return (false);
 			sq++;
 		}
 		else if (line[i][0] == '\"')
@@ -130,17 +130,17 @@ bool close_quote(char **line)
 			dq++;
 			i++;
 			if (line[i] == NULL)
-				return(false);
-			while(line[i][0] != '\"' && line[i])
+				return (false);
+			while (line[i][0] != '\"' && line[i])
 				i++;
 			if (line[i] == NULL)
-				return(false);
+				return (false);
 			dq++;
 		}
 		if (line[i] != NULL)
-		 	i++;
+			i++;
 	}
 	if (sq % 2 == 0 && dq % 2 == 0)
-        return true;
-	return(false);
+		return (true);
+	return (false);
 }
