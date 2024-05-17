@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rkrechun <rkrechun@student.42.fr>          +#+  +:+       +#+        */
+/*   By: debizhan <debizhan@student.42wolfsburg.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/03 10:29:35 by rkrechun          #+#    #+#             */
-/*   Updated: 2024/05/17 16:01:02 by rkrechun         ###   ########.fr       */
+/*   Updated: 2024/05/17 17:08:01 by debizhan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,9 +36,9 @@ int main(int argc, char **argv, char **env)
     char		*input;
     char        **line;
     t_env_path	*env_shell;
-	// t_vars		*list;
+	t_vars		*list;
 
-	// list = NULL;
+	list = NULL;
     while(1)
     {
         env_shell = malloc(sizeof(t_env_path));
@@ -52,14 +52,15 @@ int main(int argc, char **argv, char **env)
             lexer(line, env_shell);
         else
             printf("quote not close\n"); 
-		// if (!create_list(&list, env_shell->pipes->arv))
-		// {
-		// 	printf("smth went wrong\n");
-		// // 	exit(1);
-		// }
+		if (!create_list(&list, env_shell->pipes->arv))
+		{
+			printf("smth went wrong\n");
+			exit(1);
+		}
+			// printf("%s\n", list->token);
 		// print_list(&list);
 		// check_cmd_line(&list);
-		/* while (list) // GOING THROUGH THE LIST AND LOOKING FOR "ECHO" TO EXECUTE THE COMMAND. CLEANING THE LIST.
+		while (list) // GOING THROUGH THE LIST AND LOOKING FOR "ECHO" TO EXECUTE THE COMMAND. CLEANING THE LIST.
 		{
 			if (strcmp(list->token, "echo") == 0)
 				echo(&list);
@@ -70,12 +71,12 @@ int main(int argc, char **argv, char **env)
 			else
 				break ;
 		}
-		ft_listclear(&list); */ 
-		for (int c = 0; line[c] != NULL; c++) // test how readarguments
-            printf("%s\t : number arg %d \n", line[c], c);
-        if (env_shell->pipes->arv != NULL)
-			for (int d = 0; env_shell->pipes->arv[d] != NULL; d++) // test how copy env 
-            	printf("env_shell->env_paths : %s\t %d\n", env_shell->pipes->arv[d], d);
+		ft_listclear(&list); 
+		// for (int c = 0; line[c] != NULL; c++) // test how readarguments
+        //     printf("%s\t : number arg %d \n", line[c], c);
+        // if (env_shell->pipes->arv != NULL)
+		// 	for (int d = 0; env_shell->pipes->arv[d] != NULL; d++) // test how copy env 
+        //     	printf("env_shell->env_paths : %s\t %d\n", env_shell->pipes->arv[d], d);
         // for (int k = 0; env_shell->env_paths[k] != NULL; k++) // test how copy env 
         //     printf("env_shell->env_paths : %s\n", env_shell->env_paths[k]);
     }

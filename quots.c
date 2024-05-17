@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   quots.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rkrechun <rkrechun@student.42.fr>          +#+  +:+       +#+        */
+/*   By: debizhan <debizhan@student.42wolfsburg.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/16 14:57:06 by rkrechun          #+#    #+#             */
-/*   Updated: 2024/05/17 16:42:30 by rkrechun         ###   ########.fr       */
+/*   Updated: 2024/05/17 17:12:36 by debizhan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,13 +53,27 @@ bool	close_quote(char **line)
 	{
 		if (line[i][0] == '\'')
 		{
-			if (!check_single_quote(line, &i, &sq))
-				return (false);
+			sq++;
+			i++;
+			if (!line[i])
+				return(false);
+			while (line[i][0] != '\'' && line[i])
+				i++;
+			if (!line[i])
+				return(false);
+			sq++;
 		}
 		else if (line[i][0] == '\"')
 		{
-			if (!check_double_quote(line, &i, &dq))
-				return (false);
+			dq++;
+			i++;
+			if (line[i] == NULL)
+				return(false);
+			while(line[i][0] != '\"' && line[i])
+				i++;
+			if (line[i] == NULL)
+				return(false);
+			dq++;
 		}
 		if (line[i] != NULL)
 			i++;
