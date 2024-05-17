@@ -6,7 +6,7 @@
 /*   By: debizhan <debizhan@student.42wolfsburg.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/10 17:42:36 by debizhan          #+#    #+#             */
-/*   Updated: 2024/05/17 15:43:11 by debizhan         ###   ########.fr       */
+/*   Updated: 2024/05/17 16:45:39 by debizhan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,19 +19,19 @@ char	*get_pathm(char **env)
 	return (*env + 5);
 }
 
-char	*get_pathd(char **env, int i, char *cmd)
-{
-	while (ft_strcmp(cmd, *env, i))
-		env++;
-	return (*env + i);
-}
+// char	*get_pathd(char **env, int i, char *cmd)
+// {
+// 	while (ft_strcmp(cmd, *env, i))
+// 		env++;
+// 	return (*env + i);
+// }
 
 int	len_pat(char *arv)
 {
 	int	len;
 
 	len = 0;
-	while (arv[len] != NULL)
+	while (arv[len])
 		len++;
 	return (len);
 }
