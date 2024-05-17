@@ -6,7 +6,7 @@
 /*   By: debizhan <debizhan@student.42wolfsburg.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/15 17:22:14 by debizhan          #+#    #+#             */
-/*   Updated: 2024/05/16 18:04:20 by debizhan         ###   ########.fr       */
+/*   Updated: 2024/05/17 16:03:51 by debizhan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,7 @@ static int	check_n(t_vars **str)
 
 	i = 0;
 	if (!*str)
-		return 0;
+		return (0);
 	if ((*str)->token[0] == '-')
 		i++;
 	while ((*str)->token[i])
