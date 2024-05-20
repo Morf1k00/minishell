@@ -6,7 +6,7 @@
 /*   By: rkrechun <rkrechun@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/02 16:02:53 by rkrechun          #+#    #+#             */
-/*   Updated: 2024/05/17 17:07:57 by rkrechun         ###   ########.fr       */
+/*   Updated: 2024/05/20 13:44:03 by rkrechun         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -88,6 +88,9 @@ void	echo(t_vars **lst);
 void	ft_listclear(t_vars **head);
 void	ft_env(t_env_path *ep);
 char	*get_pathd(char **env, int i, char *cmd);
-int		len_pat(char *arv);
-int		len_cats(char *arv, int len_path);
+int		lenpath(char *arv);
+int		lencat(char *arv, int len_path);
+void 	ft_pwd(t_env_path *ep);
+void	check_cmd(t_vars **list, t_env_path *env_shell);
+
 #endif

@@ -6,7 +6,7 @@
 /*   By: rkrechun <rkrechun@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/03 10:29:35 by rkrechun          #+#    #+#             */
-/*   Updated: 2024/05/17 17:07:31 by rkrechun         ###   ########.fr       */
+/*   Updated: 2024/05/20 11:45:54 by rkrechun         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,13 +36,13 @@ int main(int argc, char **argv, char **env)
     char		*input;
     char        **line;
     t_env_path	*env_shell;
-	// t_vars		*list;
+	t_vars		*list;
 
 	list = NULL;
+	env_shell = malloc(sizeof(t_env_path));
+    init_arg(argc, argv, env, env_shell);
     while(1)
     {
-        env_shell = malloc(sizeof(t_env_path));
-        init_arg(argc, argv, env, env_shell);
         input = readline("minishell: ");
         add_history(input);
         line  = split_arg(input);
