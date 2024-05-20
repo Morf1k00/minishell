@@ -6,7 +6,7 @@
 /*   By: rkrechun <rkrechun@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/03 10:29:35 by rkrechun          #+#    #+#             */
-/*   Updated: 2024/05/20 11:45:54 by rkrechun         ###   ########.fr       */
+/*   Updated: 2024/05/20 14:06:51 by rkrechun         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,6 +37,7 @@ int main(int argc, char **argv, char **env)
     char        **line;
     t_env_path	*env_shell;
 	t_vars		*list;
+	t_vars		*list;
 
 	list = NULL;
 	env_shell = malloc(sizeof(t_env_path));
@@ -60,7 +61,7 @@ int main(int argc, char **argv, char **env)
 			// printf("%s\n", list->token);
 		// print_list(&list);
 		// check_cmd_line(&list);
-		/* while (list) // GOING THROUGH THE LIST AND LOOKING FOR "ECHO" TO EXECUTE THE COMMAND. CLEANING THE LIST.
+		while (list) // GOING THROUGH THE LIST AND LOOKING FOR "ECHO" TO EXECUTE THE COMMAND. CLEANING THE LIST.
 		{
 			if (strcmp(list->token, "echo") == 0)
 				echo(&list);
@@ -71,12 +72,12 @@ int main(int argc, char **argv, char **env)
 			else
 				break ;
 		}
-		ft_listclear(&list); */ 
-		for (int c = 0; line[c] != NULL; c++) // test how readarguments
-            printf("%s\t : number arg %d \n", line[c], c);
-        if (env_shell->pipes->arv != NULL)
-			for (int d = 0; env_shell->pipes->arv[d] != NULL; d++) // test how copy env 
-            	printf("env_shell->env_paths : %s\t %d\n", env_shell->pipes->arv[d], d);
+		ft_listclear(&list); 
+		// for (int c = 0; line[c] != NULL; c++) // test how readarguments
+        //     printf("%s\t : number arg %d \n", line[c], c);
+        // if (env_shell->pipes->arv != NULL)
+		// 	for (int d = 0; env_shell->pipes->arv[d] != NULL; d++) // test how copy env 
+        //     	printf("env_shell->env_paths : %s\t %d\n", env_shell->pipes->arv[d], d);
         // for (int k = 0; env_shell->env_paths[k] != NULL; k++) // test how copy env 
         //     printf("env_shell->env_paths : %s\n", env_shell->env_paths[k]);
     }
