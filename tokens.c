@@ -6,7 +6,7 @@
 /*   By: debizhan <debizhan@student.42wolfsburg.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/15 15:47:07 by debizhan          #+#    #+#             */
-/*   Updated: 2024/05/15 17:02:27 by debizhan         ###   ########.fr       */
+/*   Updated: 2024/05/21 17:06:13 by debizhan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ static t_vars	*new_list(char *arg)
 	list = malloc(sizeof(t_vars));
 	if (!list)
 		return (NULL);
-	list->lenght = ft_strlen(arg);
+	list->length = ft_strlen(arg);
 	list->type = tokens_init(arg);
 	list->token = arg;
 	list->next = NULL;
