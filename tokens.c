@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   tokens.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: debizhan <debizhan@student.42wolfsburg.    +#+  +:+       +#+        */
+/*   By: rkrechun <rkrechun@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/15 15:47:07 by debizhan          #+#    #+#             */
-/*   Updated: 2024/05/15 17:02:27 by debizhan         ###   ########.fr       */
+/*   Updated: 2024/05/21 18:16:18 by rkrechun         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,8 @@ static t_vars	*new_list(char *arg)
 		return (NULL);
 	list->lenght = ft_strlen(arg);
 	list->type = tokens_init(arg);
+	if (list->type == WORD)
+		
 	list->token = arg;
 	list->next = NULL;
 	return (list);

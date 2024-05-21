@@ -6,7 +6,7 @@
 #    By: rkrechun <rkrechun@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/05/03 14:11:32 by rkrechun          #+#    #+#              #
-#    Updated: 2024/05/20 14:06:28 by rkrechun         ###   ########.fr        #
+#    Updated: 2024/05/21 18:06:46 by rkrechun         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -30,7 +30,11 @@ MPATH	=	minishell.c \
 			utils.c \
 			env.c \
 			quots.c \
-			
+			loop_to_do.c\
+			cd.c\
+			pars_cmd.c\
+			exit_min.c\
+			#free_exit.c\
 			
 OBJ_M	= $(MPATH:.c=.o)
 

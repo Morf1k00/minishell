@@ -6,7 +6,7 @@
 /*   By: rkrechun <rkrechun@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/02 16:02:53 by rkrechun          #+#    #+#             */
-/*   Updated: 2024/05/20 14:07:15 by rkrechun         ###   ########.fr       */
+/*   Updated: 2024/05/21 17:55:46 by rkrechun         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,13 +68,8 @@ typedef struct s_env_path
 }	t_env_path; // основная структура 
 
 //extern t_env_path *env_shell;
-typedef struct s_line
-{
-	char	**line_arg;
-	int		arg_c;
-}	t_line;
 
-char	**line_read(char *line);
+void	free_exit(t_vars *list, t_env_path *env_shell);
 char	**ft_split(char const *s, char c);
 // void    path_e(char ***tmp, int *i, int *count, char **env);
 void	init_path(char **env, t_env_path *env_shell);
@@ -87,10 +82,15 @@ bool	close_quote(char **line);
 void	echo(t_vars **lst);
 void	ft_listclear(t_vars **head);
 void	ft_env(t_env_path *ep);
-char	*get_pathd(char **env, int i, char *cmd);
+char	*get_pathd(char **end, int i, char *cmd);
 int		lenpath(char *arv);
 int		lencat(char *arv, int len_path);
 void 	ft_pwd(t_env_path *ep);
-void	check_cmd(t_vars **list, t_env_path *env_shell);
+void	check_cmd(t_vars *list, t_env_path *env_shell);
+void	command_to_do(t_vars *list, t_env_path *env_shell);
+void	change_dir(t_env_path *env_shell, t_vars *list);
+void	exit_file(t_vars *list, t_env_path *env_shell);
+char	*get_pathm(char **end);
+
 
 #endif

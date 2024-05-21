@@ -6,7 +6,7 @@
 /*   By: rkrechun <rkrechun@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/16 14:57:06 by rkrechun          #+#    #+#             */
-/*   Updated: 2024/05/20 14:07:34 by rkrechun         ###   ########.fr       */
+/*   Updated: 2024/05/21 17:24:19 by rkrechun         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ static bool	check_single_quote(char **line, int *i, int *sq)
 	(*i)++;
 	if (!line[*i])
 		return (false);
-	while (line[*i][0] != '\'' && line[*i])
+	while (line[*i] && line[*i][0] != '\'')
 		(*i)++;
 	if (!line[*i])
 		return (false);
@@ -32,7 +32,7 @@ static bool	check_double_quote(char **line, int *i, int *dq)
 	(*i)++;
 	if (!line[*i])
 		return (false);
-	while (line[*i][0] != '\"' && line[*i])
+	while (line[*i] && line[*i][0] != '\"')
 		(*i)++;
 	if (!line[*i])
 		return (false);

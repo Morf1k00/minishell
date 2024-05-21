@@ -6,7 +6,7 @@
 /*   By: rkrechun <rkrechun@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/20 11:47:24 by rkrechun          #+#    #+#             */
-/*   Updated: 2024/05/20 13:45:04 by rkrechun         ###   ########.fr       */
+/*   Updated: 2024/05/21 18:12:20 by rkrechun         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,17 +16,17 @@ static int	easy_check(t_vars *list)
 {
 	if (list->type == WORD)
 	{
-		if (strcmp(list->token, "echo") == 0)
+		if (ft_strncmp(list->token, "echo", 4) == 0)
 			list->type = CMD;
-		else if (strcmp(list->token, "cd") == 0)
+		else if (ft_strncmp(list->token, "cd", 2) == 0)
 			list->type = CMD;
-		else if (strcmp(list->token, "pwd") == 0)
+		else if (ft_strncmp(list->token, "pwd", 3) == 0)
 			list->type = CMD;
-		else if (strcmp(list->token, "export") == 0)
+		else if (ft_strncmp(list->token, "export", 6) == 0)
 			list->type = CMD;
-		else if (strcmp(list->token, "unset") == 0)
+		else if (ft_strncmp(list->token, "unset", 5) == 0)
 			list->type = CMD;
-		else if (strcmp(list->token, "env") == 0)
+		else if (ft_strncmp(list->token, "env", 3) == 0)
 			list->type = CMD;
 		else
 			return (1);
@@ -34,28 +34,33 @@ static int	easy_check(t_vars *list)
 	return (0);
 }
 
-void	check_cmd(t_vars **list, t_env_path *env_shell)
+void	check_cmd(t_vars *list, t_env_path *env_shell)
 {
 	char	*path;
 	char	*cmd;
-
+	t_vars	*tmp;
+	
+	tmp = list;
 	path = get_pathm(env_shell->env_paths);
-	while (*list->next)
+	while (list->next)
 	{
-		if (*list->type == WORD)
+		if (list->type == WORD)
 		{
 			if (easy_check(list) == 0)
 				continue ;
+			else if (ft_strncmp(list->token, "exit", 4) == 0)
+				exit_file(list, env_shell);
 			else
 			{
 				cmd = ft_strjoin(path, "/");
-				cmd = ft_strjoin(cmd, *list->token);
+				cmd = ft_strjoin(cmd, list->token);
 				if (access(cmd, F_OK) == 0)
-					*list->type = CMD;
+					list->type = CMD;
 				free(cmd);
 			}
 		}
 		if (list->next)
 			list = list->next;
 	}
+	list = tmp;
 }

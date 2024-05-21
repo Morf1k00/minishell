@@ -6,7 +6,7 @@
 /*   By: rkrechun <rkrechun@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/03 10:29:35 by rkrechun          #+#    #+#             */
-/*   Updated: 2024/05/20 14:06:51 by rkrechun         ###   ########.fr       */
+/*   Updated: 2024/05/21 18:13:54 by rkrechun         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,6 @@ int main(int argc, char **argv, char **env)
     char        **line;
     t_env_path	*env_shell;
 	t_vars		*list;
-	t_vars		*list;
 
 	list = NULL;
 	env_shell = malloc(sizeof(t_env_path));
@@ -52,27 +51,32 @@ int main(int argc, char **argv, char **env)
         if (close_quote(line))
             lexer(line, env_shell);
         else
-            printf("quote not close\n"); 
+        {
+			printf("quote not close\n");
+			exit(0) ;
+		}
 		if (!create_list(&list, env_shell->pipes->arv))
 		{
 			printf("smth went wrong\n");
 			exit(1);
 		}
+		check_cmd(list, env_shell);
+		command_to_do(list, env_shell);
 			// printf("%s\n", list->token);
 		// print_list(&list);
 		// check_cmd_line(&list);
-		while (list) // GOING THROUGH THE LIST AND LOOKING FOR "ECHO" TO EXECUTE THE COMMAND. CLEANING THE LIST.
-		{
-			if (strcmp(list->token, "echo") == 0)
-				echo(&list);
-			else if (strcmp(list->token, "env") == 0)
-				ft_env(env_shell);
-			if (list->next)
-				list = list->next;
-			else
-				break ;
-		}
-		ft_listclear(&list); 
+		// while (list) // GOING THROUGH THE LIST AND LOOKING FOR "ECHO" TO EXECUTE THE COMMAND. CLEANING THE LIST.
+		// {
+		// 	if (strcmp(list->token, "echo") == 0)
+		// 		echo(&list);
+		// 	else if (strcmp(list->token, "env") == 0)
+		// 		ft_env(env_shell);
+		// 	if (list->next)
+		// 		list = list->next;
+		// 	else
+		// 		break ;
+		// }
+		//ft_listclear(&list); 
 		// for (int c = 0; line[c] != NULL; c++) // test how readarguments
         //     printf("%s\t : number arg %d \n", line[c], c);
         // if (env_shell->pipes->arv != NULL)
