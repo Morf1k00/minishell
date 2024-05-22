@@ -6,7 +6,7 @@
 /*   By: rkrechun <rkrechun@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/03 10:29:35 by rkrechun          #+#    #+#             */
-/*   Updated: 2024/05/22 14:32:51 by rkrechun         ###   ########.fr       */
+/*   Updated: 2024/05/22 16:50:24 by rkrechun         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,7 +63,7 @@ int main(int argc, char **argv, char **env)
 		check_cmd(list, env_shell);
 		command_to_do(list, env_shell);
 			// printf("%s\n", list->token);
-		print_list(&list);
+		//print_list(&list);
 		// check_cmd_line(&list);
 		// while (list) // GOING THROUGH THE LIST AND LOOKING FOR "ECHO" TO EXECUTE THE COMMAND. CLEANING THE LIST.
 		// {
