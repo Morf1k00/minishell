@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   utils.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rkrechun <rkrechun@student.42.fr>          +#+  +:+       +#+        */
+/*   By: debizhan <debizhan@student.42wolfsburg.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/10 17:42:36 by debizhan          #+#    #+#             */
-/*   Updated: 2024/05/22 14:47:55 by rkrechun         ###   ########.fr       */
+/*   Updated: 2024/05/22 16:31:53 by debizhan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,9 +27,9 @@ char	*get_pathd(char **end, int i, char *cmd)
 	return (*end + i);
 }
 
-int lenpath(char *arv)
+int	lenpath(char *arv)
 {
-	int len;
+	int	len;
 
 	len = 0;
 	while (arv[len])
@@ -37,17 +37,17 @@ int lenpath(char *arv)
 	return (len);
 }
 
-int lencat(char *arv, int len_path)
+int	lencat(char *arv, int len_path)
 {
-	int len;
+	int	len;
 
 	len = 0;
 	while (arv[len_path] != '/')
-	{	
+	{
 		len_path--;
 		len++;
 	}
-	return(len);	
+	return (len);
 }
 
 void	ft_listclear(t_vars **head)

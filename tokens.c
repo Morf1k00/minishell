@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   tokens.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rkrechun <rkrechun@student.42.fr>          +#+  +:+       +#+        */
+/*   By: debizhan <debizhan@student.42wolfsburg.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/15 15:47:07 by debizhan          #+#    #+#             */
-/*   Updated: 2024/05/22 14:12:39 by rkrechun         ###   ########.fr       */
+/*   Updated: 2024/05/22 16:31:56 by debizhan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ static t_vars	*new_list(char *arg, t_env_path *env_shell)
 	list = malloc(sizeof(t_vars));
 	if (!list)
 		return (NULL);
-	list->lenght = ft_strlen(arg);
+	list->length = ft_strlen(arg);
 	list->type = tokens_init(arg);
 	list->token = arg;
 	if (list->type == WORD)

@@ -6,7 +6,7 @@
 /*   By: debizhan <debizhan@student.42wolfsburg.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/13 11:43:49 by dbizjano          #+#    #+#             */
-/*   Updated: 2023/05/15 13:40:25 by debizhan         ###   ########.fr       */
+/*   Updated: 2024/05/17 17:20:33 by debizhan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,7 @@ static int	algorythm(const char *str, size_t i, int result, int minus)
 			result = (result * 10) + (str[i] - '0');
 			if (!(str[i + 1] >= '0' && str[i + 1] <= '9'))
 				break ;
-		}	
+		}
 		else if (result != 0)
 			break ;
 		i++;
