@@ -6,13 +6,13 @@
 /*   By: rkrechun <rkrechun@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/15 15:47:07 by debizhan          #+#    #+#             */
-/*   Updated: 2024/05/21 18:16:18 by rkrechun         ###   ########.fr       */
+/*   Updated: 2024/05/22 14:12:39 by rkrechun         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-static t_vars	*new_list(char *arg)
+static t_vars	*new_list(char *arg, t_env_path *env_shell)
 {
 	t_vars	*list;
 
@@ -21,9 +21,9 @@ static t_vars	*new_list(char *arg)
 		return (NULL);
 	list->lenght = ft_strlen(arg);
 	list->type = tokens_init(arg);
-	if (list->type == WORD)
-		
 	list->token = arg;
+	if (list->type == WORD)
+		check_cmd(list, env_shell);
 	list->next = NULL;
 	return (list);
 }
@@ -45,7 +45,7 @@ static void	list_add(t_vars **lst, t_vars *new)
 	last->next = new;
 }
 
-int	create_list(t_vars **list, char **arv)
+int	create_list(t_vars **list, char **arv, t_env_path *env_shell)
 {
 	int	i;
 
@@ -53,6 +53,6 @@ int	create_list(t_vars **list, char **arv)
 	if (!list || !arv)
 		return (0);
 	while (arv[i])
-		list_add(list, new_list(arv[i++]));
+		list_add(list, new_list(arv[i++], env_shell));
 	return (1);
 }

@@ -6,7 +6,7 @@
 /*   By: rkrechun <rkrechun@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/21 15:57:51 by rkrechun          #+#    #+#             */
-/*   Updated: 2024/05/21 17:28:39 by rkrechun         ###   ########.fr       */
+/*   Updated: 2024/05/22 14:13:50 by rkrechun         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,9 +14,7 @@
 
 void command_to_do(t_vars *list, t_env_path *env_shell)
 {
-	while (list->next)
-	{
-		if (list->type == CMD)
+	if (list->type == CMD)
 		{
 			if (ft_strncmp(list->token, "cd", 2) == 0)
 				change_dir(env_shell, list);
@@ -33,6 +31,5 @@ void command_to_do(t_vars *list, t_env_path *env_shell)
 			// else
 			// 	exec_cmd(list, env_shell);
 		}
-		list = list->next;
-	}
+	
 }
