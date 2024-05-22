@@ -3,33 +3,33 @@
 /*                                                        :::      ::::::::   */
 /*   utils.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rkrechun <rkrechun@student.42.fr>          +#+  +:+       +#+        */
+/*   By: debizhan <debizhan@student.42wolfsburg.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/10 17:42:36 by debizhan          #+#    #+#             */
-/*   Updated: 2024/05/17 17:09:33 by rkrechun         ###   ########.fr       */
+/*   Updated: 2024/05/22 16:31:53 by debizhan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-char	*get_pathm(char **env)
+char	*get_pathm(char **end)
 {
-	while (ft_strncmp("PATH", *env, 4))
-		env++;
-	return (*env + 5);
+	while (ft_strncmp("PATH", *end, 4))
+		end++;
+	return (*end + 5);
 }
 
-char	*get_pathd(char **env, int i, char *cmd)
+char	*get_pathd(char **end, int i, char *cmd)
 {
-	while (ft_strncmp(cmd, *env, i))
-		env++;
+	while (ft_strncmp(cmd, *end, i))
+		end++;
 	
-	return (*env + i);
+	return (*end + i);
 }
 
-int lenpath(char *arv)
+int	lenpath(char *arv)
 {
-	int len;
+	int	len;
 
 	len = 0;
 	while (arv[len])
@@ -37,17 +37,17 @@ int lenpath(char *arv)
 	return (len);
 }
 
-int lencat(char *arv, int len_path)
+int	lencat(char *arv, int len_path)
 {
-	int len;
+	int	len;
 
 	len = 0;
 	while (arv[len_path] != '/')
-	{	
+	{
 		len_path--;
 		len++;
 	}
-	return(len);	
+	return (len);
 }
 
 void	ft_listclear(t_vars **head)

@@ -6,7 +6,7 @@
 /*   By: debizhan <debizhan@student.42wolfsburg.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/08 16:42:03 by rkrechun          #+#    #+#             */
-/*   Updated: 2024/05/17 16:43:41 by debizhan         ###   ########.fr       */
+/*   Updated: 2024/05/17 17:21:51 by debizhan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@ char	*quote(char *line)
 		word[0] = '\'';
 	else
 		word[0] = '\"';
-	word[1] ='\0';
+	word[1] = '\0';
 	return (word);
 }
 
@@ -94,5 +94,5 @@ char	**split_arg(char *line)
 	tmp = malloc(sizeof(char *) * (word + 1));
 	init_word(tmp, line);
 	tmp[word] = NULL;
-	return  (tmp);
+	return (tmp);
 }

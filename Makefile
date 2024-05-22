@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: rkrechun <rkrechun@student.42.fr>          +#+  +:+       +#+         #
+#    By: debizhan <debizhan@student.42wolfsburg.    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/05/03 14:11:32 by rkrechun          #+#    #+#              #
-#    Updated: 2024/05/20 11:39:44 by rkrechun         ###   ########.fr        #
+#    Updated: 2024/05/22 17:29:12 by debizhan         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -28,9 +28,17 @@ MPATH	=	minishell.c \
 			tokens2.c \
 			echo.c \
 			utils.c \
+			utils2.c \
 			env.c \
 			quots.c \
-			
+			export.c \
+			error_handler.c \
+			loop_to_do.c\
+			cd.c\
+			pars_cmd.c\
+			exit_min.c\
+			extract_cmd.c\
+			#free_exit.c\
 			
 OBJ_M	= $(MPATH:.c=.o)
 
