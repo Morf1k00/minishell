@@ -6,7 +6,7 @@
 #    By: debizhan <debizhan@student.42wolfsburg.    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/05/03 14:11:32 by rkrechun          #+#    #+#              #
-#    Updated: 2024/05/22 16:06:20 by debizhan         ###   ########.fr        #
+#    Updated: 2024/05/22 16:32:28 by debizhan         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -33,7 +33,11 @@ MPATH	=	minishell.c \
 			quots.c \
 			export.c \
 			error_handler.c \
-					
+			loop_to_do.c\
+			cd.c\
+			pars_cmd.c\
+			exit_min.c\
+			#free_exit.c\
 			
 OBJ_M	= $(MPATH:.c=.o)
 
@@ -41,8 +45,8 @@ OBJ_M	= $(MPATH:.c=.o)
 	@$(CC) $(FLAGS) -c $< -o $@
 
 $(NAME): $(OBJ_M)
-	@ make bonus -C libft
-	@ mv libft/libft.a .
+	@$ make bonus -C libft
+	@$ mv libft/libft.a .
 	@$(CC) $(OBJ_M) $(LIBS) libft.a -o $(NAME)
 
 all: $(NAME)

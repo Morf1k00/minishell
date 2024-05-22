@@ -6,24 +6,25 @@
 /*   By: debizhan <debizhan@student.42wolfsburg.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/10 17:42:36 by debizhan          #+#    #+#             */
-/*   Updated: 2024/05/17 17:20:07 by debizhan         ###   ########.fr       */
+/*   Updated: 2024/05/22 16:31:53 by debizhan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-char	*get_pathm(char **env)
+char	*get_pathm(char **end)
 {
-	while (ft_strncmp("PATH", *env, 4))
-		env++;
-	return (*env + 5);
+	while (ft_strncmp("PATH", *end, 4))
+		end++;
+	return (*end + 5);
 }
 
-char	*get_pathd(char **env, int i, char *cmd)
+char	*get_pathd(char **end, int i, char *cmd)
 {
-	while (ft_strncmp(cmd, *env, i))
-		env++;
-	return (*env + i);
+	while (ft_strncmp(cmd, *end, i))
+		end++;
+	
+	return (*end + i);
 }
 
 int	lenpath(char *arv)
