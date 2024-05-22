@@ -6,7 +6,7 @@
 #    By: debizhan <debizhan@student.42wolfsburg.    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/05/03 14:11:32 by rkrechun          #+#    #+#              #
-#    Updated: 2024/05/22 16:32:28 by debizhan         ###   ########.fr        #
+#    Updated: 2024/05/22 17:29:12 by debizhan         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -37,6 +37,7 @@ MPATH	=	minishell.c \
 			cd.c\
 			pars_cmd.c\
 			exit_min.c\
+			extract_cmd.c\
 			#free_exit.c\
 			
 OBJ_M	= $(MPATH:.c=.o)

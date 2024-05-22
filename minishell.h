@@ -6,7 +6,7 @@
 /*   By: debizhan <debizhan@student.42wolfsburg.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/02 16:02:53 by rkrechun          #+#    #+#             */
-/*   Updated: 2024/05/22 16:31:35 by debizhan         ###   ########.fr       */
+/*   Updated: 2024/05/22 17:28:38 by debizhan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,6 +64,7 @@ typedef struct s_vars
 typedef struct s_env_path
 {
 	char	**env_paths;
+	char	*path;
 	int		count;
 	int		last;
 	t_pipes	*pipes;
@@ -96,6 +97,6 @@ void	change_dir(t_env_path *env_shell, t_vars *list);
 void	exit_file(t_vars *list, t_env_path *env_shell);
 char	*get_pathd(char **end, int i, char *cmd);
 char	*get_pathm(char **end);
-
+char	**extract_cmd(char *cmd, char *path);
 
 #endif
