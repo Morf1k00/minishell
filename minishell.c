@@ -6,7 +6,7 @@
 /*   By: debizhan <debizhan@student.42wolfsburg.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/03 10:29:35 by rkrechun          #+#    #+#             */
-/*   Updated: 2024/05/21 17:56:37 by debizhan         ###   ########.fr       */
+/*   Updated: 2024/05/22 16:11:52 by debizhan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,8 +66,7 @@ int	main(int argc, char **argv, char **env)
 	init_arg(argc, argv, env, &env_shell);
 	while (1)
 	{
-		write(STDOUT_FILENO, "minishell: ", strlen("minishell: "));
-		input = readline("");
+		input = readline("minishel: ");
 		if (!input)
 			break ;
 		add_history(input);
@@ -75,7 +74,7 @@ int	main(int argc, char **argv, char **env)
 		if (line[0] == NULL)
 			continue ;
 		else if (strcmp(line[0], "exit") == 0)
-			break ;
+			exit(EXIT_SUCCESS);
 		else if (strcmp(line[0], "export") == 0)
 			execute_export_command(line, &env_shell);
 		else

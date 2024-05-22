@@ -6,7 +6,7 @@
 /*   By: debizhan <debizhan@student.42wolfsburg.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/08 13:06:34 by rkrechun          #+#    #+#             */
-/*   Updated: 2024/05/21 17:33:30 by debizhan         ###   ########.fr       */
+/*   Updated: 2024/05/22 15:30:18 by debizhan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,10 +24,7 @@ void	init_path(char **env, t_env_path *env_shell)
 		count++;
 	tmp = (char **)malloc(sizeof(char *) * (count + 1));
 	if (!tmp)
-	{
-		perror("malloc");
-		exit(EXIT_FAILURE);
-	}
+		ft_error_exit("malloc");
 	while (i < count)
 	{
 		tmp[i] = strdup(env[i]);
@@ -39,8 +36,5 @@ void	init_path(char **env, t_env_path *env_shell)
 	env_shell->last = 0;
 	env_shell->pipes = malloc(sizeof(t_pipes));
 	if (!env_shell->pipes)
-	{
-		perror("malloc");
-		exit(EXIT_FAILURE);
-	}
+		ft_error_exit("malloc");
 }

@@ -6,7 +6,7 @@
 #    By: debizhan <debizhan@student.42wolfsburg.    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/05/03 14:11:32 by rkrechun          #+#    #+#              #
-#    Updated: 2024/05/21 16:45:24 by debizhan         ###   ########.fr        #
+#    Updated: 2024/05/22 16:06:20 by debizhan         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -28,9 +28,11 @@ MPATH	=	minishell.c \
 			tokens2.c \
 			echo.c \
 			utils.c \
+			utils2.c \
 			env.c \
 			quots.c \
 			export.c \
+			error_handler.c \
 					
 			
 OBJ_M	= $(MPATH:.c=.o)
