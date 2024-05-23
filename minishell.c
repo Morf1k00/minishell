@@ -6,7 +6,7 @@
 /*   By: rkrechun <rkrechun@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/03 10:29:35 by rkrechun          #+#    #+#             */
-/*   Updated: 2024/05/22 17:52:46 by rkrechun         ###   ########.fr       */
+/*   Updated: 2024/05/23 16:17:49 by rkrechun         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,23 +48,21 @@ int	main(int argc, char **argv, char **env)
         input = readline("minishell: ");
         add_history(input);
         line  = split_arg(input);
-        if (strcmp(line[0], "exit") == 0)
-            exit(0);
         if (close_quote(line))
             lexer(line, env_shell);
         else
         {
 			printf("quote not close\n");
-			exit(0) ;
+			exit_file(env_shell);
 		}
 		if (!create_list(&list, env_shell->pipes->arv, env_shell))
 		{
 			printf("smth went wrong\n");
-			exit(1);
+			exit_file(env_shell);
 		}
-		check_cmd(list, env_shell);
-		command_to_do(list, env_shell);
+		// check_cmd(&list, env_shell);
 		print_list(&list);
+		command_to_do(list, env_shell);
 		ft_listclear(&list); 
     }
     free(input);

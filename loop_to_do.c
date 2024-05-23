@@ -6,7 +6,7 @@
 /*   By: rkrechun <rkrechun@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/21 15:57:51 by rkrechun          #+#    #+#             */
-/*   Updated: 2024/05/22 18:03:24 by rkrechun         ###   ########.fr       */
+/*   Updated: 2024/05/23 16:26:28 by rkrechun         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,6 +50,8 @@ void command_to_do(t_vars *list, t_env_path *env_shell)
 			execute_export_command(env_shell->pipes->arv, env_shell);
 		// else if (ft_strcmp(list->token, "unset") == 0)
 		// 	unset_cmd(list->next, env_shell);
+		else if (ft_strncmp(list->token, "./minishell", 11) == 0)
+			shell_lvl(env_shell);
 		else if (ft_strncmp(list->token, "env", 3) == 0)
 			ft_env(env_shell);
 		else

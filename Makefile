@@ -3,14 +3,14 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: debizhan <debizhan@student.42wolfsburg.    +#+  +:+       +#+         #
+#    By: rkrechun <rkrechun@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/05/03 14:11:32 by rkrechun          #+#    #+#              #
-#    Updated: 2024/05/22 17:29:12 by debizhan         ###   ########.fr        #
+#    Updated: 2024/05/23 15:49:13 by rkrechun         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-NAME = minihell
+NAME = minishell
 CC		=	gcc #-g -fsanitize=address
 FLAGS	=	-Wall -Wextra -Werror
 LIBS	=	-lreadline
