@@ -6,7 +6,7 @@
 /*   By: debizhan <debizhan@student.42wolfsburg.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/03 10:29:35 by rkrechun          #+#    #+#             */
-/*   Updated: 2024/05/27 15:48:41 by debizhan         ###   ########.fr       */
+/*   Updated: 2024/05/27 15:55:21 by debizhan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,7 +42,6 @@ int	main(int argc, char **argv, char **env)
 	list = NULL;
 	env_shell = malloc(sizeof(t_env_path));
     init_arg(argc, argv, env, env_shell);
-	//printf("path: %s\n", env_shell->path);
     while(1)
     {
         input = readline("minishell: ");
@@ -61,7 +60,7 @@ int	main(int argc, char **argv, char **env)
 			exit_file(env_shell);
 		}
 		// check_cmd(&list, env_shell);
-		print_list(&list);
+		// print_list(&list);
 		command_to_do(list, env_shell);
 		ft_listclear(&list); 
     }

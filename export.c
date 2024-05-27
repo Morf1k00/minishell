@@ -6,7 +6,7 @@
 /*   By: debizhan <debizhan@student.42wolfsburg.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/21 16:03:52 by debizhan          #+#    #+#             */
-/*   Updated: 2024/05/22 16:14:57 by debizhan         ###   ########.fr       */
+/*   Updated: 2024/05/27 17:20:47 by debizhan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,13 +15,27 @@
 static int	parse_export_command(char *input, char **name, char **value)
 {
 	char	*equal_sign;
+	size_t	name_len;
+	size_t	value_len;
 
 	equal_sign = strchr(input, '=');
 	if (equal_sign == NULL)
+	{
 		return (-1);
-	*equal_sign = '\0';
-	*name = strdup(input);
-	*value = strdup(equal_sign + 1);
+	}
+	name_len = equal_sign - input;
+	value_len = strlen(equal_sign + 1);
+	*name = malloc(name_len + 1);
+	*value = malloc(value_len + 1);
+	if (*name == NULL || *value == NULL)
+	{
+		free(*name);
+		free(*value);
+		return (-1);
+	}
+	strncpy(*name, input, name_len);
+	(*name)[name_len] = '\0';
+	strcpy(*value, equal_sign + 1);
 	return (0);
 }
 
@@ -84,3 +98,73 @@ void	execute_export_command(char **args, t_env_path *env_shell)
 		write(2, "export: invalid format\n", 23);
 	}
 }
+
+// void execute_export_command(char **args, t_env_path *env_shell)
+// {
+//     char *name, *value;
+//     char *equal_sign = strchr(args[2], '=');
+
+//     if (equal_sign == NULL)
+//     {
+//         write(2, "export: invalid format\n", 23);
+//         return;
+//     }
+
+//     *equal_sign = '\0'; // Split the input string at '='
+//     name = strdup(args[2]); // Copy the variable name
+//     value = strdup(equal_sign + 1); // Copy the variable value
+
+//     if (!name || !value)
+//     {
+//         perror("strdup");
+//         free(name);
+//         free(value);
+//         return;
+//     }
+
+//     // Check if the variable already exists
+//     for (int i = 0; i < env_shell->count; i++)
+//     {
+//         if (strncmp(env_shell->env_paths[i], name, strlen(name)) == 0 && env_shell->env_paths[i][strlen(name)] == '=')
+//         {
+//             // Update the existing environment variable
+//             free(env_shell->env_paths[i]);
+//             env_shell->env_paths[i] = malloc(strlen(name) + strlen(value) + 2);
+//             if (!env_shell->env_paths[i])
+//             {
+//                 perror("malloc");
+//                 free(name);
+//                 free(value);
+//                 exit(EXIT_FAILURE);
+//             }
+//             sprintf(env_shell->env_paths[i], "%s=%s", name, value);
+//             free(name);
+//             free(value);
+//             return;
+//         }
+//     }
+
+//     // Add a new environment variable
+//     char **new_env_paths = realloc(env_shell->env_paths, sizeof(char *) * (env_shell->count + 2));
+//     if (!new_env_paths)
+//     {
+//         perror("realloc");
+//         free(name);
+//         free(value);
+//         exit(EXIT_FAILURE);
+//     }
+//     env_shell->env_paths = new_env_paths;
+//     env_shell->env_paths[env_shell->count] = malloc(strlen(name) + strlen(value) + 2);
+//     if (!env_shell->env_paths[env_shell->count])
+//     {
+//         perror("malloc");
+//         free(name);
+//         free(value);
+//         exit(EXIT_FAILURE);
+//     }
+//     sprintf(env_shell->env_paths[env_shell->count], "%s=%s", name, value);
+//     env_shell->count++;
+//     env_shell->env_paths[env_shell->count] = NULL;
+//     free(name);
+//     free(value);
+// }

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   env.c                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rkrechun <rkrechun@student.42.fr>          +#+  +:+       +#+        */
+/*   By: debizhan <debizhan@student.42wolfsburg.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/16 17:56:37 by debizhan          #+#    #+#             */
-/*   Updated: 2024/05/21 18:08:51 by rkrechun         ###   ########.fr       */
+/*   Updated: 2024/05/27 17:21:57 by debizhan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,9 +24,9 @@ void	ft_env(t_env_path *ep)
 	}
 }
 
-void ft_pwd(t_env_path *ep)
+void	ft_pwd(t_env_path *ep)
 {
-	char *pwd;
+	char	*pwd;
 
 	pwd = get_pathd(ep->env_paths, 4, "PWD=");
 	ft_putstr_fd(pwd, 1);

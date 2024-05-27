@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   utils2.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rkrechun <rkrechun@student.42.fr>          +#+  +:+       +#+        */
+/*   By: debizhan <debizhan@student.42wolfsburg.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/22 15:53:07 by debizhan          #+#    #+#             */
-/*   Updated: 2024/05/23 15:40:40 by rkrechun         ###   ########.fr       */
+/*   Updated: 2024/05/27 17:23:26 by debizhan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,5 +40,3 @@ void	*ft_realloc(void *ptr, size_t old_size, size_t new_size)
 		return (new_ptr);
 	}
 }
-
-

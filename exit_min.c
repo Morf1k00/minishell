@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   exit_min.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rkrechun <rkrechun@student.42.fr>          +#+  +:+       +#+        */
+/*   By: debizhan <debizhan@student.42wolfsburg.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/21 14:25:00 by rkrechun          #+#    #+#             */
-/*   Updated: 2024/05/23 16:20:28 by rkrechun         ###   ########.fr       */
+/*   Updated: 2024/05/27 17:22:32 by debizhan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,11 +53,10 @@ void	exit_file(t_env_path *env_shell)
 	path = get_pathd(env_shell->env_paths, 6, "SHLVL=");
 	printf("path = %s\n", path);
 	if (ft_strncmp(path, "1", 1) == 0)
-	{	
-		exit(0);
-		
+	{
+		exit(0);	
 	}
-		//free_exit(list, env_shell); // function to exit and free all things
+	//free_exit(list, env_shell); // function to exit and free all things
 	else
 	{
 		lvl = ft_atoi(path);
