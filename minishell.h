@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: debizhan <debizhan@student.42wolfsburg.    +#+  +:+       +#+        */
+/*   By: rkrechun <rkrechun@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/02 16:02:53 by rkrechun          #+#    #+#             */
-/*   Updated: 2024/05/22 17:28:38 by debizhan         ###   ########.fr       */
+/*   Updated: 2024/05/23 16:13:54 by rkrechun         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -94,9 +94,10 @@ void 	ft_pwd(t_env_path *ep);
 void	check_cmd(t_vars *list, t_env_path *env_shell);
 void	command_to_do(t_vars *list, t_env_path *env_shell);
 void	change_dir(t_env_path *env_shell, t_vars *list);
-void	exit_file(t_vars *list, t_env_path *env_shell);
+void	exit_file(t_env_path *env_shell);
 char	*get_pathd(char **end, int i, char *cmd);
 char	*get_pathm(char **end);
 char	**extract_cmd(char *cmd, char *path);
+void	shell_lvl(t_env_path *env_shell);
 
 #endif

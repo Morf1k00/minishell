@@ -6,7 +6,7 @@
 /*   By: rkrechun <rkrechun@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/21 14:25:00 by rkrechun          #+#    #+#             */
-/*   Updated: 2024/05/21 18:06:35 by rkrechun         ###   ########.fr       */
+/*   Updated: 2024/05/23 16:20:28 by rkrechun         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,27 +27,46 @@
 // 	strcat(new_path, ft_itoa(i));
 // }
 
-void	exit_file(t_vars *list, t_env_path *env_shell)
+void	shell_lvl(t_env_path *env_shell)
+{
+	int		lvl;
+	char	*cur_lvl;
+	int		i;
+
+	i = 0;
+	cur_lvl = get_pathd(env_shell->env_paths, 6, "SHLVL=");
+	while (ft_strncmp(env_shell->env_paths[i], "SHLVL=", 6))
+		i++;
+	lvl = ft_atoi(cur_lvl);
+	lvl++;
+	free(env_shell->env_paths[i]);
+	env_shell->env_paths[i] = ft_strjoin("SHLVL=", ft_itoa(lvl));
+}
+
+void	exit_file(t_env_path *env_shell)
 {
 	char	*path;
-	// char	*new_path;
-	// int		j;
+	int		lvl;
+	int		j;
 
-	// j = 0;
+	j = 0;
 	path = get_pathd(env_shell->env_paths, 6, "SHLVL=");
-	if (ft_strncmp(path, "SHLVL=1", 7) == 0)
-		exit(0);//free_exit(list, env_shell); // function to exit and free all things
-	// else
-	// {
-	// 	exit_utils(path);
-	// 	while (env_shell->env_paths[j] != NULL && ft_strncmp(env_shell->env_paths[j], "SHLVL=", 6))
-	// 		j++;
-	// 	if (env_shell->env_paths[j] != NULL)
-	// 	{
-			
-	// 		env_shell->env_paths[j] = ft_strdup(new_path);
-	// 	}
-	// 	free(new_path);
-	// }
-	free(list);
+	printf("path = %s\n", path);
+	if (ft_strncmp(path, "1", 1) == 0)
+	{	
+		exit(0);
+		
+	}
+		//free_exit(list, env_shell); // function to exit and free all things
+	else
+	{
+		lvl = ft_atoi(path);
+		lvl--;
+		while (ft_strncmp(env_shell->env_paths[j], "SHLVL=", 6))
+			j++;
+		free(env_shell->env_paths[j]);
+		env_shell->env_paths[j] = ft_strjoin("SHLVL=", ft_itoa(lvl));
+		printf("env_paths = %s\n", env_shell->env_paths[j]);
+	}
+	//free(list);
 }
