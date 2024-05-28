@@ -1,42 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   utils2.c                                           :+:      :+:    :+:   */
+/*   ft_strcpy.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: debizhan <debizhan@student.42wolfsburg.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/05/22 15:53:07 by debizhan          #+#    #+#             */
-/*   Updated: 2024/05/27 17:23:26 by debizhan         ###   ########.fr       */
+/*   Created: 2024/05/28 14:02:31 by debizhan          #+#    #+#             */
+/*   Updated: 2024/05/28 14:03:51 by debizhan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "minishell.h"
+#include "libft.h"
 
-void	*ft_realloc(void *ptr, size_t old_size, size_t new_size)
+char	*ft_strcpy(char *dst, const char *src)
 {
-	void	*new_ptr;
+	size_t	i;
 
-	if (new_size == 0)
+	i = 0;
+	while (src[i])
 	{
-		free(ptr);
-		return (NULL);
+		dst[i] = src[i];
+		i++;
 	}
-	else if (!ptr)
-	{
-		return (malloc(new_size));
-	}
-	else if (new_size <= old_size)
-	{
-		return (ptr);
-	}
-	else
-	{
-		new_ptr = malloc(new_size);
-		if (new_ptr)
-		{
-			ft_memcpy(new_ptr, ptr, old_size);
-			free(ptr);
-		}
-		return (new_ptr);
-	}
+	dst[i] = '\0';
+	return (dst);
 }

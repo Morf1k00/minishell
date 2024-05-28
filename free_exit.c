@@ -3,16 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   free_exit.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rkrechun <rkrechun@student.42.fr>          +#+  +:+       +#+        */
+/*   By: debizhan <debizhan@student.42wolfsburg.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/21 15:52:49 by rkrechun          #+#    #+#             */
-/*   Updated: 2024/05/21 17:54:06 by rkrechun         ###   ########.fr       */
+/*   Updated: 2024/05/27 17:23:10 by debizhan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-void free_exit(t_vars *list, t_env_path *env_shell)
+void	free_exit(t_vars *list, t_env_path *env_shell)
 {
 	t_vars	*tmp;
 	t_vars	*tmp2;

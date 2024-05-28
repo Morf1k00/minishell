@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   loop_to_do.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rkrechun <rkrechun@student.42.fr>          +#+  +:+       +#+        */
+/*   By: debizhan <debizhan@student.42wolfsburg.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/21 15:57:51 by rkrechun          #+#    #+#             */
-/*   Updated: 2024/05/23 16:26:28 by rkrechun         ###   ########.fr       */
+/*   Updated: 2024/05/28 15:28:15 by debizhan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,6 +36,29 @@ void	execute_command(char **args, t_env_path *env_shell)
 	}
 }
 
+// void	command_to_do(t_vars *list, t_env_path *env_shell)
+// {
+//     if (list->type == CMD)
+// 	{
+// 		if (ft_strncmp(list->token, "cd", 2) == 0)
+// 			change_dir(env_shell, list);
+// 		else if (ft_strncmp(list->token, "pwd", 3) == 0)
+// 			ft_pwd(env_shell);
+// 		else if (ft_strncmp(list->token, "echo", 4) == 0)
+// 			echo(&list);
+// 		else if (ft_strncmp(list->token, "export", 6) == 0)
+// 			execute_export_command(env_shell->pipes->arv, env_shell);
+// 		else if (ft_strncmp(list->token, "unset", 5) == 0)
+// 			execute_unset_command(env_shell->pipes->arv, env_shell);
+// 		else if (ft_strncmp(list->token, "./minishell", 11) == 0)
+// 			shell_lvl(env_shell);
+// 		else if (ft_strncmp(list->token, "env", 3) == 0)
+// 			ft_env(env_shell);
+// 		else
+// 			execute_command(extract_cmd(list->token, env_shell->path), env_shell);
+// 	}
+// }
+
 void command_to_do(t_vars *list, t_env_path *env_shell)
 {
 	if (list->type == CMD)
@@ -48,6 +71,8 @@ void command_to_do(t_vars *list, t_env_path *env_shell)
 			echo(&list);
 		else if (ft_strncmp(list->token, "export", 6) == 0)
 			execute_export_command(env_shell->pipes->arv, env_shell);
+		else if (ft_strncmp(list->token, "unset", 5) == 0)
+			execute_unset_command(env_shell->pipes->arv, env_shell);
 		// else if (ft_strcmp(list->token, "unset") == 0)
 		// 	unset_cmd(list->next, env_shell);
 		else if (ft_strncmp(list->token, "./minishell", 11) == 0)

@@ -1,42 +1,31 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   utils2.c                                           :+:      :+:    :+:   */
+/*   ft_strncpy.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: debizhan <debizhan@student.42wolfsburg.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/05/22 15:53:07 by debizhan          #+#    #+#             */
-/*   Updated: 2024/05/27 17:23:26 by debizhan         ###   ########.fr       */
+/*   Created: 2024/05/28 14:04:29 by debizhan          #+#    #+#             */
+/*   Updated: 2024/05/28 14:04:38 by debizhan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "minishell.h"
+#include "libft.h"
 
-void	*ft_realloc(void *ptr, size_t old_size, size_t new_size)
+char	*ft_strncpy(char *dst, const char *src, size_t n)
 {
-	void	*new_ptr;
+	size_t	i;
 
-	if (new_size == 0)
+	i = 0;
+	while (src[i] && i < n)
 	{
-		free(ptr);
-		return (NULL);
+		dst[i] = src[i];
+		i++;
 	}
-	else if (!ptr)
+	while (i < n)
 	{
-		return (malloc(new_size));
+		dst[i] = '\0';
+		i++;
 	}
-	else if (new_size <= old_size)
-	{
-		return (ptr);
-	}
-	else
-	{
-		new_ptr = malloc(new_size);
-		if (new_ptr)
-		{
-			ft_memcpy(new_ptr, ptr, old_size);
-			free(ptr);
-		}
-		return (new_ptr);
-	}
+	return (dst);
 }

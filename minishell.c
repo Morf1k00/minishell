@@ -6,7 +6,7 @@
 /*   By: rkrechun <rkrechun@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/03 10:29:35 by rkrechun          #+#    #+#             */
-/*   Updated: 2024/05/28 12:59:19 by rkrechun         ###   ########.fr       */
+/*   Updated: 2024/05/28 15:32:18 by rkrechun         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,7 +42,6 @@ int	main(int argc, char **argv, char **env)
 	list = NULL;
 	env_shell = malloc(sizeof(t_env_path));
     init_arg(argc, argv, env, env_shell);
-	//printf("path: %s\n", env_shell->path);
     while(1)
     {
         input = readline("minishell: ");
@@ -57,9 +56,13 @@ int	main(int argc, char **argv, char **env)
 		}
 		if (!create_list(&list, env_shell->pipes->arv, env_shell))
 		{
-			printf("smth went wrong\n");
+			printf("something went wrong\n");
 			exit_file(env_shell);
 		}
+		// check_cmd(&list, env_shell);
+		// print_list(&list);
+		// command_to_do(list, env_shell);
+		execute_with_redirection(list, env_shell);
 		check_pipe_line(env_shell);
 		//print_list(&list);
 		command_to_do(list, env_shell);
