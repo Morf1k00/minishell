@@ -6,7 +6,7 @@
 /*   By: debizhan <debizhan@student.42wolfsburg.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/21 14:25:00 by rkrechun          #+#    #+#             */
-/*   Updated: 2024/05/28 16:22:09 by debizhan         ###   ########.fr       */
+/*   Updated: 2024/05/28 16:35:21 by debizhan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,7 +51,7 @@ void	exit_file(t_env_path *env_shell)
 
 	j = 0;
 	path = get_pathd(env_shell->env_paths, 6, "SHLVL=");
-	printf("path = %s\n", path);
+	//printf("path = %s\n", path);
 	if (ft_strncmp(path, "1", 1) == 0)
 	{
 		exit(0);
@@ -65,7 +65,7 @@ void	exit_file(t_env_path *env_shell)
 			j++;
 		free(env_shell->env_paths[j]);
 		env_shell->env_paths[j] = ft_strjoin("SHLVL=", ft_itoa(lvl));
-		printf("env_paths = %s\n", env_shell->env_paths[j]);
+		//printf("env_paths = %s\n", env_shell->env_paths[j]);
 	}
 	//free(list);
 }
