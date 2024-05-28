@@ -6,7 +6,7 @@
 /*   By: debizhan <debizhan@student.42wolfsburg.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/21 14:25:00 by rkrechun          #+#    #+#             */
-/*   Updated: 2024/05/27 17:22:32 by debizhan         ###   ########.fr       */
+/*   Updated: 2024/05/28 16:22:09 by debizhan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,7 +54,7 @@ void	exit_file(t_env_path *env_shell)
 	printf("path = %s\n", path);
 	if (ft_strncmp(path, "1", 1) == 0)
 	{
-		exit(0);	
+		exit(0);
 	}
 	//free_exit(list, env_shell); // function to exit and free all things
 	else

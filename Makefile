@@ -6,7 +6,7 @@
 #    By: debizhan <debizhan@student.42wolfsburg.    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/05/03 14:11:32 by rkrechun          #+#    #+#              #
-#    Updated: 2024/05/28 14:25:02 by debizhan         ###   ########.fr        #
+#    Updated: 2024/05/28 16:24:08 by debizhan         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -40,6 +40,7 @@ MPATH	=	minishell.c \
 			extract_cmd.c\
 			unset.c\
 			redirection.c\
+			built-ins.c\
 			#free_exit.c\
 			
 			
@@ -61,5 +62,4 @@ clean:
 	@rm libft.a
 fclean: clean
 	@$(RM) $(NAME)
-	@make fclean -C libft	
 .PHONY: all clean fclean

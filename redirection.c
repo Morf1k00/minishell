@@ -6,7 +6,7 @@
 /*   By: debizhan <debizhan@student.42wolfsburg.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/08 15:55:40 by debizhan          #+#    #+#             */
-/*   Updated: 2024/05/28 15:16:33 by debizhan         ###   ########.fr       */
+/*   Updated: 2024/05/28 16:17:33 by debizhan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,8 @@ void	redirect_output(char *filename, int append)
 		fd = open(filename, O_WRONLY | O_CREAT | O_APPEND, 0644);
 	else
 		fd = open(filename, O_WRONLY | O_CREAT | O_TRUNC, 0644);
-	if (fd < 0) {
+	if (fd < 0)
+	{
 		perror("open");
 		exit(EXIT_FAILURE);
 	}
@@ -54,18 +55,21 @@ void	setup_redirections(char **args)
 	int	i;
 
 	i = 0;
-	while (args[i]) {
+	while (args[i])
+	{
 		if (strcmp(args[i], ">") == 0)
 		{
 			redirect_output(args[i + 2], 0);
 			args[i] = NULL;
 			break ;
-		} else if (strcmp(args[i], ">>") == 0)
+		}
+		else if (strcmp(args[i], ">>") == 0)
 		{
 			redirect_output(args[i + 2], 1);
 			args[i] = NULL;
 			break ;
-		} else if (strcmp(args[i], "<") == 0)
+		}
+		else if (strcmp(args[i], "<") == 0)
 		{
 			redirect_input(args[i + 2]);
 			args[i] = NULL;
@@ -73,21 +77,4 @@ void	setup_redirections(char **args)
 		}
 		i++;
 	}
-}
-
-void	execute_with_redirection(t_vars *list, t_env_path *env_shell)
-{
-	pid_t	pid;
-	int		status;
-
-	pid = fork();
-	if (pid < 0)
-		perror("fork");
-	else if (pid == 0)
-	{
-		setup_redirections(env_shell->pipes->arv);
-		command_to_do(list, env_shell);
-		exit(EXIT_SUCCESS);
-	} else
-		waitpid(pid, &status, 0);
 }
