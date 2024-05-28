@@ -6,7 +6,7 @@
 /*   By: rkrechun <rkrechun@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/20 11:47:24 by rkrechun          #+#    #+#             */
-/*   Updated: 2024/05/22 17:58:11 by rkrechun         ###   ########.fr       */
+/*   Updated: 2024/05/23 16:14:12 by rkrechun         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,8 @@ static int	easy_check(t_vars *list)
 		return (0);
 	else if (ft_strncmp(list->token, "env", 3) == 0)
 		return (0);
+	else if (ft_strncmp(list->token, "./minishell", 11) == 0)
+		return (0);
 	else
 		return (1);
 }
@@ -38,7 +40,7 @@ void	check_cmd(t_vars *list, t_env_path *env_shell)
 	if (easy_check(list) == 0)
 		list->type = CMD;
 	else if (ft_strncmp(list->token, "exit", 4) == 0)
-		exit_file(list, env_shell);
+		exit_file(env_shell);
 	else if (list->token[0] == '.' && list->token[1] == '.')
 		list->type = WORD;
 	else

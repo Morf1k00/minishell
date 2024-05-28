@@ -6,7 +6,7 @@
 /*   By: debizhan <debizhan@student.42wolfsburg.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/10 17:42:36 by debizhan          #+#    #+#             */
-/*   Updated: 2024/05/22 16:31:53 by debizhan         ###   ########.fr       */
+/*   Updated: 2024/05/27 17:23:36 by debizhan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,6 @@ char	*get_pathd(char **end, int i, char *cmd)
 {
 	while (ft_strncmp(cmd, *end, i))
 		end++;
-	
 	return (*end + i);
 }
 

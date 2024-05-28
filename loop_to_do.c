@@ -6,15 +6,16 @@
 /*   By: rkrechun <rkrechun@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/21 15:57:51 by rkrechun          #+#    #+#             */
-/*   Updated: 2024/05/22 18:03:24 by rkrechun         ###   ########.fr       */
+/*   Updated: 2024/05/28 16:48:09 by rkrechun         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-void	execute_command(char **args, t_env_path *env_shell)
+void	execute_command_external(char **args, t_env_path *env_shell)
 {
 	pid_t	pid;
+	int		status;
 
 	pid = fork();
 	if (pid < 0)
@@ -31,12 +32,11 @@ void	execute_command(char **args, t_env_path *env_shell)
 	}
 	else
 	{
-		int	status;
 		waitpid(pid, &status, 0);
 	}
 }
 
-void command_to_do(t_vars *list, t_env_path *env_shell)
+void	command_to_do(t_vars *list, t_env_path *env_shell)
 {
 	if (list->type == CMD)
 	{
@@ -48,13 +48,14 @@ void command_to_do(t_vars *list, t_env_path *env_shell)
 			echo(&list);
 		else if (ft_strncmp(list->token, "export", 6) == 0)
 			execute_export_command(env_shell->pipes->arv, env_shell);
-		// else if (ft_strcmp(list->token, "unset") == 0)
-		// 	unset_cmd(list->next, env_shell);
+		else if (ft_strncmp(list->token, "unset", 5) == 0)
+			execute_unset_command(env_shell->pipes->arv, env_shell);
+		else if (ft_strncmp(list->token, "./minishell", 11) == 0)
+			shell_lvl(env_shell);
 		else if (ft_strncmp(list->token, "env", 3) == 0)
 			ft_env(env_shell);
 		else
-			execute_command(extract_cmd(list->token, env_shell->path), env_shell);
-		// else
-		// 	exec_cmd(list, env_shell);
+			execute_command_external(extract_cmd(list->token, env_shell->path),
+				env_shell);
 	}
 }

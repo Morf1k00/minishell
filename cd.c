@@ -6,7 +6,7 @@
 /*   By: rkrechun <rkrechun@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/16 15:13:09 by rkrechun          #+#    #+#             */
-/*   Updated: 2024/05/22 17:53:17 by rkrechun         ###   ########.fr       */
+/*   Updated: 2024/05/27 12:59:01 by rkrechun         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,7 @@ static void	child_dir(char *list, t_env_path *env_shell)
 	while (ft_strncmp(env_shell->env_paths[i], "PWD=", 4))
 		i++;
 	if (list[0] == '/')
-		new_dir = ft_strdup(list);
+		new_dir = ft_strdup("/");
 	else
 	{
 		new_dir = ft_strdup(curent_dir);
@@ -82,25 +82,17 @@ static void	parent_dir(char *list, t_env_path *env_shell)
 
 void	change_dir(t_env_path *env_shell, t_vars *list)
 {
-	t_vars	*tmp;
-	
-	tmp = list;
-	if (tmp->next)
+	list = list->next;
+	while (list->next)
 	{
-		while (tmp->next)
+		if (list->type == SPACE_T)
+			list = list->next;
+		if (list->type == CMD || list->type == WORD)
 		{
-			tmp = tmp->next;
-			if (tmp->type == SPACE_T)
-				tmp = tmp->next;
-			if (tmp->type == CMD)
-			{
-				if (tmp->token[0] == '.' && tmp->token[1] == '.' )
-					parent_dir(tmp->token, env_shell);
-				else
-					child_dir(tmp->token, env_shell);
-				if (tmp->type != WORD && tmp->type != SPACE_T)
-					break ;
-			}
+			if (list->token[0] == '.' && list->token[1] == '.' )
+				parent_dir(list->token, env_shell);
+			else if (list->type == CMD || list->type == WORD)
+				child_dir(list->token, env_shell);
 		}
 	}
 }

@@ -1,34 +1,30 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   env.c                                              :+:      :+:    :+:   */
+/*   pipes_fork.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: debizhan <debizhan@student.42wolfsburg.    +#+  +:+       +#+        */
+/*   By: rkrechun <rkrechun@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/05/16 17:56:37 by debizhan          #+#    #+#             */
-/*   Updated: 2024/05/27 17:21:57 by debizhan         ###   ########.fr       */
+/*   Created: 2024/05/28 12:14:11 by rkrechun          #+#    #+#             */
+/*   Updated: 2024/05/28 16:49:51 by rkrechun         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-void	ft_env(t_env_path *ep)
+void	check_pipe_line(t_env_path *env_shell)
 {
 	int	i;
+	int	j;
 
 	i = 0;
-	while (ep->env_paths[i])
+	j = 0;
+	while (env_shell->pipes->arv[i] != NULL)
 	{
-		ft_putstr_fd(ep->env_paths[i++], 1);
-		ft_putchar_fd('\n', 1);
+		if (env_shell->pipes->arv[i][0] == '|'
+			&& env_shell->pipes->arv[i][1] == '\0')
+			j++;
+		i++;
+		env_shell->pipes->pipe_i = j;
 	}
-}
-
-void	ft_pwd(t_env_path *ep)
-{
-	char	*pwd;
-
-	pwd = get_pathd(ep->env_paths, 4, "PWD=");
-	ft_putstr_fd(pwd, 1);
-	ft_putchar_fd('\n', 1);
 }

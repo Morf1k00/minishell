@@ -6,7 +6,7 @@
 /*   By: debizhan <debizhan@student.42wolfsburg.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/02 16:02:53 by rkrechun          #+#    #+#             */
-/*   Updated: 2024/05/22 17:28:38 by debizhan         ###   ########.fr       */
+/*   Updated: 2024/05/28 16:35:12 by debizhan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,6 +49,7 @@ typedef struct s_pipes
 	char	input;
 	char	output;
 	int		fd[2];
+	int 	pipe_i;
 	char	*heredoc;
 	int		count;
 }	t_pipes;
@@ -94,9 +95,15 @@ void 	ft_pwd(t_env_path *ep);
 void	check_cmd(t_vars *list, t_env_path *env_shell);
 void	command_to_do(t_vars *list, t_env_path *env_shell);
 void	change_dir(t_env_path *env_shell, t_vars *list);
-void	exit_file(t_vars *list, t_env_path *env_shell);
+void	exit_file(t_env_path *env_shell);
 char	*get_pathd(char **end, int i, char *cmd);
 char	*get_pathm(char **end);
 char	**extract_cmd(char *cmd, char *path);
+void	shell_lvl(t_env_path *env_shell);
+void	execute_unset_command(char **args, t_env_path *env_shell);
+// void	execute_with_redirection(t_vars *list, t_env_path *env_shell);
+void	execute_command(t_vars *list, t_env_path *env_shell);
+void	setup_redirections(char **args);
+void 	check_pipe_line(t_env_path *env_shell);
 
 #endif

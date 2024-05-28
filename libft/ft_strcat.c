@@ -1,36 +1,32 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   path_env.c                                         :+:      :+:    :+:   */
+/*   ft_strcat.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: debizhan <debizhan@student.42wolfsburg.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/05/08 13:06:34 by rkrechun          #+#    #+#             */
-/*   Updated: 2024/05/17 15:58:25 by debizhan         ###   ########.fr       */
+/*   Created: 2024/05/28 14:05:30 by debizhan          #+#    #+#             */
+/*   Updated: 2024/05/28 14:05:37 by debizhan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "minishell.h"
+#include "libft.h"
 
-void	init_path(char **env, t_env_path *env_shell)
+char	*ft_strcat(char *dest, const char *src)
 {
-	char	**tmp;
-	int		count;
-	int		i;
+	size_t	i;
+	size_t	j;
 
-	count = 0;
 	i = 0;
-	tmp = malloc(sizeof(char *) * 100);
-	while (env[count])
-		count++;
-	while (i != count)
-	{
-		tmp[i] = strdup(env[i]);
+	j = 0;
+	while (dest[i])
 		i++;
+	while (src[j])
+	{
+		dest[i] = src[j];
+		i++;
+		j++;
 	}
-	tmp[i] = NULL;
-	env_shell->count = count;
-	env_shell->env_paths = tmp;
-	env_shell->pipes = NULL;
-	env_shell->vars = NULL;
+	dest[i] = '\0';
+	return (dest);
 }
