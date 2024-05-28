@@ -6,13 +6,13 @@
 /*   By: rkrechun <rkrechun@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/21 15:57:51 by rkrechun          #+#    #+#             */
-/*   Updated: 2024/05/28 16:30:59 by rkrechun         ###   ########.fr       */
+/*   Updated: 2024/05/28 16:48:09 by rkrechun         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-void	execute_command(char **args, t_env_path *env_shell)
+void	execute_command_external(char **args, t_env_path *env_shell)
 {
 	pid_t	pid;
 	int		status;
@@ -31,7 +31,9 @@ void	execute_command(char **args, t_env_path *env_shell)
 		}
 	}
 	else
+	{
 		waitpid(pid, &status, 0);
+	}
 }
 
 void	command_to_do(t_vars *list, t_env_path *env_shell)
@@ -53,7 +55,7 @@ void	command_to_do(t_vars *list, t_env_path *env_shell)
 		else if (ft_strncmp(list->token, "env", 3) == 0)
 			ft_env(env_shell);
 		else
-			execute_command(extract_cmd(list->token,
-					env_shell->path), env_shell);
+			execute_command_external(extract_cmd(list->token, env_shell->path),
+				env_shell);
 	}
 }

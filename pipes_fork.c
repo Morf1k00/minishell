@@ -6,7 +6,7 @@
 /*   By: rkrechun <rkrechun@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/28 12:14:11 by rkrechun          #+#    #+#             */
-/*   Updated: 2024/05/28 16:28:03 by rkrechun         ###   ########.fr       */
+/*   Updated: 2024/05/28 16:49:51 by rkrechun         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,10 +23,8 @@ void	check_pipe_line(t_env_path *env_shell)
 	{
 		if (env_shell->pipes->arv[i][0] == '|'
 			&& env_shell->pipes->arv[i][1] == '\0')
-		{
 			j++;
-			env_shell->pipes->pipe_i = j;
-		}
 		i++;
+		env_shell->pipes->pipe_i = j;
 	}
 }

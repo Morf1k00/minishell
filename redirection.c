@@ -6,7 +6,7 @@
 /*   By: rkrechun <rkrechun@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/08 15:55:40 by debizhan          #+#    #+#             */
-/*   Updated: 2024/05/28 16:27:32 by rkrechun         ###   ########.fr       */
+/*   Updated: 2024/05/28 16:47:03 by rkrechun         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,22 +77,4 @@ void	setup_redirections(char **args)
 		}
 		i++;
 	}
-}
-
-void	execute_with_redirection(t_vars *list, t_env_path *env_shell)
-{
-	pid_t	pid;
-	int		status;
-
-	pid = fork();
-	if (pid < 0)
-		perror("fork");
-	else if (pid == 0)
-	{
-		setup_redirections(env_shell->pipes->arv);
-		command_to_do(list, env_shell);
-		exit(EXIT_SUCCESS);
-	}
-	else
-		waitpid(pid, &status, 0);
 }

@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: rkrechun <rkrechun@student.42.fr>          +#+  +:+       +#+         #
+#    By: debizhan <debizhan@student.42wolfsburg.    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/05/03 14:11:32 by rkrechun          #+#    #+#              #
-#    Updated: 2024/05/28 15:31:34 by rkrechun         ###   ########.fr        #
+#    Updated: 2024/05/28 16:33:03 by debizhan         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -40,6 +40,7 @@ MPATH	=	minishell.c \
 			extract_cmd.c\
 			unset.c\
 			redirection.c\
+			built-ins.c\
 			pipes_fork.c\
 			#free_exit.c\
 			
@@ -62,5 +63,4 @@ clean:
 	@rm libft.a
 fclean: clean
 	@$(RM) $(NAME)
-	@make fclean -C libft	
 .PHONY: all clean fclean
