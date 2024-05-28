@@ -6,7 +6,7 @@
 /*   By: debizhan <debizhan@student.42wolfsburg.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/03 10:29:35 by rkrechun          #+#    #+#             */
-/*   Updated: 2024/05/27 15:55:21 by debizhan         ###   ########.fr       */
+/*   Updated: 2024/05/28 14:53:15 by debizhan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,12 +56,13 @@ int	main(int argc, char **argv, char **env)
 		}
 		if (!create_list(&list, env_shell->pipes->arv, env_shell))
 		{
-			printf("smth went wrong\n");
+			printf("something went wrong\n");
 			exit_file(env_shell);
 		}
 		// check_cmd(&list, env_shell);
 		// print_list(&list);
-		command_to_do(list, env_shell);
+		// command_to_do(list, env_shell);
+		execute_with_redirection(list, env_shell);
 		ft_listclear(&list); 
     }
     free(input);

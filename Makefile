@@ -6,7 +6,7 @@
 #    By: debizhan <debizhan@student.42wolfsburg.    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/05/03 14:11:32 by rkrechun          #+#    #+#              #
-#    Updated: 2024/05/27 16:01:18 by debizhan         ###   ########.fr        #
+#    Updated: 2024/05/28 14:25:02 by debizhan         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -39,6 +39,7 @@ MPATH	=	minishell.c \
 			exit_min.c\
 			extract_cmd.c\
 			unset.c\
+			redirection.c\
 			#free_exit.c\
 			
 			

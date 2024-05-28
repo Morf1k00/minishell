@@ -6,7 +6,7 @@
 /*   By: debizhan <debizhan@student.42wolfsburg.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/15 17:22:14 by debizhan          #+#    #+#             */
-/*   Updated: 2024/05/17 17:04:20 by debizhan         ###   ########.fr       */
+/*   Updated: 2024/05/28 15:06:51 by debizhan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,42 +45,42 @@ static int	check_n(t_vars **str)
 	return (1);
 }
 
-void	echo2(t_vars **tmp)
+void echo2(t_vars **tmp)
 {
-	if ((*tmp)->type == WORD)
-	{
-		ft_putstr_fd((*tmp)->token, 1);
-		*tmp = (*tmp)->next;
-	}
-	else if ((*tmp)->type == SPACE_T)
-	{
-		skip_spaces(tmp);
-		if (*tmp)
-			ft_putchar_fd(' ', 1);
-	}
+    if ((*tmp)->type == WORD)
+    {
+        printf("%s", (*tmp)->token);
+        *tmp = (*tmp)->next;
+    }
+    else if ((*tmp)->type == SPACE_T)
+    {
+        skip_spaces(tmp);
+        if (*tmp)
+            putchar(' ');
+    }
 }
 
-void	echo(t_vars **lst)
+void echo(t_vars **lst)
 {
-	int		nl;
-	t_vars	*tmp;
+    int nl;
+    t_vars *tmp;
 
-	nl = 1;
-	tmp = *lst;
-	if (tmp->next)
-	{
-		tmp = tmp->next;
-		skip_spaces(&tmp);
-		if (check_n(&tmp))
-			nl = 0;
-		skip_spaces(&tmp);
-		while (tmp)
-		{
-			echo2(&tmp);
-			if (!tmp || (tmp->type != WORD && tmp->type != SPACE_T))
-				break ;
-		}
-	}
-	if (nl == 1)
-		write(1, "\n", 1);
+    nl = 1;
+    tmp = *lst;
+    if (tmp->next)
+    {
+        tmp = tmp->next;
+        skip_spaces(&tmp);
+        if (check_n(&tmp))
+            nl = 0;
+        skip_spaces(&tmp);
+        while (tmp)
+        {
+            echo2(&tmp);
+            if (!tmp || (tmp->type != WORD && tmp->type != SPACE_T))
+                break;
+        }
+    }
+    if (nl == 1)
+        putchar('\n');
 }
