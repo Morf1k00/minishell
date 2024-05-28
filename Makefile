@@ -6,7 +6,7 @@
 #    By: debizhan <debizhan@student.42wolfsburg.    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/05/03 14:11:32 by rkrechun          #+#    #+#              #
-#    Updated: 2024/05/28 16:33:03 by debizhan         ###   ########.fr        #
+#    Updated: 2024/05/28 16:57:22 by debizhan         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -42,6 +42,8 @@ MPATH	=	minishell.c \
 			redirection.c\
 			built-ins.c\
 			pipes_fork.c\
+			signals.c\
+			sig_handle.c\
 			#free_exit.c\
 			
 			

@@ -6,7 +6,7 @@
 /*   By: debizhan <debizhan@student.42wolfsburg.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/03 10:29:35 by rkrechun          #+#    #+#             */
-/*   Updated: 2024/05/28 16:35:18 by debizhan         ###   ########.fr       */
+/*   Updated: 2024/05/28 16:53:02 by debizhan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,7 @@ static void	init_arg(int argc, char **argv, char **env, t_env_path *env_shell)
 {
 	(void)argc;
 	(void)argv;
+	signals();
 	init_path(env, env_shell);
 	env_shell->path = get_pathm(env_shell->env_paths);
 }

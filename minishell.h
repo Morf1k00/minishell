@@ -6,7 +6,7 @@
 /*   By: debizhan <debizhan@student.42wolfsburg.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/02 16:02:53 by rkrechun          #+#    #+#             */
-/*   Updated: 2024/05/28 16:35:12 by debizhan         ###   ########.fr       */
+/*   Updated: 2024/05/28 16:56:40 by debizhan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,6 +27,7 @@
 # include <sys/wait.h>
 # include <fcntl.h>
 # include "libft/libft.h"
+# include <signal.h>
 
 typedef enum e_token
 {
@@ -105,5 +106,11 @@ void	execute_unset_command(char **args, t_env_path *env_shell);
 void	execute_command(t_vars *list, t_env_path *env_shell);
 void	setup_redirections(char **args);
 void 	check_pipe_line(t_env_path *env_shell);
+void	sig_handle(int sig);
+void	child_sig(void);
+void	heredoc_sig_handle(int sig);
+void	signals(void);
+void	sig_handle_child(int sig);
+void	heredoc_sig(void);
 
 #endif
