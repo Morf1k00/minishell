@@ -6,7 +6,7 @@
 #    By: rkrechun <rkrechun@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/05/03 14:11:32 by rkrechun          #+#    #+#              #
-#    Updated: 2024/05/23 15:49:13 by rkrechun         ###   ########.fr        #
+#    Updated: 2024/05/28 12:25:23 by rkrechun         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -38,6 +38,7 @@ MPATH	=	minishell.c \
 			pars_cmd.c\
 			exit_min.c\
 			extract_cmd.c\
+			pipes_fork.c\
 			#free_exit.c\
 			
 OBJ_M	= $(MPATH:.c=.o)

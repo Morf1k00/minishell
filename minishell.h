@@ -6,7 +6,7 @@
 /*   By: rkrechun <rkrechun@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/02 16:02:53 by rkrechun          #+#    #+#             */
-/*   Updated: 2024/05/23 16:13:54 by rkrechun         ###   ########.fr       */
+/*   Updated: 2024/05/28 12:25:02 by rkrechun         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,6 +49,7 @@ typedef struct s_pipes
 	char	input;
 	char	output;
 	int		fd[2];
+	int 	pipe_i;
 	char	*heredoc;
 	int		count;
 }	t_pipes;
@@ -99,5 +100,6 @@ char	*get_pathd(char **end, int i, char *cmd);
 char	*get_pathm(char **end);
 char	**extract_cmd(char *cmd, char *path);
 void	shell_lvl(t_env_path *env_shell);
+void 	check_pipe_line(t_env_path *env_shell);
 
 #endif

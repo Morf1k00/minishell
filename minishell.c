@@ -6,7 +6,7 @@
 /*   By: rkrechun <rkrechun@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/03 10:29:35 by rkrechun          #+#    #+#             */
-/*   Updated: 2024/05/23 16:17:49 by rkrechun         ###   ########.fr       */
+/*   Updated: 2024/05/28 12:59:19 by rkrechun         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,13 +60,17 @@ int	main(int argc, char **argv, char **env)
 			printf("smth went wrong\n");
 			exit_file(env_shell);
 		}
-		// check_cmd(&list, env_shell);
-		print_list(&list);
+		check_pipe_line(env_shell);
+		//print_list(&list);
 		command_to_do(list, env_shell);
 		ft_listclear(&list); 
+		//printf("%d\n", env_shell->pipes->pipe_i);
+		env_shell->pipes->pipe_i = 0;
     }
     free(input);
-}
+}	
+// for (int c = 0; line[c] != NULL; c++) // test how readarguments
+//             printf("%s\t : number arg %d \n", line[c], c);
 	// init_arg(argc, argv, env, &env_shell);
 // 	while (1)
 // 	{
