@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   echo.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: debizhan <debizhan@student.42wolfsburg.    +#+  +:+       +#+        */
+/*   By: rkrechun <rkrechun@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/15 17:22:14 by debizhan          #+#    #+#             */
-/*   Updated: 2024/05/28 15:06:51 by debizhan         ###   ########.fr       */
+/*   Updated: 2024/05/28 16:34:29 by rkrechun         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,7 +45,7 @@ static int	check_n(t_vars **str)
 	return (1);
 }
 
-void echo2(t_vars **tmp)
+void    echo2(t_vars **tmp)
 {
     if ((*tmp)->type == WORD)
     {
@@ -60,7 +60,7 @@ void echo2(t_vars **tmp)
     }
 }
 
-void echo(t_vars **lst)
+void    echo(t_vars **lst)
 {
     int nl;
     t_vars *tmp;
@@ -84,3 +84,4 @@ void echo(t_vars **lst)
     if (nl == 1)
         putchar('\n');
 }
+

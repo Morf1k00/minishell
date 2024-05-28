@@ -6,7 +6,7 @@
 /*   By: rkrechun <rkrechun@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/03 10:29:35 by rkrechun          #+#    #+#             */
-/*   Updated: 2024/05/28 15:32:18 by rkrechun         ###   ########.fr       */
+/*   Updated: 2024/05/28 16:28:51 by rkrechun         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ void	print_list(t_vars **lst)
 	tmp = *lst;
 	while (tmp)
 	{
-		printf("info: %s\ttype: %d\tlength: %d\n", tmp->token, tmp->type, tmp->length);
+		//printf("info: %s\ttype: %d\tlength: %d\n", tmp->token, tmp->type, tmp->length);
 		tmp = tmp->next;
 	}
 }
@@ -59,19 +59,16 @@ int	main(int argc, char **argv, char **env)
 			printf("something went wrong\n");
 			exit_file(env_shell);
 		}
-		// check_cmd(&list, env_shell);
-		// print_list(&list);
-		// command_to_do(list, env_shell);
+		print_list(&list);
+		command_to_do(list, env_shell);
 		execute_with_redirection(list, env_shell);
 		check_pipe_line(env_shell);
-		//print_list(&list);
-		command_to_do(list, env_shell);
 		ft_listclear(&list); 
-		//printf("%d\n", env_shell->pipes->pipe_i);
 		env_shell->pipes->pipe_i = 0;
     }
     free(input);
 }	
+
 // for (int c = 0; line[c] != NULL; c++) // test how readarguments
 //             printf("%s\t : number arg %d \n", line[c], c);
 	// init_arg(argc, argv, env, &env_shell);
