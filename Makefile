@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: debizhan <debizhan@student.42wolfsburg.    +#+  +:+       +#+         #
+#    By: rkrechun <rkrechun@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/05/03 14:11:32 by rkrechun          #+#    #+#              #
-#    Updated: 2024/05/28 16:33:03 by debizhan         ###   ########.fr        #
+#    Updated: 2024/05/28 17:16:03 by rkrechun         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 

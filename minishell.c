@@ -6,7 +6,7 @@
 /*   By: rkrechun <rkrechun@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/03 10:29:35 by rkrechun          #+#    #+#             */
-/*   Updated: 2024/05/28 16:48:59 by rkrechun         ###   ########.fr       */
+/*   Updated: 2024/05/28 17:01:12 by rkrechun         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,12 +52,12 @@ int	main(int argc, char **argv, char **env)
 		else
 		{
 			printf("quote not close\n");
-			exit_file(env_shell);
+			exit_file(list, env_shell);
 		}
 		if (!create_list(&list, env_shell->pipes->arv, env_shell))
 		{
 			printf("something went wrong\n");
-			exit_file(env_shell);
+			exit_file(list, env_shell);
 		}
 		execute_command(list, env_shell);
 		ft_listclear(&list);
