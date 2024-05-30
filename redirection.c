@@ -6,7 +6,7 @@
 /*   By: rkrechun <rkrechun@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/08 15:55:40 by debizhan          #+#    #+#             */
-/*   Updated: 2024/05/28 16:47:03 by rkrechun         ###   ########.fr       */
+/*   Updated: 2024/05/30 15:16:02 by rkrechun         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,6 +30,7 @@ void	redirect_output(char *filename, int append)
 		perror("dup2");
 		exit(EXIT_FAILURE);
 	}
+	close (fd);
 }
 
 void	redirect_input(char *filename)
@@ -59,21 +60,23 @@ void	setup_redirections(char **args)
 	{
 		if (strcmp(args[i], ">") == 0)
 		{
+			printf("im here\n");
+			
 			redirect_output(args[i + 2], 0);
 			args[i] = NULL;
 			break ;
 		}
-		else if (strcmp(args[i], ">>") == 0)
+		else if (strncmp(args[i], ">>", 2) == 0)
 		{
 			redirect_output(args[i + 2], 1);
-			args[i] = NULL;
-			break ;
+			// args[i] = NULL;
+			// break ;
 		}
 		else if (strcmp(args[i], "<") == 0)
 		{
 			redirect_input(args[i + 2]);
-			args[i] = NULL;
-			break ;
+			// args[i] = NULL;
+			// break ;
 		}
 		i++;
 	}

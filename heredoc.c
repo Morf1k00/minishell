@@ -1,33 +1,31 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strncmp.c                                       :+:      :+:    :+:   */
+/*   heredoc.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: rkrechun <rkrechun@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/12/14 19:22:07 by dbizjano          #+#    #+#             */
-/*   Updated: 2024/05/30 15:15:02 by rkrechun         ###   ########.fr       */
+/*   Created: 2024/05/30 14:24:50 by rkrechun          #+#    #+#             */
+/*   Updated: 2024/05/30 14:29:00 by rkrechun         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <stddef.h>
+#include "minishell.h"
 
-int	ft_strncmp(const char *str1, const char *str2, size_t n)
+void heredoc_min(t_env_path *env_shell)
 {
-	int				i;
-	unsigned char	c1;
-	unsigned char	c2;
+	int		i;
+	int		j;
 
 	i = 0;
-	if (n <= 0)
-		return (0);
-	while (n--)
+	j = 0;
+	while (env_shell->pipes->arv[i] != NULL)
 	{
-		c1 = str1[i];
-		c2 = str2[i];
-		if (c1 != c2 || str1[i] == '\0' || str2[i] == '\0' )
-			break ;
+		if (env_shell->pipes->arv[i][0] == '<'
+			&& env_shell->pipes->arv[i][1] == '<'
+			&& env_shell->pipes->arv[i][2] == '\0')
+			j++;
 		i++;
+		env_shell->pipes->heredoc_i = j;
 	}
-	return (c1 - c2);
 }

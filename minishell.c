@@ -6,7 +6,7 @@
 /*   By: rkrechun <rkrechun@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/03 10:29:35 by rkrechun          #+#    #+#             */
-/*   Updated: 2024/05/28 17:01:12 by rkrechun         ###   ########.fr       */
+/*   Updated: 2024/05/30 16:47:31 by rkrechun         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ static void	init_arg(int argc, char **argv, char **env, t_env_path *env_shell)
 	env_shell->path = get_pathm(env_shell->env_paths);
 }
 
-void	print_list(t_vars **lst)
+static void	print_list(t_vars **lst)
 {
 	t_vars	*tmp;
 
@@ -59,7 +59,9 @@ int	main(int argc, char **argv, char **env)
 			printf("something went wrong\n");
 			exit_file(list, env_shell);
 		}
-		execute_command(list, env_shell);
+		print_list(&list);
+		command_to_do(list, env_shell);
+		//execute_command(list, env_shell);
 		ft_listclear(&list);
 	}
 	free(input);

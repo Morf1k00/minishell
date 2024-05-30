@@ -6,7 +6,7 @@
 #    By: rkrechun <rkrechun@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/05/03 14:11:32 by rkrechun          #+#    #+#              #
-#    Updated: 2024/05/28 17:16:03 by rkrechun         ###   ########.fr        #
+#    Updated: 2024/05/30 15:11:28 by rkrechun         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -34,7 +34,7 @@ MPATH	=	minishell.c \
 			export.c \
 			error_handler.c \
 			loop_to_do.c\
-			cd.c\
+			change_dir.c\
 			pars_cmd.c\
 			exit_min.c\
 			extract_cmd.c\

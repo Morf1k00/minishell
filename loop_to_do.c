@@ -6,7 +6,7 @@
 /*   By: rkrechun <rkrechun@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/21 15:57:51 by rkrechun          #+#    #+#             */
-/*   Updated: 2024/05/28 16:48:09 by rkrechun         ###   ########.fr       */
+/*   Updated: 2024/05/30 17:18:22 by rkrechun         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ void	execute_command_external(char **args, t_env_path *env_shell)
 	}
 	else if (pid == 0)
 	{
-		if (execve(args[0], args, env_shell->env_paths) == -1)
+		if (execve(args[0], env_shell->pipes->arv, env_shell->env_paths) == -1)
 		{
 			perror("execve");
 			exit(EXIT_FAILURE);
