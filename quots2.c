@@ -1,31 +1,20 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   tokens2.c                                          :+:      :+:    :+:   */
+/*   quots2.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: rkrechun <rkrechun@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/05/15 15:24:57 by rkrechun          #+#    #+#             */
-/*   Updated: 2024/06/03 16:30:40 by rkrechun         ###   ########.fr       */
+/*   Created: 2024/06/03 16:08:56 by rkrechun          #+#    #+#             */
+/*   Updated: 2024/06/04 12:38:56 by rkrechun         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-int	tokens_init(char *arv)
+void quot_not_close(t_env_path *env_shell)
 {
-	if (arv[0] == '<' && !arv[1])
-		return (LESS_THEN);
-	else if (arv[0] == '<' && arv[1] == '<' && !arv[2])
-		return (HEREDOC);
-	else if (arv[0] == '>' && !arv[1])
-		return (GREATER_THEN);
-	else if (arv[0] == '>' && arv[1] == '>' && !arv[2])
-		return (APPEND);
-	else if (arv[0] == '|' && !arv[1])
-		return (PIPE);
-	else if (arv[0] != ' ')
-		return (WORD);
-	else
-		return (SPACE_T);
+	char **tmp;
+
+	
 }

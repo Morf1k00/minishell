@@ -6,7 +6,7 @@
 /*   By: rkrechun <rkrechun@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/03 10:29:35 by rkrechun          #+#    #+#             */
-/*   Updated: 2024/05/30 16:47:31 by rkrechun         ###   ########.fr       */
+/*   Updated: 2024/06/10 14:28:54 by rkrechun         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ static void	print_list(t_vars **lst)
 	tmp = *lst;
 	while (tmp)
 	{
-		//printf("info: %s\ttype: %d\tlength: %d\n", tmp->token, tmp->type, tmp->length);
+		printf("info: %s\ttype: %d\tlength: %d\n", tmp->token, tmp->type, tmp->length);
 		tmp = tmp->next;
 	}
 }
@@ -42,23 +42,26 @@ int	main(int argc, char **argv, char **env)
 	list = NULL;
 	env_shell = malloc(sizeof(t_env_path));
 	init_arg(argc, argv, env, env_shell);
+	start_shell(env_shell);
 	while (1)
 	{
 		input = readline("minishell: ");
 		add_history(input);
 		line = split_arg(input);
-		if (close_quote(line))
+		env_shell->last = close_quote(line);
+		if (env_shell->last == 0)
+		{	
 			lexer(line, env_shell);
+			create_list(&list, env_shell->pipes->arv, env_shell);
+		}	
 		else
-		{
-			printf("quote not close\n");
 			exit_file(list, env_shell);
-		}
-		if (!create_list(&list, env_shell->pipes->arv, env_shell))
-		{
-			printf("something went wrong\n");
-			exit_file(list, env_shell);
-		}
+		// printf("%s\n", env_shell->shelllvl);
+		// if (!create_list(&list, env_shell->pipes->arv, env_shell))
+		// {
+		// 	printf("something went wrong\n");
+		// 	//exit_file(list, env_shell);
+		// }
 		print_list(&list);
 		command_to_do(list, env_shell);
 		//execute_command(list, env_shell);

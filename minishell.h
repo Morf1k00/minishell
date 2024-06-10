@@ -6,7 +6,7 @@
 /*   By: rkrechun <rkrechun@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/02 16:02:53 by rkrechun          #+#    #+#             */
-/*   Updated: 2024/05/28 17:03:20 by rkrechun         ###   ########.fr       */
+/*   Updated: 2024/06/10 14:00:39 by rkrechun         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,6 +68,7 @@ typedef struct s_env_path
 	char	*path;
 	int		count;
 	int		last;
+	char	*shelllvl;
 	t_pipes	*pipes;
 	t_vars	*vars;
 }	t_env_path;
@@ -81,7 +82,7 @@ char	**split_arg(char *line);
 void	lexer(char **line, t_env_path *env_shell);
 int		create_list(t_vars **list, char **arv, t_env_path *env_shell);
 int		tokens_init(char *arv);
-bool	close_quote(char **line);
+int		close_quote(char **line);
 void	echo(t_vars **lst);
 void	ft_listclear(t_vars **head);
 void	ft_env(t_env_path *ep);
@@ -106,5 +107,7 @@ void	execute_command(t_vars *list, t_env_path *env_shell);
 void	setup_redirections(char **args);
 void 	check_pipe_line(t_env_path *env_shell);
 void	free_exit(t_vars *list, t_env_path *env_shell);
+void	lexer2(char **line, t_env_path *env_shell);
+void	start_shell(t_env_path *env_shell);
 
 #endif
