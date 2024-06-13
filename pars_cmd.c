@@ -6,7 +6,7 @@
 /*   By: rkrechun <rkrechun@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/20 11:47:24 by rkrechun          #+#    #+#             */
-/*   Updated: 2024/05/23 16:14:12 by rkrechun         ###   ########.fr       */
+/*   Updated: 2024/06/03 17:10:30 by rkrechun         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,9 +40,13 @@ void	check_cmd(t_vars *list, t_env_path *env_shell)
 	if (easy_check(list) == 0)
 		list->type = CMD;
 	else if (ft_strncmp(list->token, "exit", 4) == 0)
-		exit_file(env_shell);
+		exit_file(list, env_shell);
 	else if (list->token[0] == '.' && list->token[1] == '.')
 		list->type = WORD;
+	else if (list->token[0] == '\'')
+		list->type = SINGLE_QUOTES;
+	else if (list->token[0] == '\"')
+		list->type = DOUBLE_QUOTES;
 	else
 	{
 		path = env_shell->path;

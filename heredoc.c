@@ -1,27 +1,31 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   free_exit.c                                        :+:      :+:    :+:   */
+/*   heredoc.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: rkrechun <rkrechun@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/05/21 15:52:49 by rkrechun          #+#    #+#             */
-/*   Updated: 2024/05/28 17:15:51 by rkrechun         ###   ########.fr       */
+/*   Created: 2024/05/30 14:24:50 by rkrechun          #+#    #+#             */
+/*   Updated: 2024/05/30 14:29:00 by rkrechun         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-void	free_exit(t_vars *list, t_env_path *env_shell)
+void heredoc_min(t_env_path *env_shell)
 {
 	int		i;
+	int		j;
 
 	i = 0;
-	while (env_shell->env_paths[i] != NULL)
+	j = 0;
+	while (env_shell->pipes->arv[i] != NULL)
 	{
-		free(env_shell->env_paths[i]);
+		if (env_shell->pipes->arv[i][0] == '<'
+			&& env_shell->pipes->arv[i][1] == '<'
+			&& env_shell->pipes->arv[i][2] == '\0')
+			j++;
 		i++;
+		env_shell->pipes->heredoc_i = j;
 	}
-	//free(env_shell->env_paths);
-	ft_listclear(&list);
 }

@@ -3,10 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: debizhan <debizhan@student.42wolfsburg.    +#+  +:+       +#+        */
+/*   By: rkrechun <rkrechun@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/02 16:02:53 by rkrechun          #+#    #+#             */
+<<<<<<< HEAD
 /*   Updated: 2024/05/28 16:56:40 by debizhan         ###   ########.fr       */
+=======
+/*   Updated: 2024/06/10 14:00:39 by rkrechun         ###   ########.fr       */
+>>>>>>> rostik
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,6 +73,7 @@ typedef struct s_env_path
 	char	*path;
 	int		count;
 	int		last;
+	char	*shelllvl;
 	t_pipes	*pipes;
 	t_vars	*vars;
 }	t_env_path;
@@ -82,7 +87,7 @@ char	**split_arg(char *line);
 void	lexer(char **line, t_env_path *env_shell);
 int		create_list(t_vars **list, char **arv, t_env_path *env_shell);
 int		tokens_init(char *arv);
-bool	close_quote(char **line);
+int		close_quote(char **line);
 void	echo(t_vars **lst);
 void	ft_listclear(t_vars **head);
 void	ft_env(t_env_path *ep);
@@ -96,7 +101,7 @@ void 	ft_pwd(t_env_path *ep);
 void	check_cmd(t_vars *list, t_env_path *env_shell);
 void	command_to_do(t_vars *list, t_env_path *env_shell);
 void	change_dir(t_env_path *env_shell, t_vars *list);
-void	exit_file(t_env_path *env_shell);
+void	exit_file(t_vars *list, t_env_path *env_shell);
 char	*get_pathd(char **end, int i, char *cmd);
 char	*get_pathm(char **end);
 char	**extract_cmd(char *cmd, char *path);
@@ -112,5 +117,8 @@ void	heredoc_sig_handle(int sig);
 void	signals(void);
 void	sig_handle_child(int sig);
 void	heredoc_sig(void);
+void	free_exit(t_vars *list, t_env_path *env_shell);
+void	lexer2(char **line, t_env_path *env_shell);
+void	start_shell(t_env_path *env_shell);
 
 #endif

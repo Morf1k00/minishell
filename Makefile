@@ -6,7 +6,7 @@
 #    By: debizhan <debizhan@student.42wolfsburg.    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/05/03 14:11:32 by rkrechun          #+#    #+#              #
-#    Updated: 2024/05/28 16:57:22 by debizhan         ###   ########.fr        #
+#    Updated: 2024/06/13 17:37:51 by debizhan         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -34,7 +34,7 @@ MPATH	=	minishell.c \
 			export.c \
 			error_handler.c \
 			loop_to_do.c\
-			cd.c\
+			change_dir.c\
 			pars_cmd.c\
 			exit_min.c\
 			extract_cmd.c\
@@ -44,6 +44,7 @@ MPATH	=	minishell.c \
 			pipes_fork.c\
 			signals.c\
 			sig_handle.c\
+			lexer2.c\
 			#free_exit.c\
 			
 			

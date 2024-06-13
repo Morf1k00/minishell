@@ -1,27 +1,20 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   free_exit.c                                        :+:      :+:    :+:   */
+/*   quots2.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: rkrechun <rkrechun@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/05/21 15:52:49 by rkrechun          #+#    #+#             */
-/*   Updated: 2024/05/28 17:15:51 by rkrechun         ###   ########.fr       */
+/*   Created: 2024/06/03 16:08:56 by rkrechun          #+#    #+#             */
+/*   Updated: 2024/06/04 12:38:56 by rkrechun         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-void	free_exit(t_vars *list, t_env_path *env_shell)
+void quot_not_close(t_env_path *env_shell)
 {
-	int		i;
+	char **tmp;
 
-	i = 0;
-	while (env_shell->env_paths[i] != NULL)
-	{
-		free(env_shell->env_paths[i]);
-		i++;
-	}
-	//free(env_shell->env_paths);
-	ft_listclear(&list);
+	
 }

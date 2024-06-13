@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   built-ins.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: debizhan <debizhan@student.42wolfsburg.    +#+  +:+       +#+        */
+/*   By: rkrechun <rkrechun@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/28 16:06:40 by debizhan          #+#    #+#             */
-/*   Updated: 2024/05/28 16:16:43 by debizhan         ###   ########.fr       */
+/*   Updated: 2024/05/30 16:14:18 by rkrechun         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,25 +35,67 @@ void	handle_builtin_command(t_vars *list, t_env_path *env_shell)
 		ft_env(env_shell);
 }
 
+static void	print_list(t_vars **lst)
+{
+	t_vars	*tmp;
+
+	tmp = *lst;
+	while (tmp)
+	{
+		printf("info: %s\ttype: %d\tlength: %d\n", tmp->token, tmp->type, tmp->length);
+		tmp = tmp->next;
+	}
+}
+
+int number_cmd(t_vars *list)
+{
+	int i;
+	t_vars *tmp;
+
+	i = 0;
+	tmp = list;
+	while (tmp->next != NULL)
+	{
+		if (tmp->type == CMD || tmp->type == APPEND
+		|| tmp->type == GREATER_THEN || tmp->type == LESS_THEN
+		|| tmp->type == HEREDOC)
+			i++;
+		tmp = tmp->next;
+	}
+	return (i);
+}
+
 void	execute_command(t_vars *list, t_env_path *env_shell)
 {
-	pid_t	pid;
-	int		status;
+	// pid_t	pid;
+	// int		status;
+	int i;
 
-	if (is_builtin_command(list->token))
-		handle_builtin_command(list, env_shell);
-	else
+	i = 0;
+	print_list(&list);
+	i = number_cmd(list);
+	printf("number of commands: %d\n", i);
+	
+	while (list)
 	{
-		pid = fork();
-		if (pid < 0)
-			perror("fork");
-		else if (pid == 0)
-		{
-			setup_redirections(env_shell->pipes->arv);
-			command_to_do(list, env_shell);
-			exit(EXIT_SUCCESS);
-		}
+		
+		if (is_builtin_command(list->token))
+			handle_builtin_command(list, env_shell);
 		else
-			waitpid(pid, &status, 0);
+		{
+			// pid = fork();
+			// if (pid < 0)
+				// perror("fork");
+			// else if (pid == 0)
+			// {
+				printf("executing command\n");
+				//setup_redirections(env_shell->pipes->arv);
+				command_to_do(list, env_shell);
+				exit(EXIT_SUCCESS);
+			// }
+			// else
+				// waitpid(pid, &status, 0);
+		}
+		list = list->next;
 	}
 }
