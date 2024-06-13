@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   built-ins.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rkrechun <rkrechun@student.42.fr>          +#+  +:+       +#+        */
+/*   By: debizhan <debizhan@student.42wolfsburg.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/28 16:06:40 by debizhan          #+#    #+#             */
-/*   Updated: 2024/05/30 16:14:18 by rkrechun         ###   ########.fr       */
+/*   Updated: 2024/06/13 19:05:36 by debizhan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,17 +35,17 @@ void	handle_builtin_command(t_vars *list, t_env_path *env_shell)
 		ft_env(env_shell);
 }
 
-static void	print_list(t_vars **lst)
-{
-	t_vars	*tmp;
+// static void	print_list(t_vars **lst)
+// {
+// 	t_vars	*tmp;
 
-	tmp = *lst;
-	while (tmp)
-	{
-		printf("info: %s\ttype: %d\tlength: %d\n", tmp->token, tmp->type, tmp->length);
-		tmp = tmp->next;
-	}
-}
+// 	tmp = *lst;
+// 	while (tmp)
+// 	{
+// 		printf("info: %s\ttype: %d\tlength: %d\n", tmp->token, tmp->type, tmp->length);
+// 		tmp = tmp->next;
+// 	}
+// }
 
 int number_cmd(t_vars *list)
 {
@@ -67,14 +67,14 @@ int number_cmd(t_vars *list)
 
 void	execute_command(t_vars *list, t_env_path *env_shell)
 {
-	// pid_t	pid;
-	// int		status;
-	int i;
+	pid_t	pid;
+	int		status;
+	// int i;
 
-	i = 0;
-	print_list(&list);
-	i = number_cmd(list);
-	printf("number of commands: %d\n", i);
+	// i = 0;
+	// print_list(&list);
+	// i = number_cmd(list);
+	// printf("number of commands: %d\n", i);
 	
 	while (list)
 	{
@@ -83,18 +83,18 @@ void	execute_command(t_vars *list, t_env_path *env_shell)
 			handle_builtin_command(list, env_shell);
 		else
 		{
-			// pid = fork();
-			// if (pid < 0)
-				// perror("fork");
-			// else if (pid == 0)
-			// {
+			pid = fork();
+			if (pid < 0)
+				perror("fork");
+			else if (pid == 0)
+			{
 				printf("executing command\n");
-				//setup_redirections(env_shell->pipes->arv);
+				setup_redirections(env_shell->pipes->arv);
 				command_to_do(list, env_shell);
 				exit(EXIT_SUCCESS);
-			// }
-			// else
-				// waitpid(pid, &status, 0);
+			}
+			else
+				waitpid(pid, &status, 0);
 		}
 		list = list->next;
 	}
