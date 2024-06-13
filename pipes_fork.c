@@ -6,7 +6,7 @@
 /*   By: rkrechun <rkrechun@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/28 12:14:11 by rkrechun          #+#    #+#             */
-/*   Updated: 2024/06/03 16:00:56 by rkrechun         ###   ########.fr       */
+/*   Updated: 2024/06/13 17:47:47 by rkrechun         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,12 +29,77 @@ int change_line_with_pipes(t_env_path *env_shell)
 				tmp[i] = NULL;
 				i++;
 			}
+			env_shell->pipes->arv = tmp;
 			return(1);
 		}
 		if (tmp[i] != NULL)
 			i++;
 	}
 	return(0);
+}
+
+int count_elements(char **tmp, int i)
+{
+	int count;
+
+	count = 0;
+	while(tmp[i] != NULL)
+	{
+		count++;
+		i++;
+	}
+	return(count);
+}
+
+void removes_string(t_env_path *env_shell)
+{
+	int i;
+	char **tmp;
+	char **new;
+	int j;
+	int count;
+	
+	i = 0;
+	tmp = env_shell->pipes->arv;
+	while(tmp && tmp[i][0] != '|' )
+		i++;
+	count = count_elements(tmp, i);
+	new = malloc(sizeof(char *) * (count + 1));
+	i += 2;
+	j = 0;
+	while(tmp && tmp[i] != NULL)
+	{
+		new[j] = ft_strdup(tmp[i]);
+		i++;
+		j++;
+	}
+	new[j] = NULL;
+	env_shell->pipes->arv = new;
+
+}
+
+void check_redirection(t_env_path *env_shell)
+{
+	int i;
+	char **tmp;
+
+	i = 0;
+	tmp = env_shell->pipes->arv;
+	while(tmp && tmp[i] != NULL && tmp[i][0] != '|' && tmp[i][0] != '>' && tmp[i][0] != '<')
+		i++;
+	if (tmp[i][0] == '|')
+	{
+		while(tmp && tmp[i] != NULL)
+		{
+			if(tmp[i][0] == '>')
+				env_shell->pipes->output = ft_strdup(tmp[i + 2]);
+			else if(tmp[i][0] == '>' && tmp[i][1] == '>')
+				env_shell->pipes->output = tmp[i + 2];
+			i++;
+		}
+		if (!env_shell->pipes->output)
+			removes_string(env_shell);
+	}
 }
 
 void	check_pipe_line(t_env_path *env_shell)
@@ -56,5 +121,6 @@ void	check_pipe_line(t_env_path *env_shell)
 			i++;
 			env_shell->pipes->pipe_i = j;
 		}
+		check_redirection(env_shell);
 	}
 }

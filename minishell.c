@@ -6,7 +6,7 @@
 /*   By: rkrechun <rkrechun@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/03 10:29:35 by rkrechun          #+#    #+#             */
-/*   Updated: 2024/06/10 14:28:54 by rkrechun         ###   ########.fr       */
+/*   Updated: 2024/06/13 17:19:08 by rkrechun         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,6 +52,7 @@ int	main(int argc, char **argv, char **env)
 		if (env_shell->last == 0)
 		{	
 			lexer(line, env_shell);
+			check_pipe_line(env_shell);
 			create_list(&list, env_shell->pipes->arv, env_shell);
 		}	
 		else
@@ -62,6 +63,8 @@ int	main(int argc, char **argv, char **env)
 		// 	printf("something went wrong\n");
 		// 	//exit_file(list, env_shell);
 		// }
+		// for (int i = 0; env_shell->pipes->arv[i]; i++)
+		// 	printf("arv1[%d]: %s\n", i, env_shell->pipes->arv[i]);
 		print_list(&list);
 		command_to_do(list, env_shell);
 		//execute_command(list, env_shell);
