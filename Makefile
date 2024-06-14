@@ -6,7 +6,7 @@
 #    By: debizhan <debizhan@student.42wolfsburg.    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/05/03 14:11:32 by rkrechun          #+#    #+#              #
-#    Updated: 2024/06/13 17:37:51 by debizhan         ###   ########.fr        #
+#    Updated: 2024/06/14 14:58:40 by debizhan         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -45,7 +45,7 @@ MPATH	=	minishell.c \
 			signals.c\
 			sig_handle.c\
 			lexer2.c\
-			#free_exit.c\
+			free_exit.c\
 			
 			
 OBJ_M	= $(MPATH:.c=.o)

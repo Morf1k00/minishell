@@ -6,7 +6,7 @@
 /*   By: debizhan <debizhan@student.42wolfsburg.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/02 16:02:53 by rkrechun          #+#    #+#             */
-/*   Updated: 2024/06/13 17:43:23 by debizhan         ###   ########.fr       */
+/*   Updated: 2024/06/14 16:32:09 by debizhan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -103,7 +103,6 @@ char	*get_pathm(char **end);
 char	**extract_cmd(char *cmd, char *path);
 void	shell_lvl(t_env_path *env_shell);
 void	execute_unset_command(char **args, t_env_path *env_shell);
-// void	execute_with_redirection(t_vars *list, t_env_path *env_shell);
 void	execute_command(t_vars *list, t_env_path *env_shell);
 void	setup_redirections(char **args);
 void 	check_pipe_line(t_env_path *env_shell);
@@ -116,5 +115,6 @@ void	heredoc_sig(void);
 void	free_exit(t_vars *list, t_env_path *env_shell);
 void	lexer2(char **line, t_env_path *env_shell);
 void	start_shell(t_env_path *env_shell);
+void	print_list(t_vars **lst);
 
 #endif

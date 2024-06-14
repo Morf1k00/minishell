@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   loop_to_do.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rkrechun <rkrechun@student.42.fr>          +#+  +:+       +#+        */
+/*   By: debizhan <debizhan@student.42wolfsburg.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/21 15:57:51 by rkrechun          #+#    #+#             */
-/*   Updated: 2024/05/30 17:18:22 by rkrechun         ###   ########.fr       */
+/*   Updated: 2024/06/14 16:45:32 by debizhan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,12 +18,14 @@ void	execute_command_external(char **args, t_env_path *env_shell)
 	int		status;
 
 	pid = fork();
+	// printf("pid = %d\n", pid);
 	if (pid < 0)
 	{
 		perror("fork");
 	}
 	else if (pid == 0)
 	{
+			// printf("args[0] = %s|arv = %s|env_paths = %s\n", args[0], env_shell->pipes->arv[0], env_shell->env_paths[0]);
 		if (execve(args[0], env_shell->pipes->arv, env_shell->env_paths) == -1)
 		{
 			perror("execve");

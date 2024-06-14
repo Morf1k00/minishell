@@ -6,7 +6,7 @@
 /*   By: debizhan <debizhan@student.42wolfsburg.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/08 15:55:40 by debizhan          #+#    #+#             */
-/*   Updated: 2024/06/13 19:05:20 by debizhan         ###   ########.fr       */
+/*   Updated: 2024/06/14 16:34:55 by debizhan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,12 +16,14 @@ void	redirect_output(char *filename, int append)
 {
 	int	fd;
 
+	// printf("filename = %s\n", filename);
 	if (append)
 		fd = open(filename, O_WRONLY | O_CREAT | O_APPEND, 0644);
 	else
 		fd = open(filename, O_WRONLY | O_CREAT | O_TRUNC, 0644);
 	if (fd < 0)
 	{
+		// printf("im here\n");
 		perror("open");
 		exit(EXIT_FAILURE);
 	}
@@ -31,6 +33,7 @@ void	redirect_output(char *filename, int append)
 		exit(EXIT_FAILURE);
 	}
 	close (fd);
+	// printf("im here1\n");
 }
 
 void	redirect_input(char *filename)
@@ -58,10 +61,11 @@ void	setup_redirections(char **args)
 	i = 0;
 	while (args[i])
 	{
+		// printf("args[%d] = %s\n", i, args[i]);
 		if (strcmp(args[i], ">") == 0)
 		{
-			// printf("im here\n");
-			
+			// printf("args[%d] = %s\n", i + 2, args[i + 2]);
+			// printf("args[%d] = %s\n", i, args[i]);
 			redirect_output(args[i + 2], 0);
 			args[i] = NULL;
 			break ;
