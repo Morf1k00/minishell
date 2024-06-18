@@ -6,7 +6,7 @@
 /*   By: rkrechun <rkrechun@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/28 12:14:11 by rkrechun          #+#    #+#             */
-/*   Updated: 2024/06/13 17:47:47 by rkrechun         ###   ########.fr       */
+/*   Updated: 2024/06/13 18:12:14 by rkrechun         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,11 +82,15 @@ void check_redirection(t_env_path *env_shell)
 {
 	int i;
 	char **tmp;
+	int p;
 
 	i = 0;
+	p = env_shell->pipes->pipe_i;
 	tmp = env_shell->pipes->arv;
-	while(tmp && tmp[i] != NULL && tmp[i][0] != '|' && tmp[i][0] != '>' && tmp[i][0] != '<')
-		i++;
+	while(tmp && tmp[i] != NULL && p != 0 && tmp[i][0] != '>' && tmp[i][0] != '<')
+	{	if (tmp[i][0] != '|')
+			p--;// проверить роьоту с пайпами и редирекшонами 
+		i++;}
 	if (tmp[i][0] == '|')
 	{
 		while(tmp && tmp[i] != NULL)
