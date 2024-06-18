@@ -6,7 +6,7 @@
 /*   By: debizhan <debizhan@student.42wolfsburg.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/02 16:02:53 by rkrechun          #+#    #+#             */
-/*   Updated: 2024/06/14 16:32:09 by debizhan         ###   ########.fr       */
+/*   Updated: 2024/06/18 15:00:17 by debizhan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,8 +47,8 @@ typedef struct s_pipes
 {
 	char	**arv;
 	char	*cmd;
-	char	input;
-	char	output;
+	char	*input;
+	char	*output;
 	int		fd[2];
 	int 	pipe_i;
 	char	*heredoc;
