@@ -6,7 +6,7 @@
 /*   By: debizhan <debizhan@student.42wolfsburg.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/08 15:55:40 by debizhan          #+#    #+#             */
-/*   Updated: 2024/06/18 15:39:54 by debizhan         ###   ########.fr       */
+/*   Updated: 2024/06/18 16:09:48 by debizhan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,16 +51,12 @@
 // 	close(fd);
 // }
 
-// void check_redirection(t_env_path *env_shell)
-// {
-	
-// }
 
 // void	setup_redirections(t_env_path *env_shell)
 // {
 // 	t_vars	*lis;
 
-// 	lis = env_shell->list;
+// 	lis = env_shell->vars;
 	
 // 	while (lis)
 // 	{
@@ -78,5 +74,4 @@
 // 		}
 // 		lis = lis->next;
 // 	}
-	
 // }

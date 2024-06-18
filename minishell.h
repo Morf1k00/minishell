@@ -6,7 +6,7 @@
 /*   By: debizhan <debizhan@student.42wolfsburg.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/02 16:02:53 by rkrechun          #+#    #+#             */
-/*   Updated: 2024/06/18 15:00:17 by debizhan         ###   ########.fr       */
+/*   Updated: 2024/06/18 16:56:00 by debizhan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,7 +81,7 @@ char	**ft_split(char const *s, char c);
 char	*word_cpy(char *line);
 char	**split_arg(char *line);
 void	lexer(char **line, t_env_path *env_shell);
-int		create_list(t_vars **list, char **arv, t_env_path *env_shell);
+void	create_list(t_vars **list, char **arv, t_env_path *env_shell);
 int		tokens_init(char *arv);
 int		close_quote(char **line);
 void	echo(t_vars **lst);
@@ -103,7 +103,7 @@ char	*get_pathm(char **end);
 char	**extract_cmd(char *cmd, char *path);
 void	shell_lvl(t_env_path *env_shell);
 void	execute_unset_command(char **args, t_env_path *env_shell);
-void	execute_command(t_vars *list, t_env_path *env_shell);
+void	execute_command(char **args, t_vars *list, t_env_path *env_shell);
 void	setup_redirections(char **args);
 void 	check_pipe_line(t_env_path *env_shell);
 void	sig_handle(int sig);

@@ -6,7 +6,7 @@
 /*   By: debizhan <debizhan@student.42wolfsburg.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/15 15:47:07 by debizhan          #+#    #+#             */
-/*   Updated: 2024/05/22 16:31:56 by debizhan         ###   ########.fr       */
+/*   Updated: 2024/06/18 16:53:00 by debizhan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,14 +45,22 @@ static void	list_add(t_vars **lst, t_vars *new)
 	last->next = new;
 }
 
-int	create_list(t_vars **list, char **arv, t_env_path *env_shell)
+void create_list(t_vars **list, char **arv, t_env_path *env_shell)
 {
-	int	i;
-
-	i = 0;
-	if (!list || !arv)
-		return (0);
-	while (arv[i])
-		list_add(list, new_list(arv[i++], env_shell));
-	return (1);
+    int i = 0;
+    while (arv[i])
+    {
+        t_vars *new_node = new_list(arv[i++], env_shell);
+        list_add(list, new_node);
+        if (new_node->type == GREATER_THEN || new_node->type == APPEND || new_node->type == LESS_THEN)
+        {
+            if (arv[i] == NULL)
+            {
+                fprintf(stderr, "minishell: syntax error near unexpected token\n");
+                return;
+            }
+            t_vars *file_node = new_list(arv[i++], env_shell);
+            list_add(list, file_node);
+        }
+    }
 }
