@@ -6,7 +6,7 @@
 /*   By: debizhan <debizhan@student.42wolfsburg.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/28 16:06:40 by debizhan          #+#    #+#             */
-/*   Updated: 2024/06/14 16:24:53 by debizhan         ###   ########.fr       */
+/*   Updated: 2024/06/18 15:16:21 by debizhan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -137,7 +137,7 @@ void	execute_command(t_vars *list, t_env_path *env_shell)
 			perror("fork");
 		else if (pid == 0)
 		{
-			setup_redirections(env_shell->pipes->arv);
+			// setup_redirections(env_shell->pipes->arv);
 			// printf("executing command\n");
 			command_to_do(list, env_shell);
 			exit(EXIT_SUCCESS);
