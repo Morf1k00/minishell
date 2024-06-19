@@ -6,7 +6,7 @@
 /*   By: rkrechun <rkrechun@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/21 16:28:42 by rkrechun          #+#    #+#             */
-/*   Updated: 2024/05/20 13:28:07 by rkrechun         ###   ########.fr       */
+/*   Updated: 2024/06/19 15:53:47 by rkrechun         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,8 +27,8 @@ int	get_infile(char **argv, t_pipexbonus *ppxb)
 	else
 	{
 		ppxb->infile = open(argv[1], O_RDONLY);
-		if (ppxb->infile < 0)
-			i = msg_error_i(ERR_INFILE, ppxb);
+		// if (ppxb->infile < 0)
+		// 	i = msg_error_i(ERR_INFILE, ppxb);
 		return(i);
 	}
 	return(i);

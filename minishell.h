@@ -6,7 +6,7 @@
 /*   By: rkrechun <rkrechun@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/02 16:02:53 by rkrechun          #+#    #+#             */
-/*   Updated: 2024/06/13 14:51:06 by rkrechun         ###   ########.fr       */
+/*   Updated: 2024/06/19 17:15:13 by rkrechun         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,6 +42,7 @@ typedef enum e_token
 	CMD,
 }	t_type;
 
+
 typedef struct s_pipes
 {
 	char	**arv;
@@ -73,6 +74,13 @@ typedef struct s_env_path
 	t_vars	*vars;
 }	t_env_path;
 
+typedef struct s_pipe_info {
+    int *pipe_fd;
+    t_env_path *data;
+    char **command;
+    int end;
+    int std_fd;
+} t_pipe_info;
 //extern t_env_path *env_shell;
 
 void	free_exit(t_vars *list, t_env_path *env_shell);

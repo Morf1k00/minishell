@@ -6,7 +6,7 @@
 #    By: rkrechun <rkrechun@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/05/03 14:11:32 by rkrechun          #+#    #+#              #
-#    Updated: 2024/06/13 17:42:20 by rkrechun         ###   ########.fr        #
+#    Updated: 2024/06/19 17:14:32 by rkrechun         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -43,6 +43,7 @@ MPATH	=	minishell.c \
 			built-ins.c\
 			pipes_fork.c\
 			lexer2.c\
+			pipe_handling.c\
 			#free_exit.c\
 			
 			

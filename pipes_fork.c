@@ -6,7 +6,7 @@
 /*   By: rkrechun <rkrechun@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/28 12:14:11 by rkrechun          #+#    #+#             */
-/*   Updated: 2024/06/13 18:12:14 by rkrechun         ###   ########.fr       */
+/*   Updated: 2024/06/19 17:17:30 by rkrechun         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,6 +63,7 @@ void removes_string(t_env_path *env_shell)
 	tmp = env_shell->pipes->arv;
 	while(tmp && tmp[i][0] != '|' )
 		i++;
+	printf("i = %d\n", i);
 	count = count_elements(tmp, i);
 	new = malloc(sizeof(char *) * (count + 1));
 	i += 2;
@@ -87,12 +88,15 @@ void check_redirection(t_env_path *env_shell)
 	i = 0;
 	p = env_shell->pipes->pipe_i;
 	tmp = env_shell->pipes->arv;
+	// printf("p = %d\n", p);
 	while(tmp && tmp[i] != NULL && p != 0 && tmp[i][0] != '>' && tmp[i][0] != '<')
-	{	if (tmp[i][0] != '|')
+	{	if (tmp[i][0] == '|')
 			p--;// проверить роьоту с пайпами и редирекшонами 
 		i++;}
-	if (tmp[i][0] == '|')
+	// printf("p = %d\n", p);
+	if (tmp[i - 1][0] == '|')
 	{
+		// printf("output = %s\n", env_shell->pipes->output);
 		while(tmp && tmp[i] != NULL)
 		{
 			if(tmp[i][0] == '>')
@@ -101,7 +105,8 @@ void check_redirection(t_env_path *env_shell)
 				env_shell->pipes->output = tmp[i + 2];
 			i++;
 		}
-		if (!env_shell->pipes->output)
+		// printf("output = %s\n", env_shell->pipes->output);
+		if (!env_shell->pipes->output )
 			removes_string(env_shell);
 	}
 }
