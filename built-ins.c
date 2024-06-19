@@ -6,7 +6,7 @@
 /*   By: debizhan <debizhan@student.42wolfsburg.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/28 16:06:40 by debizhan          #+#    #+#             */
-/*   Updated: 2024/06/19 15:33:20 by debizhan         ###   ########.fr       */
+/*   Updated: 2024/06/19 16:35:49 by debizhan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,9 +14,8 @@
 
 int	is_builtin_command(char *command)
 {
-	return (strcmp(command, "cd") == 0 || strcmp(command, "echo") == 0
-		|| strcmp(command, "export") == 0 || strcmp(command, "unset") == 0
-		|| strcmp(command, "pwd") == 0 || strcmp(command, "env") == 0);
+	return (strcmp(command, "cd") == 0 	|| strcmp(command, "export") == 0 || strcmp(command, "unset") == 0
+		|| strcmp(command, "pwd") == 0);
 }
 
 void	handle_builtin_command(t_vars *list, t_env_path *env_shell)
@@ -35,15 +34,15 @@ void	handle_builtin_command(t_vars *list, t_env_path *env_shell)
 		ft_env(env_shell);
 }
 
-void	execute_command(t_vars *list, t_env_path *env_shell)
+void	execom(t_vars *list, t_env_path *env_shell)
 {
 	pid_t	pid;
 	int		status;
 
-	// if (is_builtin_command(list->token))
-	// 	handle_builtin_command(list, env_shell);
-	// else
-	// {
+	if (is_builtin_command(list->token))
+		handle_builtin_command(list, env_shell);
+	else
+	{
 		pid = fork();
 		if (pid < 0)
 			perror("fork");
@@ -55,5 +54,5 @@ void	execute_command(t_vars *list, t_env_path *env_shell)
 		}
 		else
 			waitpid(pid, &status, 0);
-	// }
+	}
 }

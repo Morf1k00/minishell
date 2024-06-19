@@ -6,7 +6,7 @@
 /*   By: debizhan <debizhan@student.42wolfsburg.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/21 16:03:52 by debizhan          #+#    #+#             */
-/*   Updated: 2024/05/28 14:19:36 by debizhan         ###   ########.fr       */
+/*   Updated: 2024/06/19 16:49:34 by debizhan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,9 +80,9 @@ void	execute_export_command(char **args, t_env_path *env_shell)
 	char	*name;
 	char	*value;
 
-	if (args[2] == NULL)
+	if (args[1] == NULL)
 	{
-		write(2, "export: not enough arguments\n", 29);
+		ft_env(env_shell);
 		return ;
 	}
 	if (parse_export_command(args[2], &name, &value) == 0)
