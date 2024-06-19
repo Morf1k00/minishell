@@ -6,7 +6,7 @@
 /*   By: debizhan <debizhan@student.42wolfsburg.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/02 16:02:53 by rkrechun          #+#    #+#             */
-/*   Updated: 2024/06/18 16:56:00 by debizhan         ###   ########.fr       */
+/*   Updated: 2024/06/18 17:28:38 by debizhan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -101,9 +101,10 @@ void	exit_file(t_vars *list, t_env_path *env_shell);
 char	*get_pathd(char **end, int i, char *cmd);
 char	*get_pathm(char **end);
 char	**extract_cmd(char *cmd, char *path);
+// char	**extract_cmd(t_vars *cmd, char *path);
 void	shell_lvl(t_env_path *env_shell);
 void	execute_unset_command(char **args, t_env_path *env_shell);
-void	execute_command(char **args, t_vars *list, t_env_path *env_shell);
+void	execute_command(t_vars *list, t_env_path *env_shell);
 void	setup_redirections(char **args);
 void 	check_pipe_line(t_env_path *env_shell);
 void	sig_handle(int sig);
