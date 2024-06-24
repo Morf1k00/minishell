@@ -6,7 +6,7 @@
 /*   By: rkrechun <rkrechun@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/02 16:02:53 by rkrechun          #+#    #+#             */
-/*   Updated: 2024/06/19 17:15:13 by rkrechun         ###   ########.fr       */
+/*   Updated: 2024/06/19 19:14:23 by rkrechun         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,6 +27,7 @@
 # include <sys/wait.h>
 # include <fcntl.h>
 # include "libft/libft.h"
+# include <signal.h>
 
 typedef enum e_token
 {
@@ -88,7 +89,7 @@ char	**ft_split(char const *s, char c);
 char	*word_cpy(char *line);
 char	**split_arg(char *line);
 void	lexer(char **line, t_env_path *env_shell);
-int		create_list(t_vars **list, char **arv, t_env_path *env_shell);
+void	create_list(t_vars **list, char **arv, t_env_path *env_shell);
 int		tokens_init(char *arv);
 int		close_quote(char **line);
 void	echo(t_vars **lst);
@@ -108,14 +109,22 @@ void	exit_file(t_vars *list, t_env_path *env_shell);
 char	*get_pathd(char **end, int i, char *cmd);
 char	*get_pathm(char **end);
 char	**extract_cmd(char *cmd, char *path);
+// char	**extract_cmd(t_vars *cmd, char *path);
 void	shell_lvl(t_env_path *env_shell);
 void	execute_unset_command(char **args, t_env_path *env_shell);
-// void	execute_with_redirection(t_vars *list, t_env_path *env_shell);
-void	execute_command(t_vars *list, t_env_path *env_shell);
+void	execom(t_vars *list, t_env_path *env_shell);
 void	setup_redirections(char **args);
 void 	check_pipe_line(t_env_path *env_shell);
+void	sig_handle(int sig);
+void	child_sig(void);
+void	heredoc_sig_handle(int sig);
+void	signals(void);
+void	sig_handle_child(int sig);
+void	heredoc_sig(void);
 void	free_exit(t_vars *list, t_env_path *env_shell);
 void	lexer2(char **line, t_env_path *env_shell);
 void	start_shell(t_env_path *env_shell);
+
+// void	print_list(t_vars **lst);
 
 #endif

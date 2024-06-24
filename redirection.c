@@ -6,7 +6,7 @@
 /*   By: rkrechun <rkrechun@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/08 15:55:40 by debizhan          #+#    #+#             */
-/*   Updated: 2024/06/12 15:33:16 by rkrechun         ###   ########.fr       */
+/*   Updated: 2024/06/24 15:27:17 by rkrechun         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,6 @@
 // 		perror("dup2");
 // 		exit(EXIT_FAILURE);
 // 	}
-// 	close (fd);
 // }
 
 // void	redirect_input(char *filename)
@@ -51,32 +50,95 @@
 // 	close(fd);
 // }
 
-// void check_redirection(t_env_path *env_shell)
+// void	setup_redirections(char **args)
 // {
-	
-// }
+// 	int	i;
 
-// void	setup_redirections(t_env_path *env_shell)
-// {
-// 	t_vars	*lis;
-
-// 	lis = env_shell->list;
-	
-// 	while (lis)
+// 	i = 0;
+// 	while (args[i])
 // 	{
-// 		if (lis->type == GREATER_THEN)
+// 		if (strcmp(args[i], ">") == 0)
 // 		{
-// 			redirect_output(lis->next->token, 0);
+// 			redirect_output(args[i + 2], 0);
+// 			args[i] = NULL;
+// 			break ;
 // 		}
-// 		else if (lis->type == APPEND)
+// 		else if (strcmp(args[i], ">>") == 0)
 // 		{
-// 			redirect_output(lis->next->token, 1);
+// 			redirect_output(args[i + 2], 1);
+// 			args[i] = NULL;
+// 			break ;
 // 		}
-// 		else if (lis->type == LESS_THEN)
+// 		else if (strcmp(args[i], "<") == 0)
 // 		{
-// 			redirect_input(lis->next->token);
+// 			redirect_input(args[i + 2]);
+// 			args[i] = NULL;
+// 			break ;
 // 		}
-// 		lis = lis->next;
+// 		i++;
 // 	}
-	
 // }
+
+void redirect_output(char *filename, int append) {
+    int fd;
+
+    if (append)
+        fd = open(filename, O_WRONLY | O_CREAT | O_APPEND, 0644);
+    else
+        fd = open(filename, O_WRONLY | O_CREAT | O_TRUNC, 0644);
+
+    if (fd < 0) {
+        perror("open");
+        exit(EXIT_FAILURE);
+    }
+
+    if (dup2(fd, STDOUT_FILENO) < 0) {
+        perror("dup2");
+        close(fd);
+        exit(EXIT_FAILURE);
+    }
+
+    close(fd);
+}
+
+void redirect_input(char *filename) {
+    int fd;
+
+    fd = open(filename, O_RDONLY);
+    if (fd < 0) {
+        perror("open");
+        exit(EXIT_FAILURE);
+    }
+
+    if (dup2(fd, STDIN_FILENO) < 0) {
+        perror("dup2");
+        close(fd);
+        exit(EXIT_FAILURE);
+    }
+
+    close(fd);
+}
+
+void setup_redirections(char **args) {
+    int i = 0;
+
+    while (args[i]) {
+        if (strcmp(args[i], ">") == 0) {
+            redirect_output(args[i + 1], 0);
+            args[i] = NULL;
+            args[i + 1] = NULL;
+            break;
+        } else if (strcmp(args[i], ">>") == 0) {
+            redirect_output(args[i + 1], 1);
+            args[i] = NULL;
+            args[i + 1] = NULL;
+            break;
+        } else if (strcmp(args[i], "<") == 0) {
+            redirect_input(args[i + 1]);
+            args[i] = NULL;
+            args[i + 1] = NULL;
+            break;
+        }
+        i++;
+    }
+}

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   lexer.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: debizhan <debizhan@student.42wolfsburg.    +#+  +:+       +#+        */
+/*   By: rkrechun <rkrechun@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/10 14:48:06 by rkrechun          #+#    #+#             */
-/*   Updated: 2024/05/22 15:28:46 by debizhan         ###   ########.fr       */
+/*   Updated: 2024/06/19 18:18:54 by rkrechun         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -84,40 +84,65 @@
 // 	env_shell->pipes->count = j;
 // }
 
-static char	check_char(char c)
-{
-	if (c == '\'')
-		return ('\'');
-	else if (c == '\"')
-		return ('\"');
-	return ('\0');
+// static char	check_char(char c)
+// {
+// 	if (c == '\'')
+// 		return ('\'');
+// 	else if (c == '\"')
+// 		return ('\"');
+// 	return ('\0');
+// }
+
+// static void	copy_arv(char **line, char **tmp, int *i, int *j)
+// {
+// 	int		len;
+// 	int		d;
+// 	char	s;
+
+// 	len = 1;
+// 	(*i)++;
+// 	d = *i;
+// 	s = check_char(line[d - 1][0]);
+// 	while (line[d] != NULL && line[d][0] != s)
+// 	{
+// 		len += strlen(line[d]);
+// 		d++;
+// 	}
+// 	tmp[*j] = malloc(sizeof(char) * (len + 1));
+// 	tmp[*j][0] = '\0';
+// 	while (*i < d)
+// 	{
+// 		strcat(tmp[*j], line[*i]);
+// 		(*i)++;
+// 	}
+// 	tmp[*j][len] = '\0';
+// 	(*i)++;
+// }
+static void copy_arv(char **line, char **tmp, int *i, int *j) {
+    int len = 0;
+    int start = *i;
+    char quote_char = line[*i][0];
+
+    (*i)++;
+    while (line[*i] != NULL && line[*i][0] != quote_char) {
+        len += strlen(line[*i]) + 1; // +1 for space or null terminator
+        (*i)++;
+    }
+
+    tmp[*j] = malloc(sizeof(char) * (len + 1));
+    tmp[*j][0] = '\0';
+
+    for (int k = start + 1; k < *i; k++) {
+        strcat(tmp[*j], line[k]);
+        if (k < *i - 1) {
+            strcat(tmp[*j], " ");
+        }
+    }
+
+    (*j)++;
+    (*i)++;
 }
 
-static void	copy_arv(char **line, char **tmp, int *i, int *j)
-{
-	int		len;
-	int		d;
-	char	s;
-
-	len = 1;
-	(*i)++;
-	d = *i;
-	s = check_char(line[d - 1][0]);
-	while (line[d] != NULL && line[d][0] != s)
-	{
-		len += strlen(line[d]);
-		d++;
-	}
-	tmp[*j] = malloc(sizeof(char) * (len + 1));
-	tmp[*j][0] = '\0';
-	while (*i < d)
-	{
-		strcat(tmp[*j], line[*i]);
-		(*i)++;
-	}
-	tmp[*j][len] = '\0';
-	(*i)++;
-}
 
 static int	word_count(char **line)
 {
@@ -129,29 +154,51 @@ static int	word_count(char **line)
 	return (i);
 }
 
-void	lexer(char **line, t_env_path *env_shell)
-{
-	int		i;
-	int		j;
-	char	**tmp;
-	int		word;
+// void	lexer(char **line, t_env_path *env_shell)
+// {
+// 	int		i;
+// 	int		j;
+// 	char	**tmp;
+// 	int		word;
 
-	i = 0;
-	j = 0;
-	word = word_count(line);
-	tmp = malloc(sizeof(char *) * (word + 1));
-	while (i < word)
-	{
-		if (line[i][0] == '\'' || line[i][0] == '\"')
-			copy_arv(line, tmp, &i, &j);
-		else
-		{
-			tmp[j] = strdup(line[i]);
-			i++;
-		}
-		j++;
-	}
-	tmp[j] = NULL;
-	env_shell->pipes->arv = tmp;
-	env_shell->pipes->count = j;
+// 	i = 0;
+// 	j = 0;
+// 	word = word_count(line);
+// 	tmp = malloc(sizeof(char *) * (word + 1));
+// 	while (i < word)
+// 	{
+// 		if (line[i][0] == '\'' || line[i][0] == '\"')
+// 			copy_arv(line, tmp, &i, &j);
+// 		else
+// 		{
+// 			tmp[j] = strdup(line[i]);
+// 			i++;
+// 		}
+// 		j++;
+// 	}
+// 	tmp[j] = NULL;
+// 	env_shell->pipes->arv = tmp;
+// 	env_shell->pipes->count = j;
+// }
+
+void lexer(char **line, t_env_path *env_shell) {
+    int i = 0;
+    int j = 0;
+    char **tmp;
+    int word = word_count(line);
+
+    tmp = malloc(sizeof(char *) * (word + 1));
+    while (i < word) {
+        if (line[i][0] == '\'' || line[i][0] == '\"') {
+            copy_arv(line, tmp, &i, &j);  // Function to handle quoted strings
+        } else if (line[i][0] == '|' || line[i][0] == '>' || line[i][0] == '<') {
+            tmp[j++] = strdup(line[i++]);  // Copy the special character as a separate token
+        } else {
+            tmp[j++] = strdup(line[i++]);  // Copy the word
+        }
+    }
+    tmp[j] = NULL;
+    env_shell->pipes->arv = tmp;
+    env_shell->pipes->count = j;
 }
+

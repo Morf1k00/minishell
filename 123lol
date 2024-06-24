@@ -1,41 +1,31 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strjoin.c                                       :+:      :+:    :+:   */
+/*   heredoc.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: rkrechun <rkrechun@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/03/18 12:42:38 by rkrechun          #+#    #+#             */
-/*   Updated: 2024/03/28 16:50:56 by rkrechun         ###   ########.fr       */
+/*   Created: 2024/05/30 14:24:50 by rkrechun          #+#    #+#             */
+/*   Updated: 2024/05/30 14:29:00 by rkrechun         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../include/pipex.h"
+#include "minishell.h"
 
-char	*ft_strjoin(char const *s1, char const *s2)
+void heredoc_min(t_env_path *env_shell)
 {
-	char	*new;
-	size_t	i;
-	size_t	j;
-	size_t	len;
+	int		i;
+	int		j;
 
 	i = 0;
 	j = 0;
-	len = ft_strlen(s1) + ft_strlen(s2) + 1;
-	new = (char *)malloc(sizeof(char) * len);
-	if (new == NULL)
-		return (NULL);
-	while (s1[i] != '\0')
+	while (env_shell->pipes->arv[i] != NULL)
 	{
-		new[i] = s1[i];
+		if (env_shell->pipes->arv[i][0] == '<'
+			&& env_shell->pipes->arv[i][1] == '<'
+			&& env_shell->pipes->arv[i][2] == '\0')
+			j++;
 		i++;
+		env_shell->pipes->heredoc_i = j;
 	}
-	while (s2[j] != '\0')
-	{
-		new[i] = s2[j];
-		i++;
-		j++;
-	}
-	new[i] = '\0';
-	return (new);
 }
