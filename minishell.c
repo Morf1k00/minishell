@@ -6,7 +6,7 @@
 /*   By: debizhan <debizhan@student.42wolfsburg.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/03 10:29:35 by rkrechun          #+#    #+#             */
-/*   Updated: 2024/06/25 14:27:23 by debizhan         ###   ########.fr       */
+/*   Updated: 2024/06/25 14:29:27 by debizhan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -125,49 +125,7 @@ static void edit_line_withot_spaces(t_env_path *env_shell, t_vars *list)
        
 }
 
-<<<<<<< HEAD
-// Helper function to check if a string is just spaces
-int is_space_string(const char *str) {
-    while (*str) {
-        if (*str != ' ') return 0; // Not a space string
-        str++;
-    }
-    return 1; // Only spaces
-}
-
-// Function to create a new array without " " strings
-char **remove_space_strings(char **original) {
-    int count = 0;
-    int i;
-
-    // Count non-space strings
-    for (i = 0; original[i] != NULL; i++) {
-        if (!is_space_string(original[i])) {
-            count++;
-        }
-    }
-
-    // Allocate memory for new array
-    char **new_array = malloc(sizeof(char *) * (count + 1)); // +1 for NULL terminator
-    if (!new_array) return NULL; // Memory allocation failed
-
-    // Copy non-space strings to new array
-    int j = 0;
-    for (i = 0; original[i] != NULL; i++) {
-        if (!is_space_string(original[i])) {
-            new_array[j++] = strdup(original[i]); // Copy string
-        }
-    }
-    new_array[j] = NULL; // NULL terminate the array
-
-    return new_array;
-}
-
-int main(int argc, char **argv, char **env)
-{
-=======
 int main(int argc, char **argv, char **env) {
->>>>>>> rostik
     char *input;
     char **line;
     t_env_path *env_shell;
@@ -188,19 +146,8 @@ int main(int argc, char **argv, char **env) {
 
         if (env_shell->last == 0) {
             lexer(line, env_shell);
-<<<<<<< HEAD
-			char **new_arv = remove_space_strings(env_shell->pipes->arv);
-        // Free the original env_shell->pipes->arv array and its strings
-        for (int i = 0; env_shell->pipes->arv[i]; i++)
-            free(env_shell->pipes->arv[i]);
-        free(env_shell->pipes->arv);
-        // Assign the new array without spaces
-        env_shell->pipes->arv = new_arv;
-            check_pipe_line(env_shell);
-=======
             check_pipe_line(env_shell);  // Ensures pipe handling is properly set up
             // edit_line_withot_spaces(env_shell, list);
->>>>>>> rostik
             create_list(&list, env_shell->pipes->arv, env_shell);
 
             if (env_shell->pipes->pipe_i > 0) {
@@ -217,13 +164,7 @@ int main(int argc, char **argv, char **env) {
             printf("im here\n");
         } else {
             exit_file(list, env_shell);
-<<<<<<< HEAD
-		// for (int i = 0; env_shell->pipes->arv[i]; i++)
-		// 	printf("arv[%d]: %s\n", i, env_shell->pipes->arv[i]);
-		execom(list, env_shell);
-=======
         }
->>>>>>> rostik
         ft_listclear(&list);
         free(input);
     }
