@@ -6,7 +6,7 @@
 /*   By: debizhan <debizhan@student.42wolfsburg.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/28 16:06:40 by debizhan          #+#    #+#             */
-/*   Updated: 2024/06/19 16:35:49 by debizhan         ###   ########.fr       */
+/*   Updated: 2024/06/19 18:33:58 by debizhan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,6 +39,7 @@ void	execom(t_vars *list, t_env_path *env_shell)
 	pid_t	pid;
 	int		status;
 
+	// trim_spaces(&env_shell->pipes->arv);
 	if (is_builtin_command(list->token))
 		handle_builtin_command(list, env_shell);
 	else

@@ -6,7 +6,7 @@
 /*   By: debizhan <debizhan@student.42wolfsburg.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/10 14:48:06 by rkrechun          #+#    #+#             */
-/*   Updated: 2024/05/22 15:28:46 by debizhan         ###   ########.fr       */
+/*   Updated: 2024/06/19 18:41:39 by debizhan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -125,7 +125,9 @@ static int	word_count(char **line)
 
 	i = 0;
 	while (line[i] != NULL)
-		i++;
+	{
+		if (line[i])
+		i++;}
 	return (i);
 }
 

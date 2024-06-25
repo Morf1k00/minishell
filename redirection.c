@@ -6,7 +6,7 @@
 /*   By: debizhan <debizhan@student.42wolfsburg.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/08 15:55:40 by debizhan          #+#    #+#             */
-/*   Updated: 2024/06/19 15:33:58 by debizhan         ###   ########.fr       */
+/*   Updated: 2024/06/19 18:27:38 by debizhan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,21 +57,25 @@ void	setup_redirections(char **args)
 	i = 0;
 	while (args[i])
 	{
+		// printf("args[%d]: %s\n", i, args[i]);
 		if (strcmp(args[i], ">") == 0)
 		{
-			redirect_output(args[i + 2], 0);
+			printf("args[%d]: %s\n", i, args[i]);
+			redirect_output(args[i + 1], 0);
 			args[i] = NULL;
 			break ;
 		}
 		else if (strcmp(args[i], ">>") == 0)
 		{
-			redirect_output(args[i + 2], 1);
+			printf("args[%d]: %s\n", i, args[i]);
+			redirect_output(args[i + 1], 1);
 			args[i] = NULL;
 			break ;
 		}
 		else if (strcmp(args[i], "<") == 0)
 		{
-			redirect_input(args[i + 2]);
+			printf("args[%d]: %s\n", i, args[i]);
+			redirect_input(args[i + 1]);
 			args[i] = NULL;
 			break ;
 		}
