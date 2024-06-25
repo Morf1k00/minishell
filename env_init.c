@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   env_init.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rkrechun <rkrechun@student.42.fr>          +#+  +:+       +#+        */
+/*   By: debizhan <debizhan@student.42wolfsburg.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/08 13:06:34 by rkrechun          #+#    #+#             */
-/*   Updated: 2024/06/19 15:38:24 by rkrechun         ###   ########.fr       */
+/*   Updated: 2024/06/25 14:30:48 by debizhan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,10 +35,7 @@ void	init_path(char **env, t_env_path *env_shell)
 	env_shell->env_paths = tmp;
 	env_shell->last = 0;
 	env_shell->pipes = malloc(sizeof(t_pipes));
-	// env_shell->pipes->output = malloc(sizeof(char) * 1);
-	// env_shell->pipes->output = NULL;
 	env_shell->pipes->output = malloc(sizeof(char) * 1);
-	// env_shell->pipes->input = malloc(sizeof(char) * 1);
 	if (!env_shell->pipes)
 		ft_error_exit("malloc");
 }

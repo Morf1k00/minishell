@@ -3,16 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   heredoc.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rkrechun <rkrechun@student.42.fr>          +#+  +:+       +#+        */
+/*   By: debizhan <debizhan@student.42wolfsburg.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/30 14:24:50 by rkrechun          #+#    #+#             */
-/*   Updated: 2024/05/30 14:29:00 by rkrechun         ###   ########.fr       */
+/*   Updated: 2024/06/25 14:32:20 by debizhan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-void heredoc_min(t_env_path *env_shell)
+void	heredoc_min(t_env_path *env_shell)
 {
 	int		i;
 	int		j;

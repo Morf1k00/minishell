@@ -6,13 +6,13 @@
 /*   By: debizhan <debizhan@student.42wolfsburg.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/21 14:25:00 by rkrechun          #+#    #+#             */
-/*   Updated: 2024/06/18 15:45:16 by debizhan         ###   ########.fr       */
+/*   Updated: 2024/06/25 14:31:34 by debizhan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-void start_shell(t_env_path *env_shell)
+void	start_shell(t_env_path *env_shell)
 {
 	int i;
 
@@ -53,7 +53,7 @@ void	exit_file(t_vars *list, t_env_path *env_shell)
 		j++;
 	path = ft_strdup(env_shell->env_paths[j]);
 	lvl = ft_atoi(path + 6);
-		lvl--;
+	lvl--;
 	free(env_shell->env_paths[j]);
 	env_shell->env_paths[j] = ft_strjoin("SHLVL=", ft_itoa(lvl));
 	if (ft_strncmp(env_shell->env_paths[j], env_shell->shelllvl, 7) == 0)
