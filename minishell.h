@@ -6,7 +6,7 @@
 /*   By: debizhan <debizhan@student.42wolfsburg.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/02 16:02:53 by rkrechun          #+#    #+#             */
-/*   Updated: 2024/06/19 17:47:19 by debizhan         ###   ########.fr       */
+/*   Updated: 2024/06/25 14:28:09 by debizhan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,6 +43,7 @@ typedef enum e_token
 	CMD,
 }	t_type;
 
+
 typedef struct s_pipes
 {
 	char	**arv;
@@ -74,6 +75,13 @@ typedef struct s_env_path
 	t_vars	*vars;
 }	t_env_path;
 
+typedef struct s_pipe_info {
+    int *pipe_fd;
+    t_env_path *data;
+    char **command;
+    int end;
+    int std_fd;
+} t_pipe_info;
 //extern t_env_path *env_shell;
 
 void	free_exit(t_vars *list, t_env_path *env_shell);
@@ -116,6 +124,7 @@ void	heredoc_sig(void);
 void	free_exit(t_vars *list, t_env_path *env_shell);
 void	lexer2(char **line, t_env_path *env_shell);
 void	start_shell(t_env_path *env_shell);
-void	print_list(t_vars **lst);
+
+// void	print_list(t_vars **lst);
 
 #endif
