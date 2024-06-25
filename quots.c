@@ -6,7 +6,7 @@
 /*   By: debizhan <debizhan@student.42wolfsburg.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/16 14:57:06 by rkrechun          #+#    #+#             */
-/*   Updated: 2024/06/14 15:54:53 by debizhan         ###   ########.fr       */
+/*   Updated: 2024/06/25 17:18:23 by debizhan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,22 +51,16 @@ int	close_quote(char **line)
 	dq = 0;
 	while (line[i])
 	{
-		// printf("line[%d] = %s\n", i, line[i]);
 		if (line[i][0] == '\'')
-		{
 			if (!check_single_quote(line, &i, &sq))
 				return (1);
-		}
 		else if (line[i][0] == '\"')
-		{
 			if (!check_double_quote(line, &i, &dq))
 				return (2);
-		}
 		if (line[i] != NULL)
 			i++;
 	}
 	if (sq % 2 == 0 && dq % 2 == 0)
-	{
-		return (0);}
+		return (0);
 	return (3);
 }

@@ -6,7 +6,7 @@
 /*   By: debizhan <debizhan@student.42wolfsburg.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/21 14:25:00 by rkrechun          #+#    #+#             */
-/*   Updated: 2024/06/25 14:31:34 by debizhan         ###   ########.fr       */
+/*   Updated: 2024/06/25 17:50:42 by debizhan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 void	start_shell(t_env_path *env_shell)
 {
-	int i;
+	int	i;
 
 	i = 0;
 	while (ft_strncmp(env_shell->env_paths[i], "SHLVL=", 6))

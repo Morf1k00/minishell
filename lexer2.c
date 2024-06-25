@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   lexer2.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rkrechun <rkrechun@student.42.fr>          +#+  +:+       +#+        */
+/*   By: debizhan <debizhan@student.42wolfsburg.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/03 16:52:30 by rkrechun          #+#    #+#             */
-/*   Updated: 2024/06/03 17:15:07 by rkrechun         ###   ########.fr       */
+/*   Updated: 2024/06/25 17:42:46 by debizhan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,14 +14,14 @@
 
 static void	copy_arv(char **line, char **tmp, int *i, int *j)
 {
-	int		len;
-	int		d;
+	int	len;
+	int	d;
 
 	len = 1;
 	d = *i;
 	while (line[d] != NULL)
 	{
-		len += strlen(line[d]);
+		len += ft_strlen(line[d]);
 		d++;
 	}
 	tmp[*j] = malloc(sizeof(char) * (len + 1));

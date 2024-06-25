@@ -6,7 +6,7 @@
 /*   By: debizhan <debizhan@student.42wolfsburg.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/15 15:47:07 by debizhan          #+#    #+#             */
-/*   Updated: 2024/06/18 16:53:00 by debizhan         ###   ########.fr       */
+/*   Updated: 2024/06/25 17:12:01 by debizhan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,22 +45,27 @@ static void	list_add(t_vars **lst, t_vars *new)
 	last->next = new;
 }
 
-void create_list(t_vars **list, char **arv, t_env_path *env_shell)
+void	create_list(t_vars **list, char **arv, t_env_path *env_shell)
 {
-    int i = 0;
-    while (arv[i])
-    {
-        t_vars *new_node = new_list(arv[i++], env_shell);
-        list_add(list, new_node);
-        if (new_node->type == GREATER_THEN || new_node->type == APPEND || new_node->type == LESS_THEN)
-        {
-            if (arv[i] == NULL)
-            {
-                fprintf(stderr, "minishell: syntax error near unexpected token\n");
-                return;
-            }
-            t_vars *file_node = new_list(arv[i++], env_shell);
-            list_add(list, file_node);
-        }
-    }
+	int		i;
+	t_vars	*new_node;
+	t_vars	*file_node;
+
+	i = 0;
+	while (arv[i])
+	{
+		new_node = new_list(arv[i++], env_shell);
+		list_add(list, new_node);
+		if (new_node->type == GREATER_THEN
+			|| new_node->type == APPEND || new_node->type == LESS_THEN)
+		{
+			if (arv[i] == NULL)
+			{
+				printf("minishell: syntax error near unexpected token\n");
+				return ;
+			}
+			file_node = new_list(arv[i++], env_shell);
+			list_add(list, file_node);
+		}
+	}
 }
