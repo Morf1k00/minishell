@@ -6,7 +6,7 @@
 /*   By: debizhan <debizhan@student.42wolfsburg.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/08 15:55:40 by debizhan          #+#    #+#             */
-/*   Updated: 2024/06/25 17:16:01 by debizhan         ###   ########.fr       */
+/*   Updated: 2024/06/26 17:04:09 by debizhan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,10 +21,7 @@ void	redirect_output(char *filename, int append)
 	else
 		fd = open(filename, O_WRONLY | O_CREAT | O_TRUNC, 0644);
 	if (fd < 0)
-	{
-		perror("open");
-		exit(EXIT_FAILURE);
-	}
+		ft_error_exit("open");
 	if (dup2(fd, STDOUT_FILENO) < 0)
 	{
 		perror("dup2");
@@ -40,10 +37,7 @@ void	redirect_input(char *filename)
 
 	fd = open(filename, O_RDONLY);
 	if (fd < 0)
-	{
-		perror("open");
-		exit(EXIT_FAILURE);
-	}
+		ft_error_exit("open");
 	if (dup2(fd, STDIN_FILENO) < 0)
 	{
 		perror("dup2");
@@ -53,14 +47,11 @@ void	redirect_input(char *filename)
 	close(fd);
 }
 
-void	setup_redirections(char **args)
+static void	loop(char **args, int i)
 {
-	int	i;
-
-	i = 0;
 	while (args[i])
 	{
-		if (ft_strcmp(args[i], ">") == 0)
+		if (strcmp(args[i], ">") == 0)
 		{
 			redirect_output(args[i + 1], 0);
 			args[i] = NULL;
@@ -83,4 +74,12 @@ void	setup_redirections(char **args)
 		}
 		i++;
 	}
+}
+
+void	setup_redirections(char **args)
+{
+	int	i;
+
+	i = 0;
+	loop(args, i);
 }

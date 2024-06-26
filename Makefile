@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: rkrechun <rkrechun@student.42.fr>          +#+  +:+       +#+         #
+#    By: debizhan <debizhan@student.42wolfsburg.    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/05/03 14:11:32 by rkrechun          #+#    #+#              #
-#    Updated: 2024/06/19 18:51:47 by rkrechun         ###   ########.fr        #
+#    Updated: 2024/06/26 17:08:30 by debizhan         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -46,6 +46,7 @@ MPATH	=	minishell.c \
 			sig_handle.c\
 			lexer2.c\
 			pipe_handling.c\
+			env_var.c\
 			#free_exit.c\
 			
 			
@@ -58,13 +59,14 @@ $(NAME): $(OBJ_M)
 	@$ make bonus -C libft
 	@$ mv libft/libft.a .
 	@$(CC) $(OBJ_M) $(LIBS) libft.a -o $(NAME)
+	@rm libft.a
 
 all: $(NAME)
 
 clean:
 	@$(RM) $(OBJ_M)
 	@make clean -C libft
-	@rm libft.a
 fclean: clean
 	@$(RM) $(NAME)
-.PHONY: all clean fclean
+re: fclean all
+.PHONY: all clean fclean re

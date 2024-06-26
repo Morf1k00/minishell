@@ -6,41 +6,116 @@
 /*   By: debizhan <debizhan@student.42wolfsburg.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/10 14:48:06 by rkrechun          #+#    #+#             */
-/*   Updated: 2024/06/25 14:40:15 by debizhan         ###   ########.fr       */
+/*   Updated: 2024/06/26 16:03:59 by debizhan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+// #include "minishell.h"
+
+// static void	copy_arv(char **line, char **tmp, int *i, int *j)
+// {
+// 	int		len;
+// 	int		start;
+// 	char	quote_char;
+// 	int		k;
+
+// 	len = 0;
+// 	start = *i;
+// 	quote_char = line[*i][0];
+// 	(*i)++;
+// 	while (line[*i] != NULL && line[*i][0] != quote_char)
+// 	{
+// 		len += strlen(line[*i]) + 1;
+// 		(*i)++;
+// 	}
+// 	tmp[*j] = malloc(sizeof(char) * (len + 1));
+// 	tmp[*j][0] = '\0';
+// 	k = start + 1;
+// 	while (k < *i)
+// 	{
+// 		strcat(tmp[*j], line[k]);
+// 		if (k < *i - 1)
+// 		{
+// 			strcat(tmp[*j], " ");
+// 		}
+// 		k++;
+// 	}
+// 	(*j)++;
+// 	(*i)++;
+// }
+
+// static int	word_count(char **line)
+// {
+// 	int	i;
+
+// 	i = 0;
+// 	while (line[i] != NULL)
+// 	{
+// 		if (line[i])
+// 			i++;
+// 	}
+// 	return (i);
+// }
+
+// void	lexer(char **line, t_env_path *env_shell)
+// {
+// 	int		i;
+// 	int		j;
+// 	char	**tmp;
+// 	int		word;
+
+// 	i = 0;
+// 	j = 0;
+// 	word = word_count(line);
+// 	tmp = malloc(sizeof(char *) * (word + 1));
+// 	while (i < word)
+// 	{
+// 		if (line[i][0] == '\'' || line[i][0] == '\"')
+// 			copy_arv(line, tmp, &i, &j);
+// 		else if (line[i][0] == '|' || line[i][0] == '>' || line[i][0] == '<')
+// 			tmp[j++] = strdup(line[i++]);
+// 		else
+// 			tmp[j++] = strdup(line[i++]);
+// 	}
+// 	tmp[j] = NULL;
+// 	env_shell->pipes->arv = tmp;
+// 	env_shell->pipes->count = j;
+// }
+
 #include "minishell.h"
+
+static char	check_char(char c)
+{
+	if (c == '\'')
+		return ('\'');
+	else if (c == '\"')
+		return ('\"');
+	return ('\0');
+}
 
 static void	copy_arv(char **line, char **tmp, int *i, int *j)
 {
 	int		len;
-	int		start;
-	char	quote_char;
-	int		k;
+	int		d;
+	char	s;
 
-	len = 0;
-	start = *i;
-	quote_char = line[*i][0];
+	len = 1;
 	(*i)++;
-	while (line[*i] != NULL && line[*i][0] != quote_char)
+	d = *i;
+	s = check_char(line[d - 1][0]);
+	while (line[d] != NULL && line[d][0] != s)
 	{
-		len += strlen(line[*i]) + 1;
-		(*i)++;
+		len += strlen(line[d]);
+		d++;
 	}
 	tmp[*j] = malloc(sizeof(char) * (len + 1));
 	tmp[*j][0] = '\0';
-	k = start + 1;
-	while (k < *i)
+	while (*i < d)
 	{
-		strcat(tmp[*j], line[k]);
-		if (k < *i - 1)
-		{
-			strcat(tmp[*j], " ");
-		}
-		k++;
+		strcat(tmp[*j], line[*i]);
+		(*i)++;
 	}
-	(*j)++;
+	tmp[*j][len] = '\0';
 	(*i)++;
 }
 
@@ -50,10 +125,7 @@ static int	word_count(char **line)
 
 	i = 0;
 	while (line[i] != NULL)
-	{
-		if (line[i])
-			i++;
-	}
+		i++;
 	return (i);
 }
 
@@ -72,10 +144,12 @@ void	lexer(char **line, t_env_path *env_shell)
 	{
 		if (line[i][0] == '\'' || line[i][0] == '\"')
 			copy_arv(line, tmp, &i, &j);
-		else if (line[i][0] == '|' || line[i][0] == '>' || line[i][0] == '<')
-			tmp[j++] = strdup(line[i++]);
 		else
-			tmp[j++] = strdup(line[i++]);
+		{
+			tmp[j] = expand_variable(line[i], env_shell);
+			i++;
+		}
+		j++;
 	}
 	tmp[j] = NULL;
 	env_shell->pipes->arv = tmp;

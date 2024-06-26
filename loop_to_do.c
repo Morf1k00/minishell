@@ -6,7 +6,7 @@
 /*   By: debizhan <debizhan@student.42wolfsburg.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/21 15:57:51 by rkrechun          #+#    #+#             */
-/*   Updated: 2024/06/25 17:49:57 by debizhan         ###   ########.fr       */
+/*   Updated: 2024/06/26 17:05:50 by debizhan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,15 +26,34 @@ void	execute_command_external(char **args, char **line,
 	else if (pid == 0)
 	{
 		if (execve(args[0], line, env_shell->env_paths) == -1)
-		{
-			perror("execve");
-			exit(EXIT_FAILURE);
-		}
+			ft_error_exit("execve");
 	}
 	else
 	{
 		waitpid(pid, &status, 0);
 	}
+}
+
+void	exe_loop(t_vars *list, char **line, int i)
+{
+	while (list && list->type != PIPE)
+	{
+		if (list->type == SPACE_T)
+		{
+			list = list->next;
+			continue ;
+		}
+		if (list->type == GREATER_THEN
+			|| list->type == LESS_THEN || list->type == APPEND)
+		{
+			list = list->next;
+			break ;
+		}
+		line[i] = ft_strdup(list->token);
+		list = list->next;
+		i++;
+	}
+	line[i] = NULL;
 }
 
 void	execute_comand(char **args, t_vars *list, t_env_path *env_shell)
@@ -55,24 +74,7 @@ void	execute_comand(char **args, t_vars *list, t_env_path *env_shell)
 	line[0] = ft_strdup(list->token);
 	i = 1;
 	list = list->next;
-	while (list && list->type != PIPE)
-	{
-		if (list->type == SPACE_T)
-		{
-			list = list->next;
-			continue ;
-		}
-		if (list->type == GREATER_THEN
-			|| list->type == LESS_THEN || list->type == APPEND)
-		{
-			list = list->next;
-			break ;
-		}
-		line[i] = ft_strdup(list->token);
-		list = list->next;
-		i++;
-	}
-	line[i] = NULL;
+	exe_loop(list, line, i);
 	execute_command_external(args, line, env_shell);
 }
 

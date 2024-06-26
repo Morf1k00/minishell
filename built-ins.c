@@ -6,7 +6,7 @@
 /*   By: debizhan <debizhan@student.42wolfsburg.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/28 16:06:40 by debizhan          #+#    #+#             */
-/*   Updated: 2024/06/25 17:54:12 by debizhan         ###   ########.fr       */
+/*   Updated: 2024/06/26 16:07:25 by debizhan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,6 +53,5 @@ void	execom(t_vars *list, t_env_path *env_shell)
 		}
 		else
 			waitpid(pid, &status, 0);
-		printf("1\n");
 	}
 }

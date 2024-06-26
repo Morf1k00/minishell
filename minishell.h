@@ -6,7 +6,7 @@
 /*   By: debizhan <debizhan@student.42wolfsburg.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/02 16:02:53 by rkrechun          #+#    #+#             */
-/*   Updated: 2024/06/25 18:08:47 by debizhan         ###   ########.fr       */
+/*   Updated: 2024/06/26 16:59:35 by debizhan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -124,7 +124,7 @@ void	heredoc_sig(void);
 void	free_exit(t_vars *list, t_env_path *env_shell);
 void	lexer2(char **line, t_env_path *env_shell);
 void	start_shell(t_env_path *env_shell);
-
+char	*expand_variable(const char *token, t_env_path *env_shell);
 // void	print_list(t_vars **lst);
 
 #endif

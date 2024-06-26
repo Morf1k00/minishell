@@ -6,7 +6,7 @@
 /*   By: debizhan <debizhan@student.42wolfsburg.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/03 10:29:35 by rkrechun          #+#    #+#             */
-/*   Updated: 2024/06/25 17:41:41 by debizhan         ###   ########.fr       */
+/*   Updated: 2024/06/26 16:06:18 by debizhan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,10 +38,8 @@ static void	edit_line_withot_spaces(t_env_path *env_shell, t_vars *list)
 	char	**tmp;
 	int		i;
 	t_vars	*tmp_list;
-	int		j;
 
 	i = 0;
-	j = 0;
 	tmp_list = list;
 	tmp = malloc(sizeof(char *) * 20);
 	while (tmp_list)
@@ -58,8 +56,6 @@ static void	edit_line_withot_spaces(t_env_path *env_shell, t_vars *list)
 	tmp[i++] = NULL;
 	free(env_shell->pipes->arv);
 	env_shell->pipes->arv = tmp;
-	while (env_shell->pipes->arv[j])
-		printf("arv[%d]: %s\n", j, env_shell->pipes->arv[j++]);
 }
 
 int	main(int argc, char **argv, char **env)
