@@ -6,7 +6,7 @@
 /*   By: rkrechun <rkrechun@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/03 10:29:35 by rkrechun          #+#    #+#             */
-/*   Updated: 2024/06/27 16:20:00 by rkrechun         ###   ########.fr       */
+/*   Updated: 2024/06/27 16:30:39 by rkrechun         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -164,7 +164,8 @@ int main(int argc, char **argv, char **env) {
         } else {
             exit_file(list, env_shell);
         }
-        // if ()
+        if (access(".here_doc", F_OK) == 0)
+            unlink(".here_doc");
         ft_listclear(&list);
         free(input);
     }
