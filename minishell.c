@@ -6,7 +6,7 @@
 /*   By: rkrechun <rkrechun@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/03 10:29:35 by rkrechun          #+#    #+#             */
-/*   Updated: 2024/06/24 15:22:31 by rkrechun         ###   ########.fr       */
+/*   Updated: 2024/06/27 16:20:00 by rkrechun         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -120,8 +120,8 @@ static void edit_line_withot_spaces(t_env_path *env_shell, t_vars *list)
     tmp[i++] = NULL;
     free(env_shell->pipes->arv);
     env_shell->pipes->arv = tmp;
-    for (int j = 0; env_shell->pipes->arv[j]; j++)
-        printf("arv[%d]: %s\n", j, env_shell->pipes->arv[j]);
+    // for (int j = 0; env_shell->pipes->arv[j]; j++)
+    //     printf("arv[%d]: %s\n", j, env_shell->pipes->arv[j]);
        
 }
 
@@ -148,10 +148,10 @@ int main(int argc, char **argv, char **env) {
             lexer(line, env_shell);
             check_pipe_line(env_shell);  // Ensures pipe handling is properly set up
             // edit_line_withot_spaces(env_shell, list);
+            check_heredoc(env_shell);
+            // edit_line_withot_spaces(env_shell, list);
             create_list(&list, env_shell->pipes->arv, env_shell);
-
             if (env_shell->pipes->pipe_i > 0) {
-                printf("im here in if condition\n");
                 // Count number of commands separated by pipes
                 int num_commands = env_shell->pipes->pipe_i + 1;
                 edit_line_withot_spaces(env_shell, list);
@@ -161,10 +161,10 @@ int main(int argc, char **argv, char **env) {
                 // command_to_do(list, env_shell);
                 execom(list, env_shell);
             }
-            printf("im here\n");
         } else {
             exit_file(list, env_shell);
         }
+        // if ()
         ft_listclear(&list);
         free(input);
     }

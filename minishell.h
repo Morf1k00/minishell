@@ -6,7 +6,7 @@
 /*   By: rkrechun <rkrechun@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/02 16:02:53 by rkrechun          #+#    #+#             */
-/*   Updated: 2024/06/19 19:14:23 by rkrechun         ###   ########.fr       */
+/*   Updated: 2024/06/27 15:41:00 by rkrechun         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -124,7 +124,8 @@ void	heredoc_sig(void);
 void	free_exit(t_vars *list, t_env_path *env_shell);
 void	lexer2(char **line, t_env_path *env_shell);
 void	start_shell(t_env_path *env_shell);
-
+void	heredoc_min(char *line);
+void check_heredoc(t_env_path *env_shell);
 // void	print_list(t_vars **lst);
 
 #endif

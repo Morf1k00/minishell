@@ -6,7 +6,7 @@
 /*   By: rkrechun <rkrechun@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/08 15:55:40 by debizhan          #+#    #+#             */
-/*   Updated: 2024/06/24 15:27:17 by rkrechun         ###   ########.fr       */
+/*   Updated: 2024/06/27 15:06:51 by rkrechun         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -97,11 +97,11 @@ void redirect_output(char *filename, int append) {
         close(fd);
         exit(EXIT_FAILURE);
     }
-
     close(fd);
 }
 
-void redirect_input(char *filename) {
+void redirect_input(char *filename) 
+{
     int fd;
 
     fd = open(filename, O_RDONLY);
@@ -109,36 +109,47 @@ void redirect_input(char *filename) {
         perror("open");
         exit(EXIT_FAILURE);
     }
-
     if (dup2(fd, STDIN_FILENO) < 0) {
         perror("dup2");
         close(fd);
         exit(EXIT_FAILURE);
     }
-
     close(fd);
 }
 
-void setup_redirections(char **args) {
+void setup_redirections(char **args) 
+{
     int i = 0;
 
-    while (args[i]) {
-        if (strcmp(args[i], ">") == 0) {
+    while (args[i]) 
+    {
+        if (strcmp(args[i], ">") == 0) 
+        {
             redirect_output(args[i + 1], 0);
             args[i] = NULL;
             args[i + 1] = NULL;
             break;
-        } else if (strcmp(args[i], ">>") == 0) {
+        }
+        else if (strcmp(args[i], ">>") == 0) {
             redirect_output(args[i + 1], 1);
             args[i] = NULL;
             args[i + 1] = NULL;
             break;
-        } else if (strcmp(args[i], "<") == 0) {
+        }
+        else if (strcmp(args[i], "<") == 0) {
             redirect_input(args[i + 1]);
             args[i] = NULL;
             args[i + 1] = NULL;
             break;
         }
+        // else if(strcmp(args[i], "<<") == 0) {
+        //     heredoc_min(args[i + 1]);
+        //     env_shell->pipes->arv[i] = ft_strdup(".here_doc");
+        //     printf("args[%d]: %s\n", i, args[i]); 
+        //     printf("hello\n");
+        //     env_shell->pipes->arv[i + 1] = NULL;
+        //     break;
+        // }
         i++;
     }
 }

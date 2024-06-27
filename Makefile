@@ -6,7 +6,7 @@
 #    By: rkrechun <rkrechun@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/05/03 14:11:32 by rkrechun          #+#    #+#              #
-#    Updated: 2024/06/19 18:51:47 by rkrechun         ###   ########.fr        #
+#    Updated: 2024/06/27 13:27:14 by rkrechun         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -46,6 +46,7 @@ MPATH	=	minishell.c \
 			sig_handle.c\
 			lexer2.c\
 			pipe_handling.c\
+			heredoc.c\
 			#free_exit.c\
 			
 			
