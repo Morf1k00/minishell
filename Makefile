@@ -6,7 +6,7 @@
 #    By: debizhan <debizhan@student.42wolfsburg.    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/05/03 14:11:32 by rkrechun          #+#    #+#              #
-#    Updated: 2024/06/26 17:08:30 by debizhan         ###   ########.fr        #
+#    Updated: 2024/06/27 16:27:42 by debizhan         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -47,6 +47,7 @@ MPATH	=	minishell.c \
 			lexer2.c\
 			pipe_handling.c\
 			env_var.c\
+			heredoc.c\
 			#free_exit.c\
 			
 			

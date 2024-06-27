@@ -6,7 +6,7 @@
 /*   By: debizhan <debizhan@student.42wolfsburg.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/03 10:29:35 by rkrechun          #+#    #+#             */
-/*   Updated: 2024/06/26 16:06:18 by debizhan         ###   ########.fr       */
+/*   Updated: 2024/06/27 16:29:15 by debizhan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,6 +82,7 @@ int	main(int argc, char **argv, char **env)
 		{
 			lexer(line, env_shell);
 			check_pipe_line(env_shell);
+			check_heredoc(env_shell);
 			create_list(&list, env_shell->pipes->arv, env_shell);
 			if (env_shell->pipes->pipe_i > 0)
 			{
