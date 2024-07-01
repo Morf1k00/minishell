@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   extract_cmd.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: debizhan <debizhan@student.42wolfsburg.    +#+  +:+       +#+        */
+/*   By: rkrechun <rkrechun@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/22 17:22:20 by debizhan          #+#    #+#             */
-/*   Updated: 2024/06/18 17:29:17 by debizhan         ###   ########.fr       */
+/*   Updated: 2024/07/01 11:10:51 by rkrechun         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,13 +35,11 @@ char	**extract_cmd(char *cmd, char *path)
 	char	*command;
 	char	**tmp;
 
-	// printf("token = %s\n", cmd->token);
 	tmp = ft_split(path, ':');
 	command = get_cmd(tmp, cmd);
 	free(tmp);
 	tmp = malloc(sizeof(char *) * 2);
 	tmp[0] = command;
 	tmp[1] = NULL;
-	// printf("command = %s\n", command);
 	return (tmp);
 }

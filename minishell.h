@@ -6,7 +6,7 @@
 /*   By: rkrechun <rkrechun@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/02 16:02:53 by rkrechun          #+#    #+#             */
-/*   Updated: 2024/06/27 15:41:00 by rkrechun         ###   ########.fr       */
+/*   Updated: 2024/07/01 13:44:07 by rkrechun         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,7 +43,6 @@ typedef enum e_token
 	CMD,
 }	t_type;
 
-
 typedef struct s_pipes
 {
 	char	**arv;
@@ -51,7 +50,7 @@ typedef struct s_pipes
 	char	*input;
 	char	*output;
 	int		fd[2];
-	int 	pipe_i;
+	int		pipe_i;
 	char	*heredoc;
 	int		count;
 }	t_pipes;
@@ -75,14 +74,14 @@ typedef struct s_env_path
 	t_vars	*vars;
 }	t_env_path;
 
-typedef struct s_pipe_info {
-    int *pipe_fd;
-    t_env_path *data;
-    char **command;
-    int end;
-    int std_fd;
-} t_pipe_info;
-//extern t_env_path *env_shell;
+typedef struct s_pipe_info
+{
+	int			*pipe_fd;
+	t_env_path	*data;
+	char		**command;
+	int			end;
+	int			std_fd;
+}		t_pipe_info;
 
 void	free_exit(t_vars *list, t_env_path *env_shell);
 char	**ft_split(char const *s, char c);
@@ -101,7 +100,7 @@ void	*ft_realloc(void *ptr, size_t old_size, size_t new_size);
 void	ft_error_exit(char *str);
 int		lenpath(char *arv);
 int		lencat(char *arv, int len_path);
-void 	ft_pwd(t_env_path *ep);
+void	ft_pwd(t_env_path *ep);
 void	check_cmd(t_vars *list, t_env_path *env_shell);
 void	command_to_do(t_vars *list, t_env_path *env_shell);
 void	change_dir(t_env_path *env_shell, t_vars *list);
@@ -109,12 +108,11 @@ void	exit_file(t_vars *list, t_env_path *env_shell);
 char	*get_pathd(char **end, int i, char *cmd);
 char	*get_pathm(char **end);
 char	**extract_cmd(char *cmd, char *path);
-// char	**extract_cmd(t_vars *cmd, char *path);
 void	shell_lvl(t_env_path *env_shell);
 void	execute_unset_command(char **args, t_env_path *env_shell);
 void	execom(t_vars *list, t_env_path *env_shell);
 void	setup_redirections(char **args);
-void 	check_pipe_line(t_env_path *env_shell);
+void	check_pipe_line(t_env_path *env_shell);
 void	sig_handle(int sig);
 void	child_sig(void);
 void	heredoc_sig_handle(int sig);
@@ -125,7 +123,7 @@ void	free_exit(t_vars *list, t_env_path *env_shell);
 void	lexer2(char **line, t_env_path *env_shell);
 void	start_shell(t_env_path *env_shell);
 void	heredoc_min(char *line);
-void check_heredoc(t_env_path *env_shell);
-// void	print_list(t_vars **lst);
+void	check_heredoc(t_env_path *env_shell);
+int		execute_pipe(t_env_path *data, char **arv, int num_commands);
 
 #endif
