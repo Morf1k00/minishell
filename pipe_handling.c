@@ -6,19 +6,11 @@
 /*   By: rkrechun <rkrechun@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/01 12:35:37 by rkrechun          #+#    #+#             */
-/*   Updated: 2024/07/01 13:12:15 by rkrechun         ###   ########.fr       */
+/*   Updated: 2024/07/01 15:41:51 by rkrechun         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
-
-void	close_pipes(int prev_fd, int *pipe_fd)
-{
-	if (prev_fd != -1)
-		close(prev_fd);
-	if (pipe_fd[1] != -1)
-		close(pipe_fd[1]);
-}
 
 void	handle_child_process(int prev_fd, int *pipe_fd,
 				char **arv, int cmd_start)
@@ -40,17 +32,26 @@ void	handle_child_process(int prev_fd, int *pipe_fd,
 	exit(127);
 }
 
-void	create_pipe(int *pipe_fd)
+void	setup_pipes(int cmd_index, int num_commands, int *pipe_fd)
 {
-	if (pipe(pipe_fd) == -1)
+	if (cmd_index < num_commands - 1)
+		create_pipe(pipe_fd);
+	else
 	{
-		perror("pipe");
-		exit(EXIT_FAILURE);
+		pipe_fd[0] = -1;
+		pipe_fd[1] = -1;
 	}
 }
 
+void	find_next_command(char **arv, int *i)
+{
+	while (arv[*i] && strcmp(arv[*i], "|") != 0)
+		(*i)++;
+	arv[*i] = NULL;
+}
+
 void	execute_commands(int num_commands, char **arv,
-					int *prev_fd, int *cmd_start)
+		int *prev_fd, int *cmd_start)
 {
 	int		pipe_fd[2];
 	pid_t	pid;
@@ -61,16 +62,8 @@ void	execute_commands(int num_commands, char **arv,
 	cmd_index = 0;
 	while (cmd_index < num_commands)
 	{
-		if (cmd_index < num_commands - 1)
-			create_pipe(pipe_fd);
-		else
-		{
-			pipe_fd[0] = -1;
-			pipe_fd[1] = -1;
-		}
-		while (arv[i] && strcmp(arv[i], "|") != 0)
-			i++;
-		arv[i] = NULL;
+		setup_pipes(cmd_index, num_commands, pipe_fd);
+		find_next_command(arv, &i);
 		pid = fork();
 		if (pid == 0)
 			handle_child_process(*prev_fd, pipe_fd, arv, *cmd_start);

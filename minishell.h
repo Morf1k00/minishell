@@ -6,7 +6,7 @@
 /*   By: rkrechun <rkrechun@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/02 16:02:53 by rkrechun          #+#    #+#             */
-/*   Updated: 2024/07/01 13:44:07 by rkrechun         ###   ########.fr       */
+/*   Updated: 2024/07/01 15:41:57 by rkrechun         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -120,10 +120,11 @@ void	signals(void);
 void	sig_handle_child(int sig);
 void	heredoc_sig(void);
 void	free_exit(t_vars *list, t_env_path *env_shell);
-void	lexer2(char **line, t_env_path *env_shell);
 void	start_shell(t_env_path *env_shell);
 void	heredoc_min(char *line);
 void	check_heredoc(t_env_path *env_shell);
 int		execute_pipe(t_env_path *data, char **arv, int num_commands);
+void	close_pipes(int prev_fd, int *pipe_fd);
+void	create_pipe(int *pipe_fd);
 
 #endif

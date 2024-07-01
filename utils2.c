@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   utils2.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: debizhan <debizhan@student.42wolfsburg.    +#+  +:+       +#+        */
+/*   By: rkrechun <rkrechun@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/22 15:53:07 by debizhan          #+#    #+#             */
-/*   Updated: 2024/05/27 17:23:26 by debizhan         ###   ########.fr       */
+/*   Updated: 2024/07/01 15:42:40 by rkrechun         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,5 +38,22 @@ void	*ft_realloc(void *ptr, size_t old_size, size_t new_size)
 			free(ptr);
 		}
 		return (new_ptr);
+	}
+}
+
+void	close_pipes(int prev_fd, int *pipe_fd)
+{
+	if (prev_fd != -1)
+		close(prev_fd);
+	if (pipe_fd[1] != -1)
+		close(pipe_fd[1]);
+}
+
+void	create_pipe(int *pipe_fd)
+{
+	if (pipe(pipe_fd) == -1)
+	{
+		perror("pipe");
+		exit(EXIT_FAILURE);
 	}
 }
