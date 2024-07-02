@@ -6,7 +6,11 @@
 /*   By: debizhan <debizhan@student.42wolfsburg.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/30 14:24:50 by rkrechun          #+#    #+#             */
+<<<<<<< HEAD
 /*   Updated: 2024/06/27 16:35:46 by debizhan         ###   ########.fr       */
+=======
+/*   Updated: 2024/07/01 11:11:32 by rkrechun         ###   ########.fr       */
+>>>>>>> rostik
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,31 +28,6 @@ static void	charjoin(char **buf, char c)
 	free(tmp);
 	free(tmp2);
 }
-
-// static void close_heredoc(char *file_name, char **buf)
-// {
-// 	int	fd;
-
-// 	fd = open(file_name, O_RDONLY);
-// 	if (fd < 0)
-// 	{
-// 		perror("open");
-// 		exit(EXIT_FAILURE);
-// 	}
-// 	while ((fd, buf))
-// 	{
-// 		write(1, *buf, ft_strlen(*buf));
-// 		write(1, "\n", 1);
-// 	}
-// 	close(fd);
-// 	unlink(file_name);
-// }
-
-// void close_here(char *file, char **buf, t_env_path *env_shell)
-// {
-// 	free(buf);
-// 	env_shell->pipe->heredoc = *file;
-// }
 
 void	heredoc_min(char *line)
 {

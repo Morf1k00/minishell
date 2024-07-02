@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_split.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: debizhan <debizhan@student.42wolfsburg.    +#+  +:+       +#+        */
+/*   By: rkrechun <rkrechun@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/14 14:16:22 by rkrechun          #+#    #+#             */
-/*   Updated: 2024/05/17 16:02:14 by debizhan         ###   ########.fr       */
+/*   Updated: 2024/07/02 11:24:59 by rkrechun         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,7 +45,7 @@ static char	*word(char *s, char c)
 	while (*buf && *buf != c)
 		buf++;
 	*buf = '\0';
-	return (ft_strdup(s));
+	return (s);
 }
 
 static char	**free_arr(char **arr, char *s)

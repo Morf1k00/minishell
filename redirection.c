@@ -6,7 +6,7 @@
 /*   By: debizhan <debizhan@student.42wolfsburg.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/08 15:55:40 by debizhan          #+#    #+#             */
-/*   Updated: 2024/06/27 16:30:05 by debizhan         ###   ########.fr       */
+/*   Updated: 2024/07/02 16:31:37 by debizhan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,33 +47,10 @@ void	redirect_input(char *filename)
 	close(fd);
 }
 
-static void	loop(char **args, int i)
+static void	nullargs(char **args, int i)
 {
-	while (args[i])
-	{
-		if (strcmp(args[i], ">") == 0)
-		{
-			redirect_output(args[i + 1], 0);
-			args[i] = NULL;
-			args[i + 1] = NULL;
-			break ;
-		}
-		else if (strcmp(args[i], ">>") == 0)
-		{
-			redirect_output(args[i + 1], 1);
-			args[i] = NULL;
-			args[i + 1] = NULL;
-			break ;
-		}
-		else if (strcmp(args[i], "<") == 0)
-		{
-			redirect_input(args[i + 1]);
-			args[i] = NULL;
-			args[i + 1] = NULL;
-			break ;
-		}
-		i++;
-	}
+	args[i] = NULL;
+	args[i + 1] = NULL;
 }
 
 void	setup_redirections(char **args)
@@ -81,5 +58,26 @@ void	setup_redirections(char **args)
 	int	i;
 
 	i = 0;
-	loop(args, i);
+	while (args[i])
+	{
+		if (strcmp(args[i], ">") == 0)
+		{
+			redirect_output(args[i + 1], 0);
+			nullargs(args, i);
+			break ;
+		}
+		else if (strcmp(args[i], ">>") == 0)
+		{
+			redirect_output(args[i + 1], 1);
+			nullargs(args, i);
+			break ;
+		}
+		else if (strcmp(args[i], "<") == 0)
+		{
+			redirect_input(args[i + 1]);
+			nullargs(args, i);
+			break ;
+		}
+		i++;
+	}
 }

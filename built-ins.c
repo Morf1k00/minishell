@@ -6,7 +6,7 @@
 /*   By: debizhan <debizhan@student.42wolfsburg.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/27 13:55:14 by rkrechun          #+#    #+#             */
-/*   Updated: 2024/07/02 14:02:12 by debizhan         ###   ########.fr       */
+/*   Updated: 2024/07/02 16:27:41 by debizhan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,7 +43,6 @@ void	check_heredoc(t_env_path *env_shell)
 		if (ft_strcmp(env_shell->pipes->arv[i], "<<") == 0)
 		{
 			heredoc_min(env_shell->pipes->arv [i + 2]);
-			printf("heredoc\n");
 			env_shell->pipes->arv[i] = ".here_doc";
 			env_shell->pipes->arv[i + 2] = " ";
 			break ;

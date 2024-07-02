@@ -6,7 +6,7 @@
 /*   By: debizhan <debizhan@student.42wolfsburg.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/28 12:14:11 by rkrechun          #+#    #+#             */
-/*   Updated: 2024/06/25 17:22:39 by debizhan         ###   ########.fr       */
+/*   Updated: 2024/07/02 16:31:03 by debizhan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,6 @@ int	change_line_with_pipes(t_env_path *env_shell)
 			{
 				tmp[i] = NULL;
 				i++;
-				printf("2 pipe together\n");
 			}
 			env_shell->pipes->arv = tmp;
 			return (1);
