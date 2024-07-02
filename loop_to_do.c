@@ -6,7 +6,7 @@
 /*   By: debizhan <debizhan@student.42wolfsburg.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/21 15:57:51 by rkrechun          #+#    #+#             */
-/*   Updated: 2024/06/27 16:27:25 by debizhan         ###   ########.fr       */
+/*   Updated: 2024/07/02 14:59:12 by debizhan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,7 @@ void	execute_command_external(char **args, char **line,
 	if (pid < 0)
 	{
 		perror("fork");
+		env_shell->last_exit_status = 1;
 	}
 	else if (pid == 0)
 	{
@@ -31,6 +32,10 @@ void	execute_command_external(char **args, char **line,
 	else
 	{
 		waitpid(pid, &status, 0);
+		if (WIFEXITED(status))
+			env_shell->last_exit_status = WEXITSTATUS(status);
+		else
+			env_shell->last_exit_status = 1;
 	}
 }
 
@@ -84,22 +89,24 @@ void	command_to_do(t_vars *list, t_env_path *env_shell)
 	{
 		if (list->type == CMD)
 		{
-			if (ft_strncmp(list->token, "cd", 2) == 0)
+			if (ft_strcmp(list->token, "cd") == 0)
 				change_dir(env_shell, list);
-			else if (ft_strncmp(list->token, "pwd", 3) == 0)
+			else if (ft_strcmp(list->token, "pwd") == 0)
 				ft_pwd(env_shell);
-			else if (ft_strncmp(list->token, "echo", 4) == 0)
+			else if (ft_strcmp(list->token, "echo") == 0)
 				echo(&list);
-			else if (ft_strncmp(list->token, "export", 6) == 0)
+			else if (ft_strcmp(list->token, "export") == 0)
 				execute_export_command(env_shell->pipes->arv, env_shell);
-			else if (ft_strncmp(list->token, "unset", 5) == 0)
+			else if (ft_strcmp(list->token, "unset") == 0)
 				execute_unset_command(env_shell->pipes->arv, env_shell);
-			else if (ft_strncmp(list->token, "./minishell", 11) == 0)
+			else if (ft_strcmp(list->token, "./minishell") == 0)
 				shell_lvl(env_shell);
 			else
 				execute_comand(extract_cmd(list->token, env_shell->path), list,
 					env_shell);
 		}
+		else if (list->type == INVALID)
+            printf("%s: command not found\n", list->token);
 		list = list->next;
 	}
 }

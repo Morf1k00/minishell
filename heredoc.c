@@ -6,13 +6,13 @@
 /*   By: debizhan <debizhan@student.42wolfsburg.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/30 14:24:50 by rkrechun          #+#    #+#             */
-/*   Updated: 2024/06/27 16:27:08 by debizhan         ###   ########.fr       */
+/*   Updated: 2024/06/27 16:35:46 by debizhan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-static void charjoin(char **buf, char c)
+static void	charjoin(char **buf, char c)
 {
 	char	*tmp;
 	char	*tmp2;
@@ -50,7 +50,7 @@ static void charjoin(char **buf, char c)
 // 	env_shell->pipe->heredoc = *file;
 // }
 
-void heredoc_min(char *line)
+void	heredoc_min(char *line)
 {
 	char	*buf;
 	char	*file_name;

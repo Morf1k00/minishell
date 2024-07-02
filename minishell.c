@@ -6,24 +6,25 @@
 /*   By: debizhan <debizhan@student.42wolfsburg.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/03 10:29:35 by rkrechun          #+#    #+#             */
-/*   Updated: 2024/06/27 16:29:15 by debizhan         ###   ########.fr       */
+/*   Updated: 2024/07/02 15:58:57 by debizhan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
 int	execute_pipe(t_env_path *data, char **arv, int num_commands);
-// static void	print_list(t_vars **lst)
-// {
-// 	t_vars	*tmp;
 
-// 	tmp = *lst;
-// 	while (tmp)
-// 	{
-// 		printf("info: %s\ttype: %d\tlength: %d\n", tmp->token, tmp->type, tmp->length);
-// 		tmp = tmp->next;
-// 	}
-// }
+void	print_list(t_vars **lst)
+{
+	t_vars	*tmp;
+
+	tmp = *lst;
+	while (tmp)
+	{
+		printf("info: %s\ttype: %d\tlength: %d\n", tmp->token, tmp->type, tmp->length);
+		tmp = tmp->next;
+	}
+}
 
 static void	init_arg(int argc, char **argv, char **env, t_env_path *env_shell)
 {
@@ -58,6 +59,30 @@ static void	edit_line_withot_spaces(t_env_path *env_shell, t_vars *list)
 	env_shell->pipes->arv = tmp;
 }
 
+void	set_type(t_vars *list, t_env_path *env_shell)
+{
+	int	i;
+
+	i = 0;
+	// if (list && list->type == WORD)
+	// 	check_cmd(list, env_shell);
+	while (list)
+	{
+		if (i == 0)
+			check_cmd(list, env_shell);
+		if (list->type == PIPE || list->type == GREATER_THEN || list->type == LESS_THEN || list->type == APPEND)
+		{
+			list = list->next;
+			i = 0;
+		}
+		else
+		{
+			list = list->next;
+			i++;
+		}
+	}
+}
+
 int	main(int argc, char **argv, char **env)
 {
 	char		*input;
@@ -83,7 +108,9 @@ int	main(int argc, char **argv, char **env)
 			lexer(line, env_shell);
 			check_pipe_line(env_shell);
 			check_heredoc(env_shell);
-			create_list(&list, env_shell->pipes->arv, env_shell);
+			create_list(&list, env_shell->pipes->arv);
+			set_type(list, env_shell);
+			// print_list(&list);
 			if (env_shell->pipes->pipe_i > 0)
 			{
 				num_commands = env_shell->pipes->pipe_i + 1;

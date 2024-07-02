@@ -6,7 +6,7 @@
 /*   By: debizhan <debizhan@student.42wolfsburg.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/19 17:12:28 by rkrechun          #+#    #+#             */
-/*   Updated: 2024/06/27 16:29:38 by debizhan         ###   ########.fr       */
+/*   Updated: 2024/06/27 16:32:37 by debizhan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,13 +38,11 @@ int	execute_pipe(t_env_path *data, char **arv, int num_commands)
 			pipe_fd[0] = -1;
 			pipe_fd[1] = -1;
 		}
-		// Find the end of the current command
 		while (arv[i] && strcmp(arv[i], "|") != 0)
 			i++;
-		arv[i] = NULL;  // Null-terminate the current command
+		arv[i] = NULL;
 		if (!(pid = fork()))
 		{
-			// Child process
 			if (prev_fd != -1)
 			{
 				dup2(prev_fd, STDIN_FILENO);
@@ -56,9 +54,7 @@ int	execute_pipe(t_env_path *data, char **arv, int num_commands)
 				close(pipe_fd[1]);
 			}
 			close(pipe_fd[0]);
-			// Setup redirections
 			setup_redirections(&arv[cmd_start]);
-			// Execute the command
 			execvp(arv[cmd_start], &arv[cmd_start]);
 			perror("execvp");
 			exit(127);
@@ -69,10 +65,9 @@ int	execute_pipe(t_env_path *data, char **arv, int num_commands)
 		if (pipe_fd[1] != -1)
 			close(pipe_fd[1]);
 		prev_fd = pipe_fd[0];
-		cmd_start = ++i;  // Move to the next command
+		cmd_start = ++i;
 		cmd_index++;
 	}
-	// Wait for all child processes to finish
 	while (wait(&status) > 0);
 	if (WIFEXITED(status))
 		data->pipes->count = WEXITSTATUS(status);

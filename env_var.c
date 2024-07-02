@@ -6,7 +6,7 @@
 /*   By: debizhan <debizhan@student.42wolfsburg.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/19 17:01:24 by debizhan          #+#    #+#             */
-/*   Updated: 2024/06/26 16:43:21 by debizhan         ###   ########.fr       */
+/*   Updated: 2024/07/02 14:51:46 by debizhan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,6 +49,43 @@ static char	*expands_variable2(char *var_start,
 	return (expanded);
 }
 
+// static char *dollar_question(char *var_start, const char *token, t_env_path *env_shell)
+// {
+// 	size_t	prefix_len;
+// 	char	*expanded;
+
+// 	expanded = malloc(strlen(token) - 1 + 12);  // +12 to accommodate integer string length
+// 	prefix_len = var_start - token;
+// 	strncpy(expanded, token, prefix_len);
+// 	sprintf(expanded + prefix_len, "%d", env_shell->last_exit_status);
+// 	strcat(expanded, var_start + 2);
+// 	return (expanded);
+// }
+
+static char *dollar_question(char *var_start, const char *token, t_env_path *env_shell) {
+    size_t prefix_len;
+    char *expanded;
+    char *exit_status_str;
+
+    exit_status_str = ft_itoa(env_shell->last_exit_status);
+    if (!exit_status_str)
+        return NULL;
+
+    expanded = malloc(strlen(token) - 1 + strlen(exit_status_str) + 1);
+    if (!expanded) {
+        free(exit_status_str);
+        return NULL;
+    }
+
+    prefix_len = var_start - token;
+    strncpy(expanded, token, prefix_len);
+    strcpy(expanded + prefix_len, exit_status_str);
+    strcat(expanded, var_start + 2);
+
+    free(exit_status_str);
+    return expanded;
+}
+
 char	*expand_variable(const char *token, t_env_path *env_shell)
 {
 	char	*var_start;
@@ -60,6 +97,8 @@ char	*expand_variable(const char *token, t_env_path *env_shell)
 	var_start = ft_strchr(token, '$');
 	if (!var_start)
 		return (ft_strdup(token));
+	if (strncmp(var_start, "$?", 2) == 0)	
+		return (dollar_question(var_start, token, env_shell));
 	var_end = var_start + 1;
 	while (*var_end && (ft_isalnum(*var_end) || *var_end == '_'))
 		var_end++;
