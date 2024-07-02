@@ -6,7 +6,7 @@
 /*   By: rkrechun <rkrechun@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/21 14:25:00 by rkrechun          #+#    #+#             */
-/*   Updated: 2024/07/02 16:02:13 by rkrechun         ###   ########.fr       */
+/*   Updated: 2024/07/02 18:44:50 by rkrechun         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,10 +28,10 @@ void	shell_lvl(t_env_path *env_shell)
 	int		lvl;
 	char	*cur_lvl;
 	int		i;
-	char	*shellslvl;
+	// char	*shellslvl;
 
 	i = 0;
-	shellslvl = env_shell->shelllvl;
+	// shellslvl = env_shell->shelllvl;
 	cur_lvl = get_pathd(env_shell->env_paths, 6, "SHLVL=");
 	while (ft_strncmp(env_shell->env_paths[i], "SHLVL=", 6))
 		i++;
@@ -39,7 +39,7 @@ void	shell_lvl(t_env_path *env_shell)
 	lvl++;
 	free(env_shell->env_paths[i]);
 	env_shell->env_paths[i] = ft_strjoin("SHLVL=", ft_itoa(lvl));
-	env_shell->shelllvl = ft_strdup(shellslvl);
+	// env_shell->shelllvl = ft_strdup(shellslvl);
 }
 
 void	exit_file(t_vars *list, t_env_path *env_shell)
@@ -58,6 +58,7 @@ void	exit_file(t_vars *list, t_env_path *env_shell)
 	env_shell->env_paths[j] = ft_strjoin("SHLVL=", ft_itoa(lvl));
 	if (ft_strncmp(env_shell->env_paths[j], env_shell->shelllvl, 7) == 0)
 	{
+		printf("exit\n");
 		free(list);
 		exit(0);
 	}

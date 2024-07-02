@@ -6,7 +6,7 @@
 /*   By: rkrechun <rkrechun@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/27 13:55:14 by rkrechun          #+#    #+#             */
-/*   Updated: 2024/07/02 15:56:11 by rkrechun         ###   ########.fr       */
+/*   Updated: 2024/07/02 18:36:37 by rkrechun         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,7 +68,7 @@ void	execom(t_vars *list, t_env_path *env_shell)
 		{
 			setup_redirections(env_shell->pipes->arv);
 			command_to_do(list, env_shell);
-			exit(EXIT_SUCCESS);
+			// exit(EXIT_SUCCESS);
 		}
 		else
 			waitpid(pid, &status, 0);

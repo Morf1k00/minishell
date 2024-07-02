@@ -6,12 +6,12 @@
 #    By: rkrechun <rkrechun@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/05/03 14:11:32 by rkrechun          #+#    #+#              #
-#    Updated: 2024/07/02 15:53:58 by rkrechun         ###   ########.fr        #
+#    Updated: 2024/07/02 18:17:15 by rkrechun         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME = minishell
-CC		=	gcc -g -fsanitize=address
+CC		=	gcc #-g -fsanitize=address
 FLAGS	=	-Wall -Wextra -Werror
 LIBS	=	-lreadline
 RM		=	rm -rf
