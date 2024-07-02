@@ -6,7 +6,7 @@
 /*   By: debizhan <debizhan@student.42wolfsburg.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/01 13:46:06 by rkrechun          #+#    #+#             */
-/*   Updated: 2024/07/02 16:57:36 by debizhan         ###   ########.fr       */
+/*   Updated: 2024/07/02 19:30:23 by debizhan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,28 @@ static void	init_arg(int argc, char **argv, char **env, t_env_path *env_shell)
 	init_path(env, env_shell);
 	start_shell(env_shell);
 	env_shell->path = get_pathm(env_shell->env_paths);
+}
+
+void print_list(t_vars *list)
+{
+	while (list)
+	{
+		printf("Token: %s\t", list->token);
+		printf("Type: %d\n", list->type);
+		list = list->next;
+	}
+}
+
+void	print_args(char **args)
+{
+	int	i;
+
+	i = 0;
+	while (args[i])
+	{
+		printf("args[%d]: %s\n", i, args[i]);
+		i++;
+	}
 }
 
 static void	edit_line_withot_spaces(t_env_path *env_shell, t_vars *list)

@@ -6,7 +6,7 @@
 /*   By: debizhan <debizhan@student.42wolfsburg.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/01 11:49:10 by rkrechun          #+#    #+#             */
-/*   Updated: 2024/07/02 17:16:23 by debizhan         ###   ########.fr       */
+/*   Updated: 2024/07/02 19:29:19 by debizhan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -99,8 +99,10 @@ void	command_to_do(t_vars *list, t_env_path *env_shell)
 				execute_export_command(env_shell->pipes->arv, env_shell);
 			else if (ft_strcmp(list->token, "unset") == 0)
 				execute_unset_command(env_shell->pipes->arv, env_shell);
-			else if (ft_strcmp(list->token, "./minishell") == 0)
-				shell_lvl(env_shell);
+			// else if (ft_strcmp(list->token, "./minishell") == 0)
+			// 	shell_lvl(env_shell);
+			else if (ft_strcmp(list->token, "exit") == 0)
+				ft_env(env_shell);
 			else
 				execute_comand(extract_cmd(list->token, env_shell->path), list,
 					env_shell);

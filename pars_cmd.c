@@ -6,7 +6,7 @@
 /*   By: debizhan <debizhan@student.42wolfsburg.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/20 11:47:24 by rkrechun          #+#    #+#             */
-/*   Updated: 2024/07/02 17:20:32 by debizhan         ###   ########.fr       */
+/*   Updated: 2024/07/02 18:02:35 by debizhan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,9 +32,10 @@ static int	easy_check(t_vars *list)
 		return (-1);
 }
 
-void	kostil(char *path, t_env_path *env_shell, t_vars *list)
+void	kostil(t_env_path *env_shell, t_vars *list)
 {
 	char	**cmd;
+	char	*path;
 
 	path = env_shell->path;
 	cmd = extract_cmd(list->token, path);
@@ -50,8 +51,6 @@ void	kostil(char *path, t_env_path *env_shell, t_vars *list)
 
 void	check_cmd(t_vars *list, t_env_path *env_shell)
 {
-	char	*path;
-
 	if (easy_check(list) == 0)
 		list->type = CMD;
 	else if (ft_strncmp(list->token, "exit", 4) == 0)
@@ -65,5 +64,5 @@ void	check_cmd(t_vars *list, t_env_path *env_shell)
 	else if (list->token[0] == ' ')
 		list->type = SPACE_T;
 	else
-		kostil(path, env_shell, list);
+		kostil(env_shell, list);
 }

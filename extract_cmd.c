@@ -6,7 +6,7 @@
 /*   By: debizhan <debizhan@student.42wolfsburg.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/22 17:22:20 by debizhan          #+#    #+#             */
-/*   Updated: 2024/07/02 16:28:10 by debizhan         ###   ########.fr       */
+/*   Updated: 2024/07/02 19:30:07 by debizhan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,8 @@ char	*get_cmd(char **path, char *cmd)
 
 	while (*path)
 	{
+		if (ft_strcmp(cmd, "./minishell") == 0)
+			return (cmd);
 		tmp = ft_strjoin(*path, "/");
 		command = ft_strjoin(tmp, cmd);
 		free(tmp);
@@ -37,7 +39,6 @@ char	**extract_cmd(char *cmd, char *path)
 
 	tmp = ft_split(path, ':');
 	command = get_cmd(tmp, cmd);
-	free(tmp);
 	tmp = malloc(sizeof(char *) * 2);
 	tmp[0] = command;
 	tmp[1] = NULL;

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   unset.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rkrechun <rkrechun@student.42.fr>          +#+  +:+       +#+        */
+/*   By: debizhan <debizhan@student.42wolfsburg.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/27 15:49:13 by debizhan          #+#    #+#             */
-/*   Updated: 2024/07/02 16:01:57 by rkrechun         ###   ########.fr       */
+/*   Updated: 2024/07/02 18:05:21 by debizhan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,10 +42,10 @@ void	remove_environment_variable(t_env_path *env_shell, char *name)
 
 void	execute_unset_command(char **args, t_env_path *env_shell)
 {
-	if (args[2] == NULL)
+	if (args[1] == NULL)
 	{
 		write(2, "unset: not enough arguments\n", 28);
 		return ;
 	}
-	remove_environment_variable(env_shell, args[2]);
+	remove_environment_variable(env_shell, args[1]);
 }

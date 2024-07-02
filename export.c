@@ -6,7 +6,7 @@
 /*   By: debizhan <debizhan@student.42wolfsburg.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/21 16:03:52 by debizhan          #+#    #+#             */
-/*   Updated: 2024/06/19 16:49:34 by debizhan         ###   ########.fr       */
+/*   Updated: 2024/07/02 19:29:59 by debizhan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -85,7 +85,7 @@ void	execute_export_command(char **args, t_env_path *env_shell)
 		ft_env(env_shell);
 		return ;
 	}
-	if (parse_export_command(args[2], &name, &value) == 0)
+	if (parse_export_command(args[1], &name, &value) == 0)
 	{
 		upd_env_var(env_shell, name, value);
 		free(name);

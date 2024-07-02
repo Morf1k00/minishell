@@ -6,7 +6,7 @@
 /*   By: debizhan <debizhan@student.42wolfsburg.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/27 13:55:14 by rkrechun          #+#    #+#             */
-/*   Updated: 2024/07/02 16:27:41 by debizhan         ###   ########.fr       */
+/*   Updated: 2024/07/02 19:25:53 by debizhan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,9 @@
 
 int	is_builtin_command(char *command)
 {
-	return (ft_strcmp(command, "cd") == 0);
+	return (ft_strcmp(command, "cd") == 0 || ft_strcmp(command, "echo") == 0
+		|| ft_strcmp(command, "export") == 0 || ft_strcmp(command, "unset") == 0
+		|| ft_strcmp(command, "pwd") == 0 || ft_strcmp(command, "env") == 0);
 }
 
 void	handle_builtin_command(t_vars *list, t_env_path *env_shell)
