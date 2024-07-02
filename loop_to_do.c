@@ -6,7 +6,7 @@
 /*   By: debizhan <debizhan@student.42wolfsburg.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/01 11:49:10 by rkrechun          #+#    #+#             */
-/*   Updated: 2024/07/02 16:30:40 by debizhan         ###   ########.fr       */
+/*   Updated: 2024/07/02 17:16:23 by debizhan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -106,7 +106,7 @@ void	command_to_do(t_vars *list, t_env_path *env_shell)
 					env_shell);
 		}
 		else if (list->type == INVALID)
-            printf("%s: command not found\n", list->token);
+			printf("%s: command not found\n", list->token);
 		list = list->next;
 	}
 }

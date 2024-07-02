@@ -6,7 +6,7 @@
 /*   By: debizhan <debizhan@student.42wolfsburg.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/15 15:47:07 by debizhan          #+#    #+#             */
-/*   Updated: 2024/07/02 16:32:03 by debizhan         ###   ########.fr       */
+/*   Updated: 2024/07/02 17:14:17 by debizhan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,27 +22,9 @@ static t_vars	*new_list(char *arg)
 	list->length = ft_strlen(arg);
 	list->type = tokens_init(arg);
 	list->token = arg;
-	// if (list->type == WORD)
-	// 	check_cmd(list, env_shell);
 	list->next = NULL;
 	return (list);
 }
-
-// void	set_type(t_vars *list, t_env_path *env_shell)
-// {
-// 	if (list && list->type == WORD)
-// 		check_cmd(list, env_shell);
-// 	while (list)
-// 	{
-// 		if (list->type != PIPE || list->type != GREATER_THEN || list->type != LESS_THEN || list->type != APPEND)
-// 		{
-// 			list = list->next;
-// 			set_type(list, env_shell);
-// 		}
-// 		else
-// 			list = list->next;
-// 	}
-// }
 
 static void	list_add(t_vars **lst, t_vars *new)
 {
@@ -97,5 +79,4 @@ void	create_list(t_vars **list, char **arv)
 			list_add(list, file_node);
 		}
 	}
-	// set_prev(list);
 }
