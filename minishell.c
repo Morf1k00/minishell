@@ -6,7 +6,7 @@
 /*   By: debizhan <debizhan@student.42wolfsburg.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/01 13:46:06 by rkrechun          #+#    #+#             */
-/*   Updated: 2024/07/02 16:27:06 by debizhan         ###   ########.fr       */
+/*   Updated: 2024/07/02 16:32:39 by debizhan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,7 +53,7 @@ static void	ifdo(char **line, t_env_path *env_shell, t_vars *list)
 	lexer(line, env_shell);
 	check_pipe_line(env_shell);
 	check_heredoc(env_shell);
-	create_list(&list, env_shell->pipes->arv, env_shell);
+	create_list(&list, env_shell->pipes->arv);
 	if (env_shell->pipes->pipe_i > 0)
 	{
 		num_commands = env_shell->pipes->pipe_i + 1;
