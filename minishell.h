@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rkrechun <rkrechun@student.42.fr>          +#+  +:+       +#+        */
+/*   By: debizhan <debizhan@student.42wolfsburg.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/02 16:02:53 by rkrechun          #+#    #+#             */
-/*   Updated: 2024/07/02 11:06:23 by rkrechun         ###   ########.fr       */
+/*   Updated: 2024/07/02 17:21:35 by debizhan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,6 +41,7 @@ typedef enum e_token
 	DOUBLE_QUOTES,
 	SINGLE_QUOTES,
 	CMD,
+	INVALID,
 }	t_type;
 
 typedef struct s_pipes
@@ -61,6 +62,7 @@ typedef struct s_vars
 	char			*token;
 	int				type;
 	struct s_vars	*next;
+	struct s_vars	*prev;
 }	t_vars;
 
 typedef struct s_env_path
@@ -70,6 +72,7 @@ typedef struct s_env_path
 	int		count;
 	int		last;
 	char	*shelllvl;
+	int		last_exit_status;
 	t_pipes	*pipes;
 	t_vars	*vars;
 }	t_env_path;
@@ -88,7 +91,7 @@ char	**ft_split(char const *s, char c);
 char	*word_cpy(char *line);
 char	**split_arg(char *line);
 void	lexer(char **line, t_env_path *env_shell);
-void	create_list(t_vars **list, char **arv, t_env_path *env_shell);
+void	create_list(t_vars **list, char **arv);
 int		tokens_init(char *arv);
 int		close_quote(char **line);
 void	echo(t_vars **lst);
@@ -121,11 +124,15 @@ void	sig_handle_child(int sig);
 void	heredoc_sig(void);
 void	free_exit(t_vars *list, t_env_path *env_shell);
 void	start_shell(t_env_path *env_shell);
+char	*expand_variable(const char *token, t_env_path *env_shell);
 void	heredoc_min(char *line);
 void	check_heredoc(t_env_path *env_shell);
 int		execute_pipe(t_env_path *data, char **arv, int num_commands);
 void	close_pipes(int prev_fd, int *pipe_fd);
 void	create_pipe(int *pipe_fd);
 void	free_struct(t_env_path *env_shell);
+void	set_type(t_vars *list, t_env_path *env_shell);
+void	execute_command_external(char **args, char **line,
+			t_env_path *env_shell);
 
 #endif

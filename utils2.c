@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   utils2.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rkrechun <rkrechun@student.42.fr>          +#+  +:+       +#+        */
+/*   By: debizhan <debizhan@student.42wolfsburg.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/22 15:53:07 by debizhan          #+#    #+#             */
-/*   Updated: 2024/07/01 15:42:40 by rkrechun         ###   ########.fr       */
+/*   Updated: 2024/07/02 17:14:32 by debizhan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,5 +55,28 @@ void	create_pipe(int *pipe_fd)
 	{
 		perror("pipe");
 		exit(EXIT_FAILURE);
+	}
+}
+
+void	set_type(t_vars *list, t_env_path *env_shell)
+{
+	int	i;
+
+	i = 0;
+	while (list)
+	{
+		if (i == 0)
+			check_cmd(list, env_shell);
+		if (list->type == PIPE || list->type == GREATER_THEN
+			|| list->type == LESS_THEN || list->type == APPEND)
+		{
+			list = list->next;
+			i = 0;
+		}
+		else
+		{
+			list = list->next;
+			i++;
+		}
 	}
 }

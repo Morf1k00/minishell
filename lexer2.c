@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   lexer.c                                            :+:      :+:    :+:   */
+/*   lexer2.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: debizhan <debizhan@student.42wolfsburg.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/03 16:52:30 by rkrechun          #+#    #+#             */
-/*   Updated: 2024/07/02 16:29:01 by debizhan         ###   ########.fr       */
+/*   Updated: 2024/06/25 17:42:46 by debizhan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,31 +14,25 @@
 
 static void	copy_arv(char **line, char **tmp, int *i, int *j)
 {
-	int		len;
-	int		start;
-	char	quote_char;
-	int		k;
+	int	len;
+	int	d;
 
-	len = 0;
-	start = *i;
-	quote_char = line[*i][0];
-	(*i)++;
-	while (line[*i] != NULL && line[*i][0] != quote_char)
+	len = 1;
+	d = *i;
+	while (line[d] != NULL)
 	{
-		len += strlen(line[*i]) + 1;
-		(*i)++;
+		len += ft_strlen(line[d]);
+		d++;
 	}
 	tmp[*j] = malloc(sizeof(char) * (len + 1));
 	tmp[*j][0] = '\0';
-	k = start + 1;
-	while (k < *i)
+	while (*i < d)
 	{
-		strcat(tmp[*j], line[k]);
-		if (k < *i - 1)
-			strcat(tmp[*j], " ");
-		k++;
+		strcat(tmp[*j], line[*i]);
+		(*i)++;
 	}
-	(*j)++;
+	tmp[*j][len] = '\0';
+	(*i)++;
 }
 
 static int	word_count(char **line)
@@ -51,7 +45,7 @@ static int	word_count(char **line)
 	return (i);
 }
 
-void	lexer(char **line, t_env_path *env_shell)
+void	lexer2(char **line, t_env_path *env_shell)
 {
 	int		i;
 	int		j;
@@ -68,7 +62,7 @@ void	lexer(char **line, t_env_path *env_shell)
 			copy_arv(line, tmp, &i, &j);
 		else
 		{
-			tmp[j] = expand_variable(line[i], env_shell);
+			tmp[j] = strdup(line[i]);
 			i++;
 		}
 		j++;

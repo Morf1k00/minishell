@@ -6,7 +6,7 @@
 /*   By: rkrechun <rkrechun@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/27 15:49:13 by debizhan          #+#    #+#             */
-/*   Updated: 2024/07/02 18:19:53 by rkrechun         ###   ########.fr       */
+/*   Updated: 2024/07/02 19:37:05 by rkrechun         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,6 +47,5 @@ void	execute_unset_command(char **args, t_env_path *env_shell)
 		write(2, "unset: not enough arguments\n", 28);
 		return ;
 	}
-	printf("args[1] = %s\n", args[1]);
 	remove_environment_variable(env_shell, args[1]);
 }

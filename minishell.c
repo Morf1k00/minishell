@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rkrechun <rkrechun@student.42.fr>          +#+  +:+       +#+        */
+/*   By: debizhan <debizhan@student.42wolfsburg.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/01 13:46:06 by rkrechun          #+#    #+#             */
-/*   Updated: 2024/07/02 16:00:55 by rkrechun         ###   ########.fr       */
+/*   Updated: 2024/07/02 19:32:29 by debizhan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,7 +53,8 @@ static void	ifdo(char **line, t_env_path *env_shell, t_vars *list)
 	lexer(line, env_shell);
 	check_pipe_line(env_shell);
 	check_heredoc(env_shell);
-	create_list(&list, env_shell->pipes->arv, env_shell);
+	create_list(&list, env_shell->pipes->arv);
+	set_type(list, env_shell);
 	if (env_shell->pipes->pipe_i > 0)
 	{
 		num_commands = env_shell->pipes->pipe_i + 1;
@@ -104,5 +105,3 @@ int	main(int argc, char **argv, char **env)
 	whileloop(list, env_shell);
 	return (0);
 }
-
-	// free_main(env_shell, list, line);

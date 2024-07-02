@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   echo.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rkrechun <rkrechun@student.42.fr>          +#+  +:+       +#+        */
+/*   By: debizhan <debizhan@student.42wolfsburg.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/15 17:22:14 by debizhan          #+#    #+#             */
-/*   Updated: 2024/05/28 16:50:53 by rkrechun         ###   ########.fr       */
+/*   Updated: 2024/07/02 17:17:57 by debizhan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,17 +47,8 @@ static int	check_n(t_vars **str)
 
 void	echo2(t_vars **tmp)
 {
-	if ((*tmp)->type == WORD)
-	{
-		printf("%s", (*tmp)->token);
-		*tmp = (*tmp)->next;
-	}
-	else if ((*tmp)->type == SPACE_T)
-	{
-		skip_spaces(tmp);
-		if (*tmp)
-			putchar(' ');
-	}
+	printf("%s", (*tmp)->token);
+	*tmp = (*tmp)->next;
 }
 
 void	echo(t_vars **lst)

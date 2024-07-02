@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   redirection.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rkrechun <rkrechun@student.42.fr>          +#+  +:+       +#+        */
+/*   By: debizhan <debizhan@student.42wolfsburg.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/07/01 13:29:34 by rkrechun          #+#    #+#             */
-/*   Updated: 2024/07/01 15:14:22 by rkrechun         ###   ########.fr       */
+/*   Created: 2024/05/08 15:55:40 by debizhan          #+#    #+#             */
+/*   Updated: 2024/07/02 16:31:37 by debizhan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,10 +21,7 @@ void	redirect_output(char *filename, int append)
 	else
 		fd = open(filename, O_WRONLY | O_CREAT | O_TRUNC, 0644);
 	if (fd < 0)
-	{
-		perror("open");
-		exit(EXIT_FAILURE);
-	}
+		ft_error_exit("open");
 	if (dup2(fd, STDOUT_FILENO) < 0)
 	{
 		perror("dup2");
@@ -40,10 +37,7 @@ void	redirect_input(char *filename)
 
 	fd = open(filename, O_RDONLY);
 	if (fd < 0)
-	{
-		perror("open");
-		exit(EXIT_FAILURE);
-	}
+		ft_error_exit("open");
 	if (dup2(fd, STDIN_FILENO) < 0)
 	{
 		perror("dup2");
