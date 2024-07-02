@@ -6,7 +6,7 @@
 /*   By: rkrechun <rkrechun@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/21 14:25:00 by rkrechun          #+#    #+#             */
-/*   Updated: 2024/07/01 11:10:26 by rkrechun         ###   ########.fr       */
+/*   Updated: 2024/07/02 16:02:13 by rkrechun         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,7 @@ void	shell_lvl(t_env_path *env_shell)
 	char	*shellslvl;
 
 	i = 0;
-	shellslvl = ft_strdup(env_shell->shelllvl);
+	shellslvl = env_shell->shelllvl;
 	cur_lvl = get_pathd(env_shell->env_paths, 6, "SHLVL=");
 	while (ft_strncmp(env_shell->env_paths[i], "SHLVL=", 6))
 		i++;

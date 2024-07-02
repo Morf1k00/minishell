@@ -6,12 +6,12 @@
 #    By: rkrechun <rkrechun@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/05/03 14:11:32 by rkrechun          #+#    #+#              #
-#    Updated: 2024/07/01 14:41:07 by rkrechun         ###   ########.fr        #
+#    Updated: 2024/07/02 15:53:58 by rkrechun         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME = minishell
-CC		=	gcc #-g -fsanitize=address
+CC		=	gcc -g -fsanitize=address
 FLAGS	=	-Wall -Wextra -Werror
 LIBS	=	-lreadline
 RM		=	rm -rf
@@ -46,7 +46,7 @@ MPATH	=	minishell.c \
 			sig_handle.c\
 			pipe_handling.c\
 			heredoc.c\
-			#free_exit.c\
+			free_exit.c\
 			
 			
 OBJ_M	= $(MPATH:.c=.o)

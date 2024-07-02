@@ -6,7 +6,7 @@
 /*   By: rkrechun <rkrechun@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/01 11:49:10 by rkrechun          #+#    #+#             */
-/*   Updated: 2024/07/01 13:58:37 by rkrechun         ###   ########.fr       */
+/*   Updated: 2024/07/02 16:02:39 by rkrechun         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,7 @@ void	execute_command_external(char **args, char **line,
 
 static void	help_function(char **line, t_vars *list, int i)
 {
-	line[0] = ft_strdup(list->token);
+	line[0] = list->token;
 	i = 1;
 	list = list->next;
 	while (list && list->type != PIPE)
@@ -55,7 +55,7 @@ static void	help_function(char **line, t_vars *list, int i)
 			list = list->next;
 			break ;
 		}
-		line[i] = ft_strdup(list->token);
+		line[i] = list->token;
 		list = list->next;
 		i++;
 	}
@@ -79,6 +79,7 @@ void	execute_comand(char **args, t_vars *list, t_env_path *env_shell)
 	line = malloc(sizeof(char *) * (i + 1));
 	help_function(line, list, i);
 	execute_command_external(args, line, env_shell);
+	free(line);
 }
 
 void	command_to_do(t_vars *list, t_env_path *env_shell)
@@ -99,6 +100,8 @@ void	command_to_do(t_vars *list, t_env_path *env_shell)
 				execute_unset_command(env_shell->pipes->arv, env_shell);
 			else if (ft_strncmp(list->token, "./minishell", 11) == 0)
 				shell_lvl(env_shell);
+			else if (ft_strncmp(list->token, "exit", 4) == 0)
+				exit_file(list, env_shell);
 			else
 				execute_comand(extract_cmd(list->token, env_shell->path), list,
 					env_shell);

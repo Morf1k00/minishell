@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   unset.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: debizhan <debizhan@student.42wolfsburg.    +#+  +:+       +#+        */
+/*   By: rkrechun <rkrechun@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/27 15:49:13 by debizhan          #+#    #+#             */
-/*   Updated: 2024/05/27 17:19:11 by debizhan         ###   ########.fr       */
+/*   Updated: 2024/07/02 16:01:57 by rkrechun         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,16 +39,6 @@ void	remove_environment_variable(t_env_path *env_shell, char *name)
 		i++;
 	}
 }
-
-// void	print_env_variables(t_env_path *env_shell)
-// {
-// 	int	i;
-
-// 	for (i = 0; i < env_shell->count; i++)
-// 	{
-// 		printf("env_paths[%d]: %s\n", i, env_shell->env_paths[i]);
-// 	}
-// }
 
 void	execute_unset_command(char **args, t_env_path *env_shell)
 {

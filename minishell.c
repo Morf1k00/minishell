@@ -6,7 +6,7 @@
 /*   By: rkrechun <rkrechun@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/01 13:46:06 by rkrechun          #+#    #+#             */
-/*   Updated: 2024/07/01 14:48:05 by rkrechun         ###   ########.fr       */
+/*   Updated: 2024/07/02 16:00:55 by rkrechun         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,7 @@ static void	edit_line_withot_spaces(t_env_path *env_shell, t_vars *list)
 			tmp_list = tmp_list->next;
 		else
 		{
-			tmp[i] = ft_strdup(tmp_list->token);
+			tmp[i] = tmp_list->token;
 			i++;
 			tmp_list = tmp_list->next;
 		}
@@ -65,6 +65,7 @@ static void	ifdo(char **line, t_env_path *env_shell, t_vars *list)
 		edit_line_withot_spaces(env_shell, list);
 		execom(list, env_shell);
 	}
+	free(env_shell->pipes->arv);
 }
 
 static void	whileloop(t_vars *list, t_env_path *env_shell)
@@ -88,6 +89,7 @@ static void	whileloop(t_vars *list, t_env_path *env_shell)
 			unlink(".here_doc");
 		ft_listclear(&list);
 		free(input);
+		free(line);
 	}
 }
 

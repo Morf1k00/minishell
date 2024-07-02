@@ -6,7 +6,7 @@
 /*   By: rkrechun <rkrechun@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/02 16:02:53 by rkrechun          #+#    #+#             */
-/*   Updated: 2024/07/01 15:41:57 by rkrechun         ###   ########.fr       */
+/*   Updated: 2024/07/02 11:06:23 by rkrechun         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -126,5 +126,6 @@ void	check_heredoc(t_env_path *env_shell);
 int		execute_pipe(t_env_path *data, char **arv, int num_commands);
 void	close_pipes(int prev_fd, int *pipe_fd);
 void	create_pipe(int *pipe_fd);
+void	free_struct(t_env_path *env_shell);
 
 #endif
