@@ -6,7 +6,7 @@
 /*   By: rkrechun <rkrechun@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/21 14:25:00 by rkrechun          #+#    #+#             */
-/*   Updated: 2024/07/03 16:46:59 by rkrechun         ###   ########.fr       */
+/*   Updated: 2024/07/03 16:39:22 by rkrechun         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,7 +56,6 @@ void	exit_file(t_vars *list, t_env_path *env_shell)
 	lvl--;
 	free(env_shell->env_paths[j]);
 	env_shell->env_paths[j] = ft_strjoin("SHLVL=", ft_itoa(lvl));
-	if (ft_strcmp(env_shell->env_paths[j], env_shell->shelllvl) == 0)
 	if (ft_strcmp(env_shell->env_paths[j], env_shell->shelllvl) == 0)
 	{
 		free(list);

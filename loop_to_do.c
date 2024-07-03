@@ -6,14 +6,13 @@
 /*   By: rkrechun <rkrechun@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/01 11:49:10 by rkrechun          #+#    #+#             */
-/*   Updated: 2024/07/03 16:49:35 by rkrechun         ###   ########.fr       */
+/*   Updated: 2024/07/03 16:37:54 by rkrechun         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
 void	execute_command_external(char **args, char **line,
-	t_env_path *env_shell)
 	t_env_path *env_shell)
 {
 	pid_t	pid;
@@ -24,12 +23,10 @@ void	execute_command_external(char **args, char **line,
 	{
 		perror("fork");
 		env_shell->last_exit_status = 1;
-		env_shell->last_exit_status = 1;
 	}
 	else if (pid == 0)
 	{
 		if (execve(args[0], line, env_shell->env_paths) == -1)
-			ft_error_exit("execve");
 			ft_error_exit("execve");
 	}
 	else
@@ -39,14 +36,9 @@ void	execute_command_external(char **args, char **line,
 			env_shell->last_exit_status = WEXITSTATUS(status);
 		else
 			env_shell->last_exit_status = 1;
-		if (WIFEXITED(status))
-			env_shell->last_exit_status = WEXITSTATUS(status);
-		else
-			env_shell->last_exit_status = 1;
 	}
 }
 
-void	exe_loop(t_vars *list, char **line, int i)
 void	exe_loop(t_vars *list, char **line, int i)
 {
 	while (list && list->type != PIPE)
@@ -58,13 +50,10 @@ void	exe_loop(t_vars *list, char **line, int i)
 		}
 		if (list->type == GREATER_THEN
 			|| list->type == LESS_THEN || list->type == APPEND)
-		if (list->type == GREATER_THEN
-			|| list->type == LESS_THEN || list->type == APPEND)
 		{
 			list = list->next;
 			break ;
 		}
-		line[i] = ft_strdup(list->token);
 		line[i] = ft_strdup(list->token);
 		list = list->next;
 		i++;
@@ -104,10 +93,6 @@ void	execute_comand(char **args, t_vars *list, t_env_path *env_shell)
 	i = 1;
 	list = list->next;
 	exe_loop(list, line, i);
-	line[0] = ft_strdup(list->token);
-	i = 1;
-	list = list->next;
-	exe_loop(list, line, i);
 	execute_command_external(args, line, env_shell);
 	// free(line);// last changes 60 byte
 	free_array(args);//its work
@@ -121,30 +106,21 @@ void	command_to_do(t_vars *list, t_env_path *env_shell)
 		if (list->type == CMD)
 		{
 			if (ft_strcmp(list->token, "cd") == 0)
-			if (ft_strcmp(list->token, "cd") == 0)
 				change_dir(env_shell, list);
-			else if (ft_strcmp(list->token, "pwd") == 0)
 			else if (ft_strcmp(list->token, "pwd") == 0)
 				ft_pwd(env_shell);
 			else if (ft_strcmp(list->token, "echo") == 0)
-			else if (ft_strcmp(list->token, "echo") == 0)
 				echo(&list);
-			else if (ft_strcmp(list->token, "export") == 0)
 			else if (ft_strcmp(list->token, "export") == 0)
 				execute_export_command(env_shell->pipes->arv, env_shell);
 			else if (ft_strcmp(list->token, "unset") == 0)
-			else if (ft_strcmp(list->token, "unset") == 0)
 				execute_unset_command(env_shell->pipes->arv, env_shell);
-			else if (ft_strcmp(list->token, "exit") == 0)
-				ft_env(env_shell);
 			else if (ft_strcmp(list->token, "exit") == 0)
 				ft_env(env_shell);
 			else
 				execute_comand(extract_cmd(list->token, env_shell->path), list,
 					env_shell);
 		}
-		else if (list->type == INVALID)
-			printf("%s: command not found\n", list->token);
 		else if (list->type == INVALID)
 			printf("%s: command not found\n", list->token);
 		list = list->next;
