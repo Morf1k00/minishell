@@ -6,7 +6,7 @@
 /*   By: debizhan <debizhan@student.42wolfsburg.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/01 13:46:06 by rkrechun          #+#    #+#             */
-/*   Updated: 2024/07/02 19:32:29 by debizhan         ###   ########.fr       */
+/*   Updated: 2024/07/03 13:30:21 by debizhan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,7 +78,10 @@ static void	whileloop(t_vars *list, t_env_path *env_shell)
 	{
 		input = readline("minishell: ");
 		if (!input)
+		{
+			printf("exit\n");
 			break ;
+		}
 		add_history(input);
 		line = split_arg(input);
 		env_shell->last = close_quote(line);
@@ -102,6 +105,7 @@ int	main(int argc, char **argv, char **env)
 	list = NULL;
 	env_shell = malloc(sizeof(t_env_path));
 	init_arg(argc, argv, env, env_shell);
+	setup_signal_handlers();
 	whileloop(list, env_shell);
 	return (0);
 }

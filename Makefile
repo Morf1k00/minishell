@@ -6,7 +6,7 @@
 #    By: debizhan <debizhan@student.42wolfsburg.    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/05/03 14:11:32 by rkrechun          #+#    #+#              #
-#    Updated: 2024/07/02 16:33:58 by debizhan         ###   ########.fr        #
+#    Updated: 2024/07/03 13:18:24 by debizhan         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -48,7 +48,6 @@ MPATH	=	minishell.c \
 			env_var.c\
 			heredoc.c\
 			free_exit.c\
-			
 			
 OBJ_M	= $(MPATH:.c=.o)
 
