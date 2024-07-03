@@ -6,7 +6,7 @@
 /*   By: rkrechun <rkrechun@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/02 16:02:53 by rkrechun          #+#    #+#             */
-/*   Updated: 2024/07/03 14:05:04 by rkrechun         ###   ########.fr       */
+/*   Updated: 2024/07/03 16:51:35 by rkrechun         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -131,9 +131,5 @@ int		execute_pipe(t_env_path *data, char **arv, int num_commands);
 void	close_pipes(int prev_fd, int *pipe_fd);
 void	create_pipe(int *pipe_fd);
 void	free_struct(t_env_path *env_shell);
-void	set_type(t_vars *list, t_env_path *env_shell);
-void	execute_command_external(char **args, char **line,
-			t_env_path *env_shell);
-char	**create_envp(void);
 
 #endif

@@ -6,7 +6,7 @@
 /*   By: rkrechun <rkrechun@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/27 13:55:14 by rkrechun          #+#    #+#             */
-/*   Updated: 2024/07/03 16:17:45 by rkrechun         ###   ########.fr       */
+/*   Updated: 2024/07/03 16:44:30 by rkrechun         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,11 +22,13 @@ int	is_builtin_command(char *command)
 void	handle_builtin_command(t_vars *list, t_env_path *env_shell)
 {
 	if (ft_strcmp(list->token, "cd") == 0)
+	if (ft_strcmp(list->token, "cd") == 0)
 		change_dir(env_shell, list);
 	else if (ft_strcmp(list->token, "echo") == 0)
 		echo(&list);
 	else if (ft_strcmp(list->token, "export") == 0)
 		execute_export_command(env_shell->pipes->arv, env_shell);
+	else if (ft_strcmp(list->token, "unset") == 0)
 	else if (ft_strcmp(list->token, "unset") == 0)
 		execute_unset_command(env_shell->pipes->arv, env_shell);
 	else if (ft_strcmp(list->token, "pwd") == 0)
