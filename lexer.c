@@ -6,7 +6,7 @@
 /*   By: rkrechun <rkrechun@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/03 16:52:30 by rkrechun          #+#    #+#             */
-/*   Updated: 2024/07/01 19:43:28 by rkrechun         ###   ########.fr       */
+/*   Updated: 2024/07/03 15:46:21 by rkrechun         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ static void	copy_arv(char **line, char **tmp, int *i, int *j)
 	(*i)++;
 	while (line[*i] != NULL && line[*i][0] != quote_char)
 	{
-		len += strlen(line[*i]) + 1;
+		len += ft_strlen(line[*i]) + 1;
 		(*i)++;
 	}
 	tmp[*j] = malloc(sizeof(char) * (len + 1));
@@ -33,9 +33,9 @@ static void	copy_arv(char **line, char **tmp, int *i, int *j)
 	k = start + 1;
 	while (k < *i)
 	{
-		strcat(tmp[*j], line[k]);
+		ft_strcat(tmp[*j], line[k]);
 		if (k < *i - 1)
-			strcat(tmp[*j], " ");
+			ft_strcat(tmp[*j], " ");
 		k++;
 	}
 	(*j)++;
@@ -65,14 +65,13 @@ void	lexer(char **line, t_env_path *env_shell)
 	while (i < word)
 	{
 		if (line[i][0] == '\'' || line[i][0] == '\"')
-		{
 			copy_arv(line, tmp, &i, &j);
+		else
+		{
+			tmp[j] = expand_variable(line[i], env_shell);
 			i++;
 		}
-		else if (line[i][0] == '|' || line[i][0] == '>' || line[i][0] == '<')
-			tmp[j++] = strdup(line[i++]);
-		else
-			tmp[j++] = strdup(line[i++]);
+		j++;
 	}
 	tmp[j] = NULL;
 	env_shell->pipes->arv = tmp;

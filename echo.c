@@ -6,7 +6,7 @@
 /*   By: rkrechun <rkrechun@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/15 17:22:14 by debizhan          #+#    #+#             */
-/*   Updated: 2024/05/28 16:50:53 by rkrechun         ###   ########.fr       */
+/*   Updated: 2024/07/03 15:44:18 by rkrechun         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,17 +47,8 @@ static int	check_n(t_vars **str)
 
 void	echo2(t_vars **tmp)
 {
-	if ((*tmp)->type == WORD)
-	{
-		printf("%s", (*tmp)->token);
-		*tmp = (*tmp)->next;
-	}
-	else if ((*tmp)->type == SPACE_T)
-	{
-		skip_spaces(tmp);
-		if (*tmp)
-			putchar(' ');
-	}
+	printf("%s", (*tmp)->token);
+	*tmp = (*tmp)->next;
 }
 
 void	echo(t_vars **lst)
@@ -82,5 +73,5 @@ void	echo(t_vars **lst)
 		}
 	}
 	if (nl == 1)
-		putchar('\n');
+		printf("\n");
 }

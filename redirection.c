@@ -5,8 +5,8 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: rkrechun <rkrechun@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/07/01 13:29:34 by rkrechun          #+#    #+#             */
-/*   Updated: 2024/07/01 15:14:22 by rkrechun         ###   ########.fr       */
+/*   Created: 2024/05/08 15:55:40 by debizhan          #+#    #+#             */
+/*   Updated: 2024/07/03 15:48:19 by rkrechun         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,10 +21,7 @@ void	redirect_output(char *filename, int append)
 	else
 		fd = open(filename, O_WRONLY | O_CREAT | O_TRUNC, 0644);
 	if (fd < 0)
-	{
-		perror("open");
-		exit(EXIT_FAILURE);
-	}
+		ft_error_exit("open");
 	if (dup2(fd, STDOUT_FILENO) < 0)
 	{
 		perror("dup2");
@@ -40,10 +37,7 @@ void	redirect_input(char *filename)
 
 	fd = open(filename, O_RDONLY);
 	if (fd < 0)
-	{
-		perror("open");
-		exit(EXIT_FAILURE);
-	}
+		ft_error_exit("open");
 	if (dup2(fd, STDIN_FILENO) < 0)
 	{
 		perror("dup2");
@@ -66,19 +60,19 @@ void	setup_redirections(char **args)
 	i = 0;
 	while (args[i])
 	{
-		if (strcmp(args[i], ">") == 0)
+		if (ft_strcmp(args[i], ">") == 0)
 		{
 			redirect_output(args[i + 1], 0);
 			nullargs(args, i);
 			break ;
 		}
-		else if (strcmp(args[i], ">>") == 0)
+		else if (ft_strcmp(args[i], ">>") == 0)
 		{
 			redirect_output(args[i + 1], 1);
 			nullargs(args, i);
 			break ;
 		}
-		else if (strcmp(args[i], "<") == 0)
+		else if (ft_strcmp(args[i], "<") == 0)
 		{
 			redirect_input(args[i + 1]);
 			nullargs(args, i);

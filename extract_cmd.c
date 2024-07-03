@@ -6,7 +6,7 @@
 /*   By: rkrechun <rkrechun@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/22 17:22:20 by debizhan          #+#    #+#             */
-/*   Updated: 2024/07/02 13:50:15 by rkrechun         ###   ########.fr       */
+/*   Updated: 2024/07/03 16:29:12 by rkrechun         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,8 @@ char	*get_cmd(char **path, char *cmd)
 
 	while (*path)
 	{
+		if (ft_strcmp(cmd, "./minishell") == 0)
+			return (cmd);
 		tmp = ft_strjoin(*path, "/");
 		command = ft_strjoin(tmp, cmd);
 		free(tmp);

@@ -6,7 +6,7 @@
 /*   By: rkrechun <rkrechun@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/08 13:06:34 by rkrechun          #+#    #+#             */
-/*   Updated: 2024/07/01 11:09:46 by rkrechun         ###   ########.fr       */
+/*   Updated: 2024/07/03 15:42:24 by rkrechun         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ void	init_path(char **env, t_env_path *env_shell)
 		ft_error_exit("malloc");
 	while (i < count)
 	{
-		tmp[i] = strdup(env[i]);
+		tmp[i] = ft_strdup(env[i]);
 		i++;
 	}
 	tmp[i] = NULL;

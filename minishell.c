@@ -6,7 +6,7 @@
 /*   By: rkrechun <rkrechun@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/01 13:46:06 by rkrechun          #+#    #+#             */
-/*   Updated: 2024/07/02 16:00:55 by rkrechun         ###   ########.fr       */
+/*   Updated: 2024/07/03 15:29:11 by rkrechun         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,7 +44,38 @@ static void	edit_line_withot_spaces(t_env_path *env_shell, t_vars *list)
 	tmp[i++] = NULL;
 	free(env_shell->pipes->arv);
 	env_shell->pipes->arv = tmp;
+	// free(tmp);
 }
+// static void edit_line_withot_spaces(t_env_path *env_shell, t_vars *list)
+// {
+// 	char	**tmp;
+// 	int		i;
+// 	t_vars	*tmp_list;
+
+// 	i = 0;
+// 	tmp_list = list;
+// 	tmp = malloc (sizeof(char *) *(20));
+// 	while (tmp_list)
+// 	{
+// 		if (tmp_list->type == SPACE_T)
+// 			tmp_list = tmp_list->next;
+// 		else
+// 		{
+// 			tmp[i] = tmp_list->token;
+// 			i++;
+// 			tmp_list = tmp_list->next;
+// 		}
+// 	}
+// 	tmp[i++] = NULL;
+// 	free(env_shell->pipes->arv);
+// 	env_shell->pipes->arv = tmp;
+// 	while (tmp[i])
+// 	{
+// 		free(tmp[i]);
+// 		i++;
+// 	}
+// 	// free(tmp);
+// }
 
 static void	ifdo(char **line, t_env_path *env_shell, t_vars *list)
 {
@@ -53,7 +84,8 @@ static void	ifdo(char **line, t_env_path *env_shell, t_vars *list)
 	lexer(line, env_shell);
 	check_pipe_line(env_shell);
 	check_heredoc(env_shell);
-	create_list(&list, env_shell->pipes->arv, env_shell);
+	create_list(&list, env_shell->pipes->arv);
+	set_type(list, env_shell);
 	if (env_shell->pipes->pipe_i > 0)
 	{
 		num_commands = env_shell->pipes->pipe_i + 1;
@@ -97,12 +129,18 @@ int	main(int argc, char **argv, char **env)
 {
 	t_env_path	*env_shell;
 	t_vars		*list;
+	char 		**envp;
 
 	list = NULL;
 	env_shell = malloc(sizeof(t_env_path));
-	init_arg(argc, argv, env, env_shell);
+	if (!*env)
+	{
+    	envp = create_envp();
+    	init_arg(argc, argv, envp, env_shell);
+	}
+  	else
+    	init_arg(argc, argv, env, env_shell);
+	// init_arg(argc, argv, env, env_shell);
 	whileloop(list, env_shell);
 	return (0);
 }
-
-	// free_main(env_shell, list, line);

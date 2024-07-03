@@ -6,7 +6,7 @@
 #    By: rkrechun <rkrechun@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/05/03 14:11:32 by rkrechun          #+#    #+#              #
-#    Updated: 2024/07/02 15:53:58 by rkrechun         ###   ########.fr        #
+#    Updated: 2024/07/03 16:38:41 by rkrechun         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -45,6 +45,7 @@ MPATH	=	minishell.c \
 			signals.c\
 			sig_handle.c\
 			pipe_handling.c\
+			env_var.c\
 			heredoc.c\
 			free_exit.c\
 			
@@ -58,13 +59,14 @@ $(NAME): $(OBJ_M)
 	@$ make bonus -C libft
 	@$ mv libft/libft.a .
 	@$(CC) $(OBJ_M) $(LIBS) libft.a -o $(NAME)
+	@rm libft.a
 
 all: $(NAME)
 
 clean:
 	@$(RM) $(OBJ_M)
 	@make clean -C libft
-	@rm libft.a
 fclean: clean
 	@$(RM) $(NAME)
-.PHONY: all clean fclean
+re: fclean all
+.PHONY: all clean fclean re
