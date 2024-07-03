@@ -6,7 +6,7 @@
 /*   By: debizhan <debizhan@student.42wolfsburg.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/01 13:46:06 by rkrechun          #+#    #+#             */
-/*   Updated: 2024/07/03 13:30:21 by debizhan         ###   ########.fr       */
+/*   Updated: 2024/07/03 14:35:05 by debizhan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,7 +66,7 @@ static void	ifdo(char **line, t_env_path *env_shell, t_vars *list)
 		edit_line_withot_spaces(env_shell, list);
 		execom(list, env_shell);
 	}
-	free(env_shell->pipes->arv);
+	// free(env_shell->pipes->arv);
 }
 
 static void	whileloop(t_vars *list, t_env_path *env_shell)
