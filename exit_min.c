@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   exit_min.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: debizhan <debizhan@student.42wolfsburg.    +#+  +:+       +#+        */
+/*   By: rkrechun <rkrechun@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/21 14:25:00 by rkrechun          #+#    #+#             */
-/*   Updated: 2024/07/02 19:29:39 by debizhan         ###   ########.fr       */
+/*   Updated: 2024/07/03 16:39:22 by rkrechun         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,7 @@ void	shell_lvl(t_env_path *env_shell)
 	int		lvl;
 	char	*cur_lvl;
 	int		i;
+	char 	*tmp;
 
 	i = 0;
 	cur_lvl = get_pathd(env_shell->env_paths, 6, "SHLVL=");
@@ -36,7 +37,9 @@ void	shell_lvl(t_env_path *env_shell)
 	lvl = ft_atoi(cur_lvl);
 	lvl++;
 	free(env_shell->env_paths[i]);
-	env_shell->env_paths[i] = ft_strjoin("SHLVL=", ft_itoa(lvl));
+	tmp = ft_itoa(lvl);
+	env_shell->env_paths[i] = ft_strjoin("SHLVL=", tmp);
+	free(tmp);
 }
 
 void	exit_file(t_vars *list, t_env_path *env_shell)
@@ -56,6 +59,7 @@ void	exit_file(t_vars *list, t_env_path *env_shell)
 	if (ft_strcmp(env_shell->env_paths[j], env_shell->shelllvl) == 0)
 	{
 		free(list);
+		free(env_shell);
 		exit(0);
 	}
 }

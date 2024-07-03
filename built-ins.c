@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   built-ins.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: debizhan <debizhan@student.42wolfsburg.    +#+  +:+       +#+        */
+/*   By: rkrechun <rkrechun@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/27 13:55:14 by rkrechun          #+#    #+#             */
-/*   Updated: 2024/07/02 19:25:53 by debizhan         ###   ########.fr       */
+/*   Updated: 2024/07/03 16:17:45 by rkrechun         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,7 +59,9 @@ void	execom(t_vars *list, t_env_path *env_shell)
 	pid_t	pid;
 	int		status;
 
-	if (is_builtin_command(list->token))
+	if(env_shell->pipes-> arv[0] == NULL)
+		return ;
+	else if (is_builtin_command(list->token))
 		handle_builtin_command(list, env_shell);
 	else
 	{

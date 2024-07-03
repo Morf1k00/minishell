@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   echo.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: debizhan <debizhan@student.42wolfsburg.    +#+  +:+       +#+        */
+/*   By: rkrechun <rkrechun@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/15 17:22:14 by debizhan          #+#    #+#             */
-/*   Updated: 2024/07/02 17:17:57 by debizhan         ###   ########.fr       */
+/*   Updated: 2024/07/03 15:44:18 by rkrechun         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,5 +73,5 @@ void	echo(t_vars **lst)
 		}
 	}
 	if (nl == 1)
-		putchar('\n');
+		printf("\n");
 }

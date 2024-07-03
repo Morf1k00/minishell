@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   redirection.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: debizhan <debizhan@student.42wolfsburg.    +#+  +:+       +#+        */
+/*   By: rkrechun <rkrechun@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/08 15:55:40 by debizhan          #+#    #+#             */
-/*   Updated: 2024/07/02 16:31:37 by debizhan         ###   ########.fr       */
+/*   Updated: 2024/07/03 15:48:19 by rkrechun         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,19 +60,19 @@ void	setup_redirections(char **args)
 	i = 0;
 	while (args[i])
 	{
-		if (strcmp(args[i], ">") == 0)
+		if (ft_strcmp(args[i], ">") == 0)
 		{
 			redirect_output(args[i + 1], 0);
 			nullargs(args, i);
 			break ;
 		}
-		else if (strcmp(args[i], ">>") == 0)
+		else if (ft_strcmp(args[i], ">>") == 0)
 		{
 			redirect_output(args[i + 1], 1);
 			nullargs(args, i);
 			break ;
 		}
-		else if (strcmp(args[i], "<") == 0)
+		else if (ft_strcmp(args[i], "<") == 0)
 		{
 			redirect_input(args[i + 1]);
 			nullargs(args, i);

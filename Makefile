@@ -6,12 +6,12 @@
 #    By: debizhan <debizhan@student.42wolfsburg.    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/05/03 14:11:32 by rkrechun          #+#    #+#              #
-#    Updated: 2024/07/03 13:18:24 by debizhan         ###   ########.fr        #
+#    Updated: 2024/07/03 16:55:44 by debizhan         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME = minishell
-CC		=	gcc -g #-fsanitize=address
+CC		=	gcc -g -fsanitize=address
 FLAGS	=	-Wall -Wextra -Werror
 LIBS	=	-lreadline
 RM		=	rm -rf
