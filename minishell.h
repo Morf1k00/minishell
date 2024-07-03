@@ -6,7 +6,7 @@
 /*   By: rkrechun <rkrechun@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/02 16:02:53 by rkrechun          #+#    #+#             */
-/*   Updated: 2024/07/03 14:05:04 by rkrechun         ###   ########.fr       */
+/*   Updated: 2024/07/03 18:04:08 by rkrechun         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -135,5 +135,8 @@ void	set_type(t_vars *list, t_env_path *env_shell);
 void	execute_command_external(char **args, char **line,
 			t_env_path *env_shell);
 char	**create_envp(void);
+void	handle_sigint(int sig);
+void	handle_sigquit(int sig);
+void	setup_signal_handlers(void);
 
 #endif

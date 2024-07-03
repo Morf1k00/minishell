@@ -6,7 +6,7 @@
 /*   By: rkrechun <rkrechun@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/01 13:46:06 by rkrechun          #+#    #+#             */
-/*   Updated: 2024/07/03 15:29:11 by rkrechun         ###   ########.fr       */
+/*   Updated: 2024/07/03 18:23:40 by rkrechun         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,11 +77,25 @@ static void	edit_line_withot_spaces(t_env_path *env_shell, t_vars *list)
 // 	// free(tmp);
 // }
 
+void free_array3(char **array)
+{
+	int i;
+
+	i = 0;
+	while (array[i])
+	{
+		free(array[i]);
+		i++;
+	}
+	free(array);
+}
+
 static void	ifdo(char **line, t_env_path *env_shell, t_vars *list)
 {
 	int		num_commands;
 
 	lexer(line, env_shell);
+	free_array3(line);
 	check_pipe_line(env_shell);
 	check_heredoc(env_shell);
 	create_list(&list, env_shell->pipes->arv);
@@ -97,7 +111,8 @@ static void	ifdo(char **line, t_env_path *env_shell, t_vars *list)
 		edit_line_withot_spaces(env_shell, list);
 		execom(list, env_shell);
 	}
-	free(env_shell->pipes->arv);
+	ft_listclear(&list);
+	// free(env_shell->pipes->arv);
 }
 
 static void	whileloop(t_vars *list, t_env_path *env_shell)
@@ -112,16 +127,19 @@ static void	whileloop(t_vars *list, t_env_path *env_shell)
 			break ;
 		add_history(input);
 		line = split_arg(input);
+		free(input);
 		env_shell->last = close_quote(line);
 		if (env_shell->last == 0)
 			ifdo(line, env_shell, list);
 		else
-			exit_file(list, env_shell);
+			perror("minishell: syntax error near unexpected token");
 		if (access(".here_doc", F_OK) == 0)
 			unlink(".here_doc");
 		ft_listclear(&list);
-		free(input);
-		free(line);
+		if (env_shell->last != 0)
+			free_array3(line);
+		if (env_shell->last == 0)
+			free_array3(env_shell->pipes->arv);
 	}
 }
 
@@ -140,7 +158,7 @@ int	main(int argc, char **argv, char **env)
 	}
   	else
     	init_arg(argc, argv, env, env_shell);
-	// init_arg(argc, argv, env, env_shell);
+	setup_signal_handlers();
 	whileloop(list, env_shell);
 	return (0);
 }

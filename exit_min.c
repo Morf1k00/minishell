@@ -6,7 +6,7 @@
 /*   By: rkrechun <rkrechun@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/21 14:25:00 by rkrechun          #+#    #+#             */
-/*   Updated: 2024/07/03 16:39:22 by rkrechun         ###   ########.fr       */
+/*   Updated: 2024/07/03 18:24:50 by rkrechun         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,11 +42,25 @@ void	shell_lvl(t_env_path *env_shell)
 	free(tmp);
 }
 
+void free_array1(char **array)
+{
+	int i;
+
+	i = 0;
+	while (array[i])
+	{
+		free(array[i]);
+		i++;
+	}
+	free(array);
+}
+
 void	exit_file(t_vars *list, t_env_path *env_shell)
 {
 	char	*path;
 	int		lvl;
 	int		j;
+	char 	*tmp;
 
 	j = 0;
 	while (ft_strncmp(env_shell->env_paths[j], "SHLVL=", 6))
@@ -55,9 +69,19 @@ void	exit_file(t_vars *list, t_env_path *env_shell)
 	lvl = ft_atoi(path + 6);
 	lvl--;
 	free(env_shell->env_paths[j]);
-	env_shell->env_paths[j] = ft_strjoin("SHLVL=", ft_itoa(lvl));
+	tmp = ft_itoa(lvl);
+	env_shell->env_paths[j] = ft_strjoin("SHLVL=", tmp);
+	free(tmp);
 	if (ft_strcmp(env_shell->env_paths[j], env_shell->shelllvl) == 0)
 	{
+		ft_listclear(&list);
+			free_array1(env_shell->pipes->arv);
+		free(env_shell->pipes);
+		free(env_shell->shelllvl);
+		// free(env_shell->pipes->heredoc);
+		// free(env_shell->pipes->input);
+		// free(env_shell->path);
+		// free(env_shell->vars);
 		free(list);
 		free(env_shell);
 		exit(0);
