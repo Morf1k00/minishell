@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   utils2.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: debizhan <debizhan@student.42wolfsburg.    +#+  +:+       +#+        */
+/*   By: rkrechun <rkrechun@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/22 15:53:07 by debizhan          #+#    #+#             */
-/*   Updated: 2024/07/02 17:14:32 by debizhan         ###   ########.fr       */
+/*   Updated: 2024/07/04 15:07:34 by rkrechun         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,4 +79,22 @@ void	set_type(t_vars *list, t_env_path *env_shell)
 			i++;
 		}
 	}
+}
+
+void cleanup(t_env_path *env_shell, t_vars *list)
+{
+    int i;
+    i = 0;    
+	if (env_shell)
+    {        
+		if (env_shell->env_paths)
+        {            
+			while (env_shell->env_paths[i])
+                free(env_shell->env_paths[i++]);            
+			free(env_shell->env_paths);
+        }        
+		if (env_shell->pipes)
+            free(env_shell->pipes);        
+		free(env_shell);
+    }   ft_listclear(&list);
 }

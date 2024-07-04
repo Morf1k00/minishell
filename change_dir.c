@@ -6,7 +6,7 @@
 /*   By: rkrechun <rkrechun@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/16 15:13:09 by rkrechun          #+#    #+#             */
-/*   Updated: 2024/06/26 12:18:24 by rkrechun         ###   ########.fr       */
+/*   Updated: 2024/07/04 11:10:05 by rkrechun         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,14 @@ static char	*chdir0(char *new_dir, char *current_dir, char *list)
 	free(new_dir);
 	new_dir = ft_strdup(current_dir);
 	return (new_dir);
+}
+
+static void	end_proces(char *new_dir, char *pwd, t_env_path *env_shell, int i)
+{
+	free(env_shell->env_paths[i]);
+	env_shell->env_paths[i] = strdup(pwd);
+	free(pwd);
+	free(new_dir);
 }
 
 static void	child_dir(char *list, t_env_path *env_shell)
@@ -46,9 +54,8 @@ static void	child_dir(char *list, t_env_path *env_shell)
 	}
 	if (chdir(new_dir) != 0)
 		new_dir = chdir0(new_dir, curent_dir, list);
-	free(env_shell->env_paths[i]);
 	pwd = ft_strjoin("PWD=", new_dir);
-	env_shell->env_paths[i] = strdup(pwd);
+	end_proces(new_dir, pwd, env_shell, i);
 }
 
 static void	parent_dir(char *list, t_env_path *env_shell)
@@ -75,9 +82,8 @@ static void	parent_dir(char *list, t_env_path *env_shell)
 		new_dir[ft_strlen(new_dir) - 1] = '\0';
 	if (chdir(new_dir) != 0)
 		new_dir = chdir0(new_dir, current_dir, list);
-	free(env_shell->env_paths[j]);
 	pwd = ft_strjoin("PWD=", new_dir);
-	env_shell->env_paths[j] = strdup(pwd);
+	end_proces(new_dir, pwd, env_shell, j);
 }
 
 void	change_dir(t_env_path *env_shell, t_vars *list)

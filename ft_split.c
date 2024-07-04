@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_split.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: debizhan <debizhan@student.42wolfsburg.    +#+  +:+       +#+        */
+/*   By: rkrechun <rkrechun@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/14 14:16:22 by rkrechun          #+#    #+#             */
-/*   Updated: 2024/07/03 14:32:48 by debizhan         ###   ########.fr       */
+/*   Updated: 2024/07/04 13:01:57 by rkrechun         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,9 +66,9 @@ static char	**free_arr(char **arr, char *s)
 static char	**worker(char **arr, char *s1, char c, size_t j)
 {
 	size_t	i;
-	char	*str;
+	// char	*str;
 
-	str = s1;
+	// str = s1;
 	i = 0;
 	while (i < j)
 	{
@@ -83,7 +83,7 @@ static char	**worker(char **arr, char *s1, char c, size_t j)
 		s1++;
 	}
 	arr[i] = NULL;
-	free(str);
+	// free(str);
 	return (arr);
 }
 
@@ -100,5 +100,7 @@ char	**ft_split(char const *s, char c)
 	w_arr = (char **)malloc(sizeof(char *) * (j + 1));
 	if (!w_arr)
 		return (NULL);
-	return (worker(w_arr, s1, c, j));
+	w_arr = worker(w_arr, s1, c, j);
+	free(s1);
+	return (w_arr);
 }

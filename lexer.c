@@ -6,7 +6,7 @@
 /*   By: rkrechun <rkrechun@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/03 16:52:30 by rkrechun          #+#    #+#             */
-/*   Updated: 2024/07/03 15:46:21 by rkrechun         ###   ########.fr       */
+/*   Updated: 2024/07/04 14:07:11 by rkrechun         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,25 +55,25 @@ void	lexer(char **line, t_env_path *env_shell)
 {
 	int		i;
 	int		j;
-	char	**tmp;
+	// char	**tmp;
 	int		word;
 
 	i = 0;
 	j = 0;
 	word = word_count(line);
-	tmp = malloc(sizeof(char *) * (word + 1));
+	env_shell->pipes->arv = malloc(sizeof(char *) * (word + 1));
 	while (i < word)
 	{
 		if (line[i][0] == '\'' || line[i][0] == '\"')
-			copy_arv(line, tmp, &i, &j);
+			copy_arv(line, env_shell->pipes->arv , &i, &j);
 		else
 		{
-			tmp[j] = expand_variable(line[i], env_shell);
+			env_shell->pipes->arv[j] = expand_variable(line[i], env_shell);
 			i++;
 		}
 		j++;
 	}
-	tmp[j] = NULL;
-	env_shell->pipes->arv = tmp;
+	env_shell->pipes->arv[j] = NULL;
+	// env_shell->pipes->arv = tmp;
 	env_shell->pipes->count = j;
 }

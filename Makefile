@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: debizhan <debizhan@student.42wolfsburg.    +#+  +:+       +#+         #
+#    By: rkrechun <rkrechun@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/05/03 14:11:32 by rkrechun          #+#    #+#              #
-#    Updated: 2024/07/03 16:55:44 by debizhan         ###   ########.fr        #
+#    Updated: 2024/07/04 15:08:06 by rkrechun         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -42,12 +42,12 @@ MPATH	=	minishell.c \
 			redirection.c\
 			built-ins.c\
 			pipes_fork.c\
-			signals.c\
 			sig_handle.c\
 			pipe_handling.c\
 			env_var.c\
 			heredoc.c\
 			free_exit.c\
+			
 			
 OBJ_M	= $(MPATH:.c=.o)
 

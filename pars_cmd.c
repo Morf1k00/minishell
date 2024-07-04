@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   pars_cmd.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: debizhan <debizhan@student.42wolfsburg.    +#+  +:+       +#+        */
+/*   By: rkrechun <rkrechun@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/20 11:47:24 by rkrechun          #+#    #+#             */
-/*   Updated: 2024/07/02 18:02:35 by debizhan         ###   ########.fr       */
+/*   Updated: 2024/07/04 13:30:27 by rkrechun         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,7 +46,7 @@ void	kostil(t_env_path *env_shell, t_vars *list)
 		list->type = INVALID;
 		env_shell->last_exit_status = 127;
 	}
-	free(cmd);
+	free_array(cmd);
 }
 
 void	check_cmd(t_vars *list, t_env_path *env_shell)

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   loop_to_do.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: debizhan <debizhan@student.42wolfsburg.    +#+  +:+       +#+        */
+/*   By: rkrechun <rkrechun@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/01 11:49:10 by rkrechun          #+#    #+#             */
-/*   Updated: 2024/07/04 14:35:53 by debizhan         ###   ########.fr       */
+/*   Updated: 2024/07/04 13:29:12 by rkrechun         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,19 +61,6 @@ void	exe_loop(t_vars *list, char **line, int i)
 	line[i] = NULL;
 }
 
-void free_array(char **args)
-{
-	int i;
-
-	i = 0;
-	while (args[i])
-	{
-		free(args[i]);
-		i++;
-	}
-	free(args);
-}
-
 void	execute_comand(char **args, t_vars *list, t_env_path *env_shell)
 {
 	char	**line;
@@ -95,8 +82,8 @@ void	execute_comand(char **args, t_vars *list, t_env_path *env_shell)
 	exe_loop(list, line, i);
 	execute_command_external(args, line, env_shell);
 	// free(line);// last changes 60 byte
-	free_array(args);//it works
-	free_array(line);// it works
+	free_array(args);//its work
+	free_array(line);// its work
 }
 
 void	command_to_do(t_vars *list, t_env_path *env_shell)

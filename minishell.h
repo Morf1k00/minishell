@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: debizhan <debizhan@student.42wolfsburg.    +#+  +:+       +#+        */
+/*   By: rkrechun <rkrechun@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/02 16:02:53 by rkrechun          #+#    #+#             */
-/*   Updated: 2024/07/04 14:37:10 by debizhan         ###   ########.fr       */
+/*   Updated: 2024/07/04 15:07:46 by rkrechun         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -135,9 +135,10 @@ void	set_type(t_vars *list, t_env_path *env_shell);
 void	execute_command_external(char **args, char **line,
 			t_env_path *env_shell);
 char	**create_envp(void);
-void	setup_signal_handlers();
 void	handle_sigint(int sig);
 void	handle_sigquit(int sig);
-void	cleanup(t_env_path *env_shell, t_vars *list);
+void	setup_signal_handlers(void);
+void	free_array(char **array);
+void cleanup(t_env_path *env_shell, t_vars *list);
 
 #endif

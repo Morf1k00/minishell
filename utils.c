@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   utils.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: debizhan <debizhan@student.42wolfsburg.    +#+  +:+       +#+        */
+/*   By: rkrechun <rkrechun@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/10 17:42:36 by debizhan          #+#    #+#             */
-/*   Updated: 2024/07/04 14:35:16 by debizhan         ###   ########.fr       */
+/*   Updated: 2024/07/04 13:23:07 by rkrechun         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,15 +49,18 @@ int	lencat(char *arv, int len_path)
 	return (len);
 }
 
-void	ft_listclear(t_vars **list)
+void	ft_listclear(t_vars **head)
 {
-	t_vars	*tmp;
+	t_vars	*current;
+	t_vars	*next;
 
-	while (*list)
+	current = *head;
+	while (current != NULL)
 	{
-		tmp = (*list)->next;
-		free((*list)->token);
-		free(*list);
-		*list = tmp;
+		next = current->next;
+		// free(current->token);
+		free(current);
+		current = next;
 	}
+	*head = NULL;
 }
