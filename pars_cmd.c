@@ -6,7 +6,7 @@
 /*   By: rkrechun <rkrechun@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/20 11:47:24 by rkrechun          #+#    #+#             */
-/*   Updated: 2024/07/03 17:12:18 by rkrechun         ###   ########.fr       */
+/*   Updated: 2024/07/04 13:30:27 by rkrechun         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,19 +32,6 @@ static int	easy_check(t_vars *list)
 		return (-1);
 }
 
-void free_array2(char **array)
-{
-	int i;
-
-	i = 0;
-	while (array[i])
-	{
-		free(array[i]);
-		i++;
-	}
-	free(array);
-}
-
 void	kostil(t_env_path *env_shell, t_vars *list)
 {
 	char	**cmd;
@@ -59,7 +46,7 @@ void	kostil(t_env_path *env_shell, t_vars *list)
 		list->type = INVALID;
 		env_shell->last_exit_status = 127;
 	}
-	free_array2(cmd);
+	free_array(cmd);
 }
 
 void	check_cmd(t_vars *list, t_env_path *env_shell)

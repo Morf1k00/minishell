@@ -6,7 +6,7 @@
 /*   By: rkrechun <rkrechun@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/01 11:49:10 by rkrechun          #+#    #+#             */
-/*   Updated: 2024/07/03 16:37:54 by rkrechun         ###   ########.fr       */
+/*   Updated: 2024/07/04 13:29:12 by rkrechun         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,19 +59,6 @@ void	exe_loop(t_vars *list, char **line, int i)
 		i++;
 	}
 	line[i] = NULL;
-}
-
-void free_array(char **args)
-{
-	int i;
-
-	i = 0;
-	while (args[i])
-	{
-		free(args[i]);
-		i++;
-	}
-	free(args);
 }
 
 void	execute_comand(char **args, t_vars *list, t_env_path *env_shell)

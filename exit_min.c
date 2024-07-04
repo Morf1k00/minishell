@@ -6,7 +6,7 @@
 /*   By: rkrechun <rkrechun@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/21 14:25:00 by rkrechun          #+#    #+#             */
-/*   Updated: 2024/07/03 18:24:50 by rkrechun         ###   ########.fr       */
+/*   Updated: 2024/07/04 14:28:17 by rkrechun         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,7 +42,7 @@ void	shell_lvl(t_env_path *env_shell)
 	free(tmp);
 }
 
-void free_array1(char **array)
+void free_array(char **array)
 {
 	int i;
 
@@ -71,17 +71,15 @@ void	exit_file(t_vars *list, t_env_path *env_shell)
 	free(env_shell->env_paths[j]);
 	tmp = ft_itoa(lvl);
 	env_shell->env_paths[j] = ft_strjoin("SHLVL=", tmp);
-	free(tmp);
 	if (ft_strcmp(env_shell->env_paths[j], env_shell->shelllvl) == 0)
 	{
+		free(tmp);
+		free(path);
 		ft_listclear(&list);
-			free_array1(env_shell->pipes->arv);
+		free_array(env_shell->pipes->arv);
+		free_array(env_shell->env_paths);
 		free(env_shell->pipes);
 		free(env_shell->shelllvl);
-		// free(env_shell->pipes->heredoc);
-		// free(env_shell->pipes->input);
-		// free(env_shell->path);
-		// free(env_shell->vars);
 		free(list);
 		free(env_shell);
 		exit(0);

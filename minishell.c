@@ -6,7 +6,7 @@
 /*   By: rkrechun <rkrechun@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/01 13:46:06 by rkrechun          #+#    #+#             */
-/*   Updated: 2024/07/03 18:23:40 by rkrechun         ###   ########.fr       */
+/*   Updated: 2024/07/04 15:08:25 by rkrechun         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,50 +44,6 @@ static void	edit_line_withot_spaces(t_env_path *env_shell, t_vars *list)
 	tmp[i++] = NULL;
 	free(env_shell->pipes->arv);
 	env_shell->pipes->arv = tmp;
-	// free(tmp);
-}
-// static void edit_line_withot_spaces(t_env_path *env_shell, t_vars *list)
-// {
-// 	char	**tmp;
-// 	int		i;
-// 	t_vars	*tmp_list;
-
-// 	i = 0;
-// 	tmp_list = list;
-// 	tmp = malloc (sizeof(char *) *(20));
-// 	while (tmp_list)
-// 	{
-// 		if (tmp_list->type == SPACE_T)
-// 			tmp_list = tmp_list->next;
-// 		else
-// 		{
-// 			tmp[i] = tmp_list->token;
-// 			i++;
-// 			tmp_list = tmp_list->next;
-// 		}
-// 	}
-// 	tmp[i++] = NULL;
-// 	free(env_shell->pipes->arv);
-// 	env_shell->pipes->arv = tmp;
-// 	while (tmp[i])
-// 	{
-// 		free(tmp[i]);
-// 		i++;
-// 	}
-// 	// free(tmp);
-// }
-
-void free_array3(char **array)
-{
-	int i;
-
-	i = 0;
-	while (array[i])
-	{
-		free(array[i]);
-		i++;
-	}
-	free(array);
 }
 
 static void	ifdo(char **line, t_env_path *env_shell, t_vars *list)
@@ -95,7 +51,7 @@ static void	ifdo(char **line, t_env_path *env_shell, t_vars *list)
 	int		num_commands;
 
 	lexer(line, env_shell);
-	free_array3(line);
+	free_array(line);
 	check_pipe_line(env_shell);
 	check_heredoc(env_shell);
 	create_list(&list, env_shell->pipes->arv);
@@ -112,34 +68,60 @@ static void	ifdo(char **line, t_env_path *env_shell, t_vars *list)
 		execom(list, env_shell);
 	}
 	ft_listclear(&list);
-	// free(env_shell->pipes->arv);
+	free_array(env_shell->pipes->arv);
 }
 
-static void	whileloop(t_vars *list, t_env_path *env_shell)
-{
-	char	*input;
-	char	**line;
+// static void	whileloop(t_vars *list, t_env_path *env_shell)
+// {
+// 	char	*input;
+// 	char	**line;
 
-	while (1)
+// 	while (1)
+// 	{
+// 		input = readline("minishell: ");
+// 		if (!input)
+// 			break ;
+// 		add_history(input);
+// 		line = split_arg(input);
+// 		free(input);
+// 		env_shell->last = close_quote(line);
+// 		if (env_shell->last == 0)
+// 			ifdo(line, env_shell, list);
+// 		else
+// 			perror("minishell: syntax error near unexpected token");
+// 		if (access(".here_doc", F_OK) == 0)
+// 			unlink(".here_doc");
+// 		ft_listclear(&list);
+// 		if (env_shell->last != 0)
+// 			free_array(line);
+// 	}
+// }
+static void whileloop(t_vars *list, t_env_path *env_shell)
+{
+    char    *input;    
+	char    **line;
+    setup_signal_handlers();
+    while (1)   
 	{
-		input = readline("minishell: ");
+        input = readline("minishell: ");        
 		if (!input)
-			break ;
+        {            
+			write(STDOUT_FILENO, "exit\n", 5);
+            cleanup(env_shell, list);            
+			exit(0);
+        }        
 		add_history(input);
-		line = split_arg(input);
-		free(input);
+        line = split_arg(input);       
 		env_shell->last = close_quote(line);
-		if (env_shell->last == 0)
+        if (env_shell->last == 0)            
 			ifdo(line, env_shell, list);
-		else
-			perror("minishell: syntax error near unexpected token");
-		if (access(".here_doc", F_OK) == 0)
+        else            
+			exit_file(list, env_shell);
+        if (access(".here_doc", F_OK) == 0)            
 			unlink(".here_doc");
-		ft_listclear(&list);
-		if (env_shell->last != 0)
-			free_array3(line);
-		if (env_shell->last == 0)
-			free_array3(env_shell->pipes->arv);
+        ft_listclear(&list);        
+		free(input);
+        // free(line);    
 	}
 }
 

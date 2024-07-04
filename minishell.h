@@ -6,7 +6,7 @@
 /*   By: rkrechun <rkrechun@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/02 16:02:53 by rkrechun          #+#    #+#             */
-/*   Updated: 2024/07/03 18:04:08 by rkrechun         ###   ########.fr       */
+/*   Updated: 2024/07/04 15:07:46 by rkrechun         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -138,5 +138,7 @@ char	**create_envp(void);
 void	handle_sigint(int sig);
 void	handle_sigquit(int sig);
 void	setup_signal_handlers(void);
+void	free_array(char **array);
+void cleanup(t_env_path *env_shell, t_vars *list);
 
 #endif

@@ -6,7 +6,7 @@
 /*   By: rkrechun <rkrechun@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/21 16:03:52 by debizhan          #+#    #+#             */
-/*   Updated: 2024/07/03 17:44:23 by rkrechun         ###   ########.fr       */
+/*   Updated: 2024/07/04 15:02:23 by rkrechun         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,7 +67,7 @@ void	upd_env_var(t_env_path *env_shell, char *name, char *value)
 	}
 	env_shell->env_paths = (char **)ft_realloc(env_shell->env_paths,
 			sizeof(char *) * env_shell->count,
-			sizeof(char *) * (env_shell->count + 1));
+			sizeof(char *) * (env_shell->count + 2));
 	if (!env_shell->env_paths)
 		ft_error_exit("realloc");
 	ft_add_var(env_shell, name, value, env_shell->count);

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   utils.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: debizhan <debizhan@student.42wolfsburg.    +#+  +:+       +#+        */
+/*   By: rkrechun <rkrechun@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/10 17:42:36 by debizhan          #+#    #+#             */
-/*   Updated: 2024/06/18 15:28:55 by debizhan         ###   ########.fr       */
+/*   Updated: 2024/07/04 13:23:07 by rkrechun         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,6 +58,7 @@ void	ft_listclear(t_vars **head)
 	while (current != NULL)
 	{
 		next = current->next;
+		// free(current->token);
 		free(current);
 		current = next;
 	}

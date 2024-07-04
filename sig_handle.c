@@ -6,7 +6,7 @@
 /*   By: rkrechun <rkrechun@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/28 16:48:37 by debizhan          #+#    #+#             */
-/*   Updated: 2024/07/03 17:53:17 by rkrechun         ###   ########.fr       */
+/*   Updated: 2024/07/04 15:03:25 by rkrechun         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,19 +38,34 @@
 // 	}
 // }
 
-void handle_sigint(int sig)
+// void handle_sigint(int sig)
+// {
+//     (void)sig;
+//     write(STDOUT_FILENO, "\nminishell: ", 12);
+// }
+
+// void handle_sigquit(int sig)
+// {
+//     (void)sig;
+// }
+
+// void setup_signal_handlers(void)
+// {
+//     signal(SIGINT, handle_sigint);
+//     signal(SIGQUIT, handle_sigquit);
+// }
+
+void    setup_signal_handlers(void)
 {
-    (void)sig;
+    signal(SIGINT, handle_sigint);    
+    signal(SIGQUIT, handle_sigquit);
+}
+void    handle_sigint(int sig)
+{
+    (void)sig;    
     write(STDOUT_FILENO, "\nminishell: ", 12);
 }
-
-void handle_sigquit(int sig)
+void    handle_sigquit(int sig)
 {
     (void)sig;
-}
-
-void setup_signal_handlers(void)
-{
-    signal(SIGINT, handle_sigint);
-    signal(SIGQUIT, handle_sigquit);
 }
