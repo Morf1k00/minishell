@@ -6,7 +6,7 @@
 /*   By: debizhan <debizhan@student.42wolfsburg.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/22 15:53:07 by debizhan          #+#    #+#             */
-/*   Updated: 2024/07/04 16:59:58 by debizhan         ###   ########.fr       */
+/*   Updated: 2024/07/04 20:15:09 by debizhan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -97,7 +97,15 @@ void	cleanup(t_env_path *env_shell, t_vars *list)
 			free(env_shell->env_paths);
 		}
 		if (env_shell->pipes)
+		{
+			// if (env_shell->pipes->arv)
+			// {
+			// 	free_array(env_shell->pipes->arv);
+			// 	env_shell->pipes->arv = NULL;
+			// }
 			free(env_shell->pipes);
+			env_shell->pipes = NULL;
+		}
 		free(env_shell);
 	}
 	ft_listclear(&list);

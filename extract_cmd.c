@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   extract_cmd.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rkrechun <rkrechun@student.42.fr>          +#+  +:+       +#+        */
+/*   By: debizhan <debizhan@student.42wolfsburg.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/22 17:22:20 by debizhan          #+#    #+#             */
-/*   Updated: 2024/07/03 16:29:12 by rkrechun         ###   ########.fr       */
+/*   Updated: 2024/07/04 19:46:47 by debizhan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,8 @@ char	*get_cmd(char **path, char *cmd)
 	char	*tmp;
 	char	*command;
 
+	tmp = NULL;
+	command = NULL;
 	while (*path)
 	{
 		if (ft_strcmp(cmd, "./minishell") == 0)
@@ -37,9 +39,14 @@ char	**extract_cmd(char *cmd, char *path)
 	char	*command;
 	char	**tmp;
 
+	command = NULL;
+	tmp = NULL;
+	if (!path || !cmd)
+		return (NULL);
 	tmp = ft_split(path, ':');
 	command = get_cmd(tmp, cmd);
-	free(tmp);
+	// free(tmp);
+	free_array(tmp);
 	tmp = malloc(sizeof(char *) * 2);
 	tmp[0] = command;
 	tmp[1] = NULL;
