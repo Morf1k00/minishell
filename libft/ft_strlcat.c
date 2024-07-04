@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_strlcat.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rkrechun <rkrechun@student.42.fr>          +#+  +:+       +#+        */
+/*   By: debizhan <debizhan@student.42wolfsburg.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/13 20:34:04 by dbizjano          #+#    #+#             */
-/*   Updated: 2024/07/03 15:21:32 by rkrechun         ###   ########.fr       */
+/*   Updated: 2024/07/04 14:40:07 by debizhan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,10 @@ size_t	ft_strlcat(char *dst, const char *src, size_t dstsize)
 	if (dstsize <= dstlen)
 		return (dstsize + srclen);
 	while (i < dstsize - dstlen - 1 && src[i])
-		dst[dstlen + i] = src[i++];
+	{
+		dst[dstlen + i] = src[i];
+		i++;
+	}
 	dst[dstlen + i] = '\0';
 	return (dstlen + srclen);
 }

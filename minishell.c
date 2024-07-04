@@ -6,7 +6,7 @@
 /*   By: debizhan <debizhan@student.42wolfsburg.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/01 13:46:06 by rkrechun          #+#    #+#             */
-/*   Updated: 2024/07/03 16:56:07 by debizhan         ###   ########.fr       */
+/*   Updated: 2024/07/04 14:39:25 by debizhan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,8 +44,8 @@ static void	edit_line_withot_spaces(t_env_path *env_shell, t_vars *list)
 	tmp[i++] = NULL;
 	free(env_shell->pipes->arv);
 	env_shell->pipes->arv = tmp;
-	// free(tmp);
 }
+
 // static void edit_line_withot_spaces(t_env_path *env_shell, t_vars *list)
 // {
 // 	char	**tmp;
@@ -105,11 +105,16 @@ static void	whileloop(t_vars *list, t_env_path *env_shell)
 	char	*input;
 	char	**line;
 
+	setup_signal_handlers();
 	while (1)
 	{
 		input = readline("minishell: ");
 		if (!input)
-			break ;
+		{
+			write(STDOUT_FILENO, "exit\n", 5);
+			cleanup(env_shell, list);
+			exit(0);
+		}
 		add_history(input);
 		line = split_arg(input);
 		env_shell->last = close_quote(line);
@@ -129,18 +134,19 @@ int	main(int argc, char **argv, char **env)
 {
 	t_env_path	*env_shell;
 	t_vars		*list;
-	char 		**envp;
+	char		**envp;
 
 	list = NULL;
 	env_shell = malloc(sizeof(t_env_path));
+	if (!env_shell)
+		ft_error_exit("malloc");
 	if (!*env)
 	{
-    	envp = create_envp();
-    	init_arg(argc, argv, envp, env_shell);
+		envp = create_envp();
+		init_arg(argc, argv, envp, env_shell);
 	}
-  	else
-    	init_arg(argc, argv, env, env_shell);
-	// init_arg(argc, argv, env, env_shell);
+	else
+		init_arg(argc, argv, env, env_shell);
 	whileloop(list, env_shell);
 	return (0);
 }

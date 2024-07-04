@@ -6,7 +6,7 @@
 /*   By: debizhan <debizhan@student.42wolfsburg.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/01 11:49:10 by rkrechun          #+#    #+#             */
-/*   Updated: 2024/07/03 16:55:33 by debizhan         ###   ########.fr       */
+/*   Updated: 2024/07/04 14:35:53 by debizhan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -95,8 +95,8 @@ void	execute_comand(char **args, t_vars *list, t_env_path *env_shell)
 	exe_loop(list, line, i);
 	execute_command_external(args, line, env_shell);
 	// free(line);// last changes 60 byte
-	free_array(args);//its work
-	free_array(line);// its work
+	free_array(args);//it works
+	free_array(line);// it works
 }
 
 void	command_to_do(t_vars *list, t_env_path *env_shell)

@@ -6,7 +6,7 @@
 /*   By: debizhan <debizhan@student.42wolfsburg.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/10 17:42:36 by debizhan          #+#    #+#             */
-/*   Updated: 2024/06/18 15:28:55 by debizhan         ###   ########.fr       */
+/*   Updated: 2024/07/04 14:35:16 by debizhan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,17 +49,15 @@ int	lencat(char *arv, int len_path)
 	return (len);
 }
 
-void	ft_listclear(t_vars **head)
+void	ft_listclear(t_vars **list)
 {
-	t_vars	*current;
-	t_vars	*next;
+	t_vars	*tmp;
 
-	current = *head;
-	while (current != NULL)
+	while (*list)
 	{
-		next = current->next;
-		free(current);
-		current = next;
+		tmp = (*list)->next;
+		free((*list)->token);
+		free(*list);
+		*list = tmp;
 	}
-	*head = NULL;
 }
