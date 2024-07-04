@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rkrechun <rkrechun@student.42.fr>          +#+  +:+       +#+        */
+/*   By: debizhan <debizhan@student.42wolfsburg.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/01 13:46:06 by rkrechun          #+#    #+#             */
-/*   Updated: 2024/07/04 15:08:25 by rkrechun         ###   ########.fr       */
+/*   Updated: 2024/07/04 17:00:47 by debizhan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,57 +71,32 @@ static void	ifdo(char **line, t_env_path *env_shell, t_vars *list)
 	free_array(env_shell->pipes->arv);
 }
 
-// static void	whileloop(t_vars *list, t_env_path *env_shell)
-// {
-// 	char	*input;
-// 	char	**line;
-
-// 	while (1)
-// 	{
-// 		input = readline("minishell: ");
-// 		if (!input)
-// 			break ;
-// 		add_history(input);
-// 		line = split_arg(input);
-// 		free(input);
-// 		env_shell->last = close_quote(line);
-// 		if (env_shell->last == 0)
-// 			ifdo(line, env_shell, list);
-// 		else
-// 			perror("minishell: syntax error near unexpected token");
-// 		if (access(".here_doc", F_OK) == 0)
-// 			unlink(".here_doc");
-// 		ft_listclear(&list);
-// 		if (env_shell->last != 0)
-// 			free_array(line);
-// 	}
-// }
-static void whileloop(t_vars *list, t_env_path *env_shell)
+static void	whileloop(t_vars *list, t_env_path *env_shell)
 {
-    char    *input;    
-	char    **line;
-    setup_signal_handlers();
-    while (1)   
+	char	*input;
+	char	**line;
+
+	setup_signal_handlers();
+	while (1)
 	{
-        input = readline("minishell: ");        
+		input = readline("minishell: ");
 		if (!input)
-        {            
+		{
 			write(STDOUT_FILENO, "exit\n", 5);
-            cleanup(env_shell, list);            
+			cleanup(env_shell, list);
 			exit(0);
-        }        
+		}
 		add_history(input);
-        line = split_arg(input);       
+		line = split_arg(input);
 		env_shell->last = close_quote(line);
-        if (env_shell->last == 0)            
+		if (env_shell->last == 0)
 			ifdo(line, env_shell, list);
-        else            
+		else
 			exit_file(list, env_shell);
-        if (access(".here_doc", F_OK) == 0)            
+		if (access(".here_doc", F_OK) == 0)
 			unlink(".here_doc");
-        ft_listclear(&list);        
+		ft_listclear(&list);
 		free(input);
-        // free(line);    
 	}
 }
 
@@ -129,18 +104,17 @@ int	main(int argc, char **argv, char **env)
 {
 	t_env_path	*env_shell;
 	t_vars		*list;
-	char 		**envp;
+	char		**envp;
 
 	list = NULL;
 	env_shell = malloc(sizeof(t_env_path));
 	if (!*env)
 	{
-    	envp = create_envp();
-    	init_arg(argc, argv, envp, env_shell);
+		envp = create_envp();
+		init_arg(argc, argv, envp, env_shell);
 	}
-  	else
-    	init_arg(argc, argv, env, env_shell);
-	setup_signal_handlers();
+	else
+		init_arg(argc, argv, env, env_shell);
 	whileloop(list, env_shell);
 	return (0);
 }

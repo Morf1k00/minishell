@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   exit_min.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rkrechun <rkrechun@student.42.fr>          +#+  +:+       +#+        */
+/*   By: debizhan <debizhan@student.42wolfsburg.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/21 14:25:00 by rkrechun          #+#    #+#             */
-/*   Updated: 2024/07/04 14:28:17 by rkrechun         ###   ########.fr       */
+/*   Updated: 2024/07/04 17:17:49 by debizhan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@ void	shell_lvl(t_env_path *env_shell)
 	int		lvl;
 	char	*cur_lvl;
 	int		i;
-	char 	*tmp;
+	char	*tmp;
 
 	i = 0;
 	cur_lvl = get_pathd(env_shell->env_paths, 6, "SHLVL=");
@@ -42,9 +42,9 @@ void	shell_lvl(t_env_path *env_shell)
 	free(tmp);
 }
 
-void free_array(char **array)
+void	free_array(char **array)
 {
-	int i;
+	int	i;
 
 	i = 0;
 	while (array[i])
@@ -60,7 +60,7 @@ void	exit_file(t_vars *list, t_env_path *env_shell)
 	char	*path;
 	int		lvl;
 	int		j;
-	char 	*tmp;
+	char	*tmp;
 
 	j = 0;
 	while (ft_strncmp(env_shell->env_paths[j], "SHLVL=", 6))

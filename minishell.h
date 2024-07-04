@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rkrechun <rkrechun@student.42.fr>          +#+  +:+       +#+        */
+/*   By: debizhan <debizhan@student.42wolfsburg.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/02 16:02:53 by rkrechun          #+#    #+#             */
-/*   Updated: 2024/07/04 15:07:46 by rkrechun         ###   ########.fr       */
+/*   Updated: 2024/07/04 17:14:41 by debizhan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -139,6 +139,9 @@ void	handle_sigint(int sig);
 void	handle_sigquit(int sig);
 void	setup_signal_handlers(void);
 void	free_array(char **array);
-void cleanup(t_env_path *env_shell, t_vars *list);
+void	cleanup(t_env_path *env_shell, t_vars *list);
+char	*quote(char *line);
+int		count(char *line);
+void	freeing(char *tmp, char *path, t_vars *list, t_env_path *env_shell);
 
 #endif

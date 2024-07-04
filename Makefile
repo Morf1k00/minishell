@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: rkrechun <rkrechun@student.42.fr>          +#+  +:+       +#+         #
+#    By: debizhan <debizhan@student.42wolfsburg.    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/05/03 14:11:32 by rkrechun          #+#    #+#              #
-#    Updated: 2024/07/04 15:08:06 by rkrechun         ###   ########.fr        #
+#    Updated: 2024/07/04 17:15:21 by debizhan         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -47,7 +47,7 @@ MPATH	=	minishell.c \
 			env_var.c\
 			heredoc.c\
 			free_exit.c\
-			
+			utils3.c\
 			
 OBJ_M	= $(MPATH:.c=.o)
 

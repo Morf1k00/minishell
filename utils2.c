@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   utils2.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rkrechun <rkrechun@student.42.fr>          +#+  +:+       +#+        */
+/*   By: debizhan <debizhan@student.42wolfsburg.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/22 15:53:07 by debizhan          #+#    #+#             */
-/*   Updated: 2024/07/04 15:07:34 by rkrechun         ###   ########.fr       */
+/*   Updated: 2024/07/04 16:59:58 by debizhan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,20 +81,24 @@ void	set_type(t_vars *list, t_env_path *env_shell)
 	}
 }
 
-void cleanup(t_env_path *env_shell, t_vars *list)
+void	cleanup(t_env_path *env_shell, t_vars *list)
 {
-    int i;
-    i = 0;    
+	int	i;
+
+	i = 0;
 	if (env_shell)
-    {        
+	{
+		if (env_shell->shelllvl)
+			free(env_shell->shelllvl);
 		if (env_shell->env_paths)
-        {            
+		{
 			while (env_shell->env_paths[i])
-                free(env_shell->env_paths[i++]);            
+				free(env_shell->env_paths[i++]);
 			free(env_shell->env_paths);
-        }        
+		}
 		if (env_shell->pipes)
-            free(env_shell->pipes);        
+			free(env_shell->pipes);
 		free(env_shell);
-    }   ft_listclear(&list);
+	}
+	ft_listclear(&list);
 }

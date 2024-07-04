@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   lexer.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rkrechun <rkrechun@student.42.fr>          +#+  +:+       +#+        */
+/*   By: debizhan <debizhan@student.42wolfsburg.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/03 16:52:30 by rkrechun          #+#    #+#             */
-/*   Updated: 2024/07/04 14:07:11 by rkrechun         ###   ########.fr       */
+/*   Updated: 2024/07/04 17:02:34 by debizhan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,7 +55,6 @@ void	lexer(char **line, t_env_path *env_shell)
 {
 	int		i;
 	int		j;
-	// char	**tmp;
 	int		word;
 
 	i = 0;
@@ -65,7 +64,7 @@ void	lexer(char **line, t_env_path *env_shell)
 	while (i < word)
 	{
 		if (line[i][0] == '\'' || line[i][0] == '\"')
-			copy_arv(line, env_shell->pipes->arv , &i, &j);
+			copy_arv(line, env_shell->pipes->arv, &i, &j);
 		else
 		{
 			env_shell->pipes->arv[j] = expand_variable(line[i], env_shell);
@@ -74,6 +73,5 @@ void	lexer(char **line, t_env_path *env_shell)
 		j++;
 	}
 	env_shell->pipes->arv[j] = NULL;
-	// env_shell->pipes->arv = tmp;
 	env_shell->pipes->count = j;
 }

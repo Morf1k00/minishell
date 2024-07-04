@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   loop_to_do.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rkrechun <rkrechun@student.42.fr>          +#+  +:+       +#+        */
+/*   By: debizhan <debizhan@student.42wolfsburg.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/01 11:49:10 by rkrechun          #+#    #+#             */
-/*   Updated: 2024/07/04 13:29:12 by rkrechun         ###   ########.fr       */
+/*   Updated: 2024/07/04 17:01:01 by debizhan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,9 +81,8 @@ void	execute_comand(char **args, t_vars *list, t_env_path *env_shell)
 	list = list->next;
 	exe_loop(list, line, i);
 	execute_command_external(args, line, env_shell);
-	// free(line);// last changes 60 byte
-	free_array(args);//its work
-	free_array(line);// its work
+	free_array(args);
+	free_array(line);
 }
 
 void	command_to_do(t_vars *list, t_env_path *env_shell)

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_split.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rkrechun <rkrechun@student.42.fr>          +#+  +:+       +#+        */
+/*   By: debizhan <debizhan@student.42wolfsburg.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/14 14:16:22 by rkrechun          #+#    #+#             */
-/*   Updated: 2024/07/04 13:01:57 by rkrechun         ###   ########.fr       */
+/*   Updated: 2024/07/04 17:01:15 by debizhan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,9 +66,7 @@ static char	**free_arr(char **arr, char *s)
 static char	**worker(char **arr, char *s1, char c, size_t j)
 {
 	size_t	i;
-	// char	*str;
 
-	// str = s1;
 	i = 0;
 	while (i < j)
 	{
@@ -83,7 +81,6 @@ static char	**worker(char **arr, char *s1, char c, size_t j)
 		s1++;
 	}
 	arr[i] = NULL;
-	// free(str);
 	return (arr);
 }
 
