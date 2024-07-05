@@ -6,7 +6,7 @@
 /*   By: rkrechun <rkrechun@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/01 13:46:06 by rkrechun          #+#    #+#             */
-/*   Updated: 2024/07/04 15:08:25 by rkrechun         ###   ########.fr       */
+/*   Updated: 2024/07/04 16:30:44 by rkrechun         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,27 +23,42 @@ static void	init_arg(int argc, char **argv, char **env, t_env_path *env_shell)
 
 static void	edit_line_withot_spaces(t_env_path *env_shell, t_vars *list)
 {
-	char	**tmp;
+	// char	**tmp;
 	int		i;
 	t_vars	*tmp_list;
 
 	i = 0;
 	tmp_list = list;
-	tmp = malloc (sizeof(char *) *(20));
+	free(env_shell->pipes->arv);
+	env_shell->pipes->arv = malloc (sizeof(char *) *(20));
 	while (tmp_list)
 	{
 		if (tmp_list->type == SPACE_T)
 			tmp_list = tmp_list->next;
 		else
 		{
-			tmp[i] = tmp_list->token;
+			env_shell->pipes->arv[i] = tmp_list->token;
+			printf("arv[%d] = %s\n", i, env_shell->pipes->arv[i]);
 			i++;
 			tmp_list = tmp_list->next;
 		}
 	}
-	tmp[i++] = NULL;
-	free(env_shell->pipes->arv);
-	env_shell->pipes->arv = tmp;
+	env_shell->pipes->arv[i++] = NULL;
+	// free_array(env_shell->pipes->arv);
+	// env_shell->pipes->arv = tmp;
+}
+
+void ft_printlist(t_vars **list)
+{
+	t_vars *tmp;
+
+	tmp = *list;
+	while (tmp)
+	{
+		printf("token = %s\t", tmp->token);
+		printf("type = %d\n", tmp->type);
+		tmp = tmp->next;
+	}
 }
 
 static void	ifdo(char **line, t_env_path *env_shell, t_vars *list)
@@ -51,11 +66,12 @@ static void	ifdo(char **line, t_env_path *env_shell, t_vars *list)
 	int		num_commands;
 
 	lexer(line, env_shell);
-	free_array(line);
 	check_pipe_line(env_shell);
 	check_heredoc(env_shell);
 	create_list(&list, env_shell->pipes->arv);
 	set_type(list, env_shell);
+	// ft_printlist(&list);
+	// free_array(line);
 	if (env_shell->pipes->pipe_i > 0)
 	{
 		num_commands = env_shell->pipes->pipe_i + 1;
@@ -100,6 +116,7 @@ static void whileloop(t_vars *list, t_env_path *env_shell)
 {
     char    *input;    
 	char    **line;
+
     setup_signal_handlers();
     while (1)   
 	{
@@ -121,7 +138,7 @@ static void whileloop(t_vars *list, t_env_path *env_shell)
 			unlink(".here_doc");
         ft_listclear(&list);        
 		free(input);
-        // free(line);    
+        free(line);    
 	}
 }
 

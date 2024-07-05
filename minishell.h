@@ -6,7 +6,7 @@
 /*   By: rkrechun <rkrechun@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/02 16:02:53 by rkrechun          #+#    #+#             */
-/*   Updated: 2024/07/04 15:07:46 by rkrechun         ###   ########.fr       */
+/*   Updated: 2024/07/04 15:13:34 by rkrechun         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -124,7 +124,7 @@ void	sig_handle_child(int sig);
 void	heredoc_sig(void);
 void	free_exit(t_vars *list, t_env_path *env_shell);
 void	start_shell(t_env_path *env_shell);
-char	*expand_variable(const char *token, t_env_path *env_shell);
+char	*expand_variable(char *token, t_env_path *env_shell);
 void	heredoc_min(char *line);
 void	check_heredoc(t_env_path *env_shell);
 int		execute_pipe(t_env_path *data, char **arv, int num_commands);

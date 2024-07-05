@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   pipes_fork.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: debizhan <debizhan@student.42wolfsburg.    +#+  +:+       +#+        */
+/*   By: rkrechun <rkrechun@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/28 12:14:11 by rkrechun          #+#    #+#             */
-/*   Updated: 2024/07/02 16:31:03 by debizhan         ###   ########.fr       */
+/*   Updated: 2024/07/04 15:31:33 by rkrechun         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,24 +15,24 @@
 int	change_line_with_pipes(t_env_path *env_shell)
 {
 	int		i;
-	char	**tmp;
+	// char	**tmp;
 
 	i = 0;
-	tmp = env_shell->pipes->arv;
-	while (tmp[i] != NULL)
+	// tmp = env_shell->pipes->arv;
+		// printf("tmp[%d] = %s\n", i, tmp[i]);
+	while (env_shell->pipes->arv[i] != NULL)
 	{
-		if (tmp[i][0] == '|' && tmp[i][1] == '|')
+		if (env_shell->pipes->arv[i] && env_shell->pipes->arv[i][0] == '|' && env_shell->pipes->arv[i][1] == '|' )
 		{
-			tmp[i - 1] = NULL;
-			while (tmp[i] != NULL)
+			env_shell->pipes->arv[i] = NULL;
+			while (env_shell->pipes->arv[i] != NULL)
 			{
-				tmp[i] = NULL;
+				env_shell->pipes->arv[i] = NULL;
 				i++;
 			}
-			env_shell->pipes->arv = tmp;
 			return (1);
 		}
-		if (tmp[i] != NULL)
+		if (env_shell->pipes->arv[i] != NULL)
 			i++;
 	}
 	return (0);

@@ -6,7 +6,7 @@
 /*   By: rkrechun <rkrechun@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/19 17:01:24 by debizhan          #+#    #+#             */
-/*   Updated: 2024/07/04 13:05:23 by rkrechun         ###   ########.fr       */
+/*   Updated: 2024/07/04 15:13:21 by rkrechun         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,7 +73,7 @@ static char	*dollar_question(char *var_start,
 	return (expanded);
 }
 
-char	*expand_variable(const char *token, t_env_path *env_shell)
+char	*expand_variable(char *token, t_env_path *env_shell)
 {
 	char	*var_start;
 	char	*var_end;
@@ -83,7 +83,7 @@ char	*expand_variable(const char *token, t_env_path *env_shell)
 
 	var_start = ft_strchr(token, '$');
 	if (!var_start)
-		return (ft_strdup(token));
+		return (token);
 	if (strncmp(var_start, "$?", 2) == 0)
 		return (dollar_question(var_start, token, env_shell));
 	var_end = var_start + 1;

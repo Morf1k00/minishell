@@ -6,7 +6,7 @@
 /*   By: rkrechun <rkrechun@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/03 16:52:30 by rkrechun          #+#    #+#             */
-/*   Updated: 2024/07/04 14:07:11 by rkrechun         ###   ########.fr       */
+/*   Updated: 2024/07/04 15:39:00 by rkrechun         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,7 +65,7 @@ void	lexer(char **line, t_env_path *env_shell)
 	while (i < word)
 	{
 		if (line[i][0] == '\'' || line[i][0] == '\"')
-			copy_arv(line, env_shell->pipes->arv , &i, &j);
+			copy_arv(line, env_shell->pipes->arv, &i, &j);
 		else
 		{
 			env_shell->pipes->arv[j] = expand_variable(line[i], env_shell);
@@ -74,6 +74,6 @@ void	lexer(char **line, t_env_path *env_shell)
 		j++;
 	}
 	env_shell->pipes->arv[j] = NULL;
-	// env_shell->pipes->arv = tmp;
+
 	env_shell->pipes->count = j;
 }

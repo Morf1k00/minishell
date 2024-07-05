@@ -6,7 +6,7 @@
 /*   By: rkrechun <rkrechun@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/15 15:47:07 by debizhan          #+#    #+#             */
-/*   Updated: 2024/07/03 18:05:22 by rkrechun         ###   ########.fr       */
+/*   Updated: 2024/07/04 16:35:15 by rkrechun         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,8 @@ static t_vars	*new_list(char *arg)
 {
 	t_vars	*list;
 
+	if (arg[0] == ' ')
+		return (NULL);
 	list = malloc(sizeof(t_vars));
 	if (!list)
 		return (NULL);
@@ -66,17 +68,20 @@ void	create_list(t_vars **list, char **arv)
 	while (arv[i])
 	{
 		new_node = new_list(arv[i++]);
-		list_add(list, new_node);
-		if (new_node->type == GREATER_THEN
-			|| new_node->type == APPEND || new_node->type == LESS_THEN)
+		if(new_node != NULL)
 		{
-			if (arv[i] == NULL)
+			list_add(list, new_node);
+			if (new_node->type == GREATER_THEN
+				|| new_node->type == APPEND || new_node->type == LESS_THEN)
 			{
-				printf("minishell: syntax error near unexpected token\n");
-				return ;
+				if (arv[i] == NULL)
+				{
+					printf("minishell: syntax error near unexpected token\n");
+					return ;
+				}
+				file_node = new_list(arv[i++]);
+				list_add(list, file_node);
 			}
-			file_node = new_list(arv[i++]);
-			list_add(list, file_node);
 		}
 	}
 }
