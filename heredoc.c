@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   heredoc.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: debizhan <debizhan@student.42wolfsburg.    +#+  +:+       +#+        */
+/*   By: rkrechun <rkrechun@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/30 14:24:50 by rkrechun          #+#    #+#             */
-/*   Updated: 2024/07/02 16:32:46 by debizhan         ###   ########.fr       */
+/*   Updated: 2024/07/05 13:27:04 by rkrechun         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,5 +50,6 @@ void	heredoc_min(char *line)
 		free(buf);
 	}
 	close(fd);
+	free(file_name);
 	free(buf);
 }

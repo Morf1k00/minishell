@@ -6,7 +6,7 @@
 /*   By: rkrechun <rkrechun@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/16 15:13:09 by rkrechun          #+#    #+#             */
-/*   Updated: 2024/07/04 11:10:05 by rkrechun         ###   ########.fr       */
+/*   Updated: 2024/07/05 14:21:13 by rkrechun         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,6 +67,7 @@ static void	parent_dir(char *list, t_env_path *env_shell)
 	char	*pwd;
 
 	j = 0;
+	printf("list = %s\n", list);
 	current_dir = get_pathd(env_shell->env_paths, 4, "PWD=");
 	while (ft_strncmp(env_shell->env_paths[j], "PWD=", 4))
 		j++;
@@ -74,8 +75,8 @@ static void	parent_dir(char *list, t_env_path *env_shell)
 	new_dir = (char *)malloc(sizeof(char) * (i + 1));
 	strncpy(new_dir, current_dir, i);
 	new_dir[i] = '\0';
-	if (list[2] == '/')
-		new_dir = ft_strjoin(new_dir, list + 2);
+	if (list[1] == '/')
+		new_dir = ft_strjoin(new_dir, list + 1);
 	if (new_dir[0] == '\0')
 		new_dir = ft_strdup("/");
 	if (list[ft_strlen(list) - 1] == '/')
@@ -88,17 +89,25 @@ static void	parent_dir(char *list, t_env_path *env_shell)
 
 void	change_dir(t_env_path *env_shell, t_vars *list)
 {
-	list = list->next;
+	// list = list->next;
+		printf("list->token = %s\n", list->token);
+		printf("list->type = %d\n", list->type);
 	while (list->next)
 	{
 		if (list->type == SPACE_T)
 			list = list->next;
 		if (list->type == CMD || list->type == WORD)
 		{
-			if (list->token[0] == '.' && list->token[1] == '.' )
+			list = list->next;
+			printf("list->token = %s\n", list->token);
+			if (list->token[0] == '.' && list->token[1] == '.')
 				parent_dir(list->token, env_shell);
 			else if (list->type == CMD || list->type == WORD)
 				child_dir(list->token, env_shell);
 		}
+		if (list->next)
+			list = list->next;
+		else
+			break ;
 	}
 }

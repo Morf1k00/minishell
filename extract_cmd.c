@@ -6,7 +6,7 @@
 /*   By: debizhan <debizhan@student.42wolfsburg.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/22 17:22:20 by debizhan          #+#    #+#             */
-/*   Updated: 2024/07/04 19:46:47 by debizhan         ###   ########.fr       */
+/*   Updated: 2024/07/05 11:05:08 by debizhan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,7 +45,6 @@ char	**extract_cmd(char *cmd, char *path)
 		return (NULL);
 	tmp = ft_split(path, ':');
 	command = get_cmd(tmp, cmd);
-	// free(tmp);
 	free_array(tmp);
 	tmp = malloc(sizeof(char *) * 2);
 	tmp[0] = command;

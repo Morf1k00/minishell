@@ -6,7 +6,7 @@
 /*   By: debizhan <debizhan@student.42wolfsburg.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/22 15:53:07 by debizhan          #+#    #+#             */
-/*   Updated: 2024/07/04 20:15:09 by debizhan         ###   ########.fr       */
+/*   Updated: 2024/07/05 12:31:55 by debizhan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,8 +67,7 @@ void	set_type(t_vars *list, t_env_path *env_shell)
 	{
 		if (i == 0)
 			check_cmd(list, env_shell);
-		if (list->type == PIPE || list->type == GREATER_THEN
-			|| list->type == LESS_THEN || list->type == APPEND)
+		if (list->type == PIPE)
 		{
 			list = list->next;
 			i = 0;
@@ -98,11 +97,6 @@ void	cleanup(t_env_path *env_shell, t_vars *list)
 		}
 		if (env_shell->pipes)
 		{
-			// if (env_shell->pipes->arv)
-			// {
-			// 	free_array(env_shell->pipes->arv);
-			// 	env_shell->pipes->arv = NULL;
-			// }
 			free(env_shell->pipes);
 			env_shell->pipes = NULL;
 		}

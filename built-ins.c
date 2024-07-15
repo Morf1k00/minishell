@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   built-ins.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: debizhan <debizhan@student.42wolfsburg.    +#+  +:+       +#+        */
+/*   By: rkrechun <rkrechun@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/27 13:55:14 by rkrechun          #+#    #+#             */
-/*   Updated: 2024/07/04 16:56:31 by debizhan         ###   ########.fr       */
+/*   Updated: 2024/07/05 14:11:12 by rkrechun         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,9 +44,9 @@ void	check_heredoc(t_env_path *env_shell)
 	{
 		if (ft_strcmp(env_shell->pipes->arv[i], "<<") == 0)
 		{
-			heredoc_min(env_shell->pipes->arv [i + 2]);
+			heredoc_min(env_shell->pipes->arv [i + 1]);
 			env_shell->pipes->arv[i] = ".here_doc";
-			env_shell->pipes->arv[i + 2] = " ";
+			env_shell->pipes->arv[i + 1] = " ";
 			break ;
 		}
 		i++;

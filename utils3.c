@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   utils3.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: debizhan <debizhan@student.42wolfsburg.    +#+  +:+       +#+        */
+/*   By: rkrechun <rkrechun@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/04 17:08:26 by debizhan          #+#    #+#             */
-/*   Updated: 2024/07/04 17:14:32 by debizhan         ###   ########.fr       */
+/*   Updated: 2024/07/05 13:27:23 by rkrechun         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,15 +55,20 @@ int	count(char *line)
 	return (word);
 }
 
-void	freeing(char *tmp, char *path, t_vars *list, t_env_path *env_shell)
+void	freeing(t_vars *list, t_env_path *env_shell)
 {
-	free(tmp);
-	free(path);
-	ft_listclear(&list);
-	free_array(env_shell->pipes->arv);
-	free_array(env_shell->env_paths);
-	free(env_shell->pipes);
-	free(env_shell->shelllvl);
-	free(list);
-	free(env_shell);
+	if (list)
+		ft_listclear(&list);
+	if (env_shell->pipes->arv)
+		free_array(env_shell->pipes->arv);
+	if (env_shell->env_paths)
+		free_array(env_shell->env_paths);
+	if (env_shell->pipes)
+		free(env_shell->pipes);
+	if (env_shell->shelllvl)
+		free(env_shell->shelllvl);
+	if (list)
+		free(list);
+	if (env_shell)
+		free(env_shell);
 }

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: debizhan <debizhan@student.42wolfsburg.    +#+  +:+       +#+        */
+/*   By: rkrechun <rkrechun@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/02 16:02:53 by rkrechun          #+#    #+#             */
-/*   Updated: 2024/07/04 17:14:41 by debizhan         ###   ########.fr       */
+/*   Updated: 2024/07/05 13:29:53 by rkrechun         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -142,6 +142,6 @@ void	free_array(char **array);
 void	cleanup(t_env_path *env_shell, t_vars *list);
 char	*quote(char *line);
 int		count(char *line);
-void	freeing(char *tmp, char *path, t_vars *list, t_env_path *env_shell);
+void	freeing(t_vars *list, t_env_path *env_shell);
 
 #endif

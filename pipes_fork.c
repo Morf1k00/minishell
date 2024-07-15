@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   pipes_fork.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: debizhan <debizhan@student.42wolfsburg.    +#+  +:+       +#+        */
+/*   By: rkrechun <rkrechun@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/28 12:14:11 by rkrechun          #+#    #+#             */
-/*   Updated: 2024/07/02 16:31:03 by debizhan         ###   ########.fr       */
+/*   Updated: 2024/07/05 13:44:25 by rkrechun         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ int	change_line_with_pipes(t_env_path *env_shell)
 	{
 		if (tmp[i][0] == '|' && tmp[i][1] == '|')
 		{
-			tmp[i - 1] = NULL;
+			// tmp[i - 1] = NULL;
 			while (tmp[i] != NULL)
 			{
 				tmp[i] = NULL;

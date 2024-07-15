@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   env_var.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rkrechun <rkrechun@student.42.fr>          +#+  +:+       +#+        */
+/*   By: debizhan <debizhan@student.42wolfsburg.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/19 17:01:24 by debizhan          #+#    #+#             */
-/*   Updated: 2024/07/04 13:05:23 by rkrechun         ###   ########.fr       */
+/*   Updated: 2024/07/05 11:10:39 by debizhan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,6 +56,7 @@ static char	*dollar_question(char *var_start,
 	char	*expanded;
 	char	*exit_status_str;
 
+	exit_status_str = NULL;
 	exit_status_str = ft_itoa(env_shell->last_exit_status);
 	if (!exit_status_str)
 		return (NULL);
