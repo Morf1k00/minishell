@@ -6,7 +6,7 @@
 /*   By: debizhan <debizhan@student.42wolfsburg.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/08 16:42:03 by rkrechun          #+#    #+#             */
-/*   Updated: 2024/05/17 17:21:51 by debizhan         ###   ########.fr       */
+/*   Updated: 2024/07/04 17:11:57 by debizhan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,81 +18,65 @@ static void	word(char **tmp, char **line, int *i)
 	(*i)++;
 	while (**line != '\'' && **line != '\"' && **line != '\n'
 		&& **line != '\t' && **line != '\0' && **line != ' ')
+	{
 		++(*line);
+	}
 }
 
-char	*quote(char *line)
+static void	kostil(char *line)
 {
-	char	*word;
-
-	word = malloc(2);
-	if (*line == '\'')
-		word[0] = '\'';
-	else
-		word[0] = '\"';
-	word[1] = '\0';
-	return (word);
-}
-
-void	init_word(char **tmp, char *line)
-{
-	int	i;
-
-	i = 0;
-	while (*line == ' ' || *line == '\t' || *line == '\n')
+	while (*line != '\'' && *line != '\"' && *line != '\0')
 		line++;
+	if (*line == '\'' || *line == '\"')
+		line++;
+}
+
+static void	kostil2(char **tmp, char *line, int i, int j)
+{
 	while (*line != '\0')
 	{
 		if (*line == '\'' || *line == '\"')
 		{
 			tmp[i] = quote(line);
+			if (!tmp[i])
+			{
+				while (j < i)
+					free(tmp[j++]);
+				return ;
+			}
 			i++;
 			line++;
-			continue ;
-		}
-		if (*line == ' ')
-		{
-			tmp[i] = malloc(2);
-			tmp[i][0] = ' ';
-			tmp[i][1] = '\0';
-			i++;
-			line++;
+			kostil(line);
 			continue ;
 		}
 		word(tmp, &line, &i);
+		while (*line == ' ' || *line == '\t' || *line == '\n')
+			line++;
 	}
 }
 
-int	count(char *line)
+void	init_word(char **tmp, char *line)
 {
-	int	word;
+	int	i;
+	int	j;
 
-	word = 0;
+	i = 0;
+	j = 0;
 	while (*line == ' ' || *line == '\t' || *line == '\n')
-		++line;
-	while (*line != '\0')
-	{
-		++word;
-		if (*line == '\'' || *line == '\"' || *line == ' ')
-		{
-			++line;
-			continue ;
-		}
-		while (*line != '\'' && *line != '\"' && *line != '\n'
-			&& *line != '\t' && *line != '\0' && *line != ' ')
-			++line;
-	}
-	return (word);
+		line++;
+	kostil2(tmp, line, i, j);
 }
 
 char	**split_arg(char *line)
 {
 	char	**tmp;
-	int		word;
+	int		word_count;
 
-	word = count(line);
-	tmp = malloc(sizeof(char *) * (word + 1));
+	word_count = count(line);
+	tmp = malloc(sizeof(char *) * (word_count + 1));
+	if (!tmp)
+		return (NULL);
 	init_word(tmp, line);
-	tmp[word] = NULL;
+	tmp[word_count] = NULL;
 	return (tmp);
 }

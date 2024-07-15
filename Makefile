@@ -6,12 +6,12 @@
 #    By: debizhan <debizhan@student.42wolfsburg.    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/05/03 14:11:32 by rkrechun          #+#    #+#              #
-#    Updated: 2024/05/28 16:33:03 by debizhan         ###   ########.fr        #
+#    Updated: 2024/07/05 12:25:37 by debizhan         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME = minishell
-CC		=	gcc #-g -fsanitize=address
+CC		=	gcc -g #-fsanitize=address
 FLAGS	=	-Wall -Wextra -Werror
 LIBS	=	-lreadline
 RM		=	rm -rf
@@ -34,7 +34,7 @@ MPATH	=	minishell.c \
 			export.c \
 			error_handler.c \
 			loop_to_do.c\
-			cd.c\
+			change_dir.c\
 			pars_cmd.c\
 			exit_min.c\
 			extract_cmd.c\
@@ -42,8 +42,12 @@ MPATH	=	minishell.c \
 			redirection.c\
 			built-ins.c\
 			pipes_fork.c\
-			#free_exit.c\
-			
+			sig_handle.c\
+			pipe_handling.c\
+			env_var.c\
+			heredoc.c\
+			free_exit.c\
+			utils3.c\
 			
 OBJ_M	= $(MPATH:.c=.o)
 
@@ -54,13 +58,14 @@ $(NAME): $(OBJ_M)
 	@$ make bonus -C libft
 	@$ mv libft/libft.a .
 	@$(CC) $(OBJ_M) $(LIBS) libft.a -o $(NAME)
+	@rm libft.a
 
 all: $(NAME)
 
 clean:
 	@$(RM) $(OBJ_M)
 	@make clean -C libft
-	@rm libft.a
 fclean: clean
 	@$(RM) $(NAME)
-.PHONY: all clean fclean
+re: fclean all
+.PHONY: all clean fclean re

@@ -6,99 +6,106 @@
 /*   By: debizhan <debizhan@student.42wolfsburg.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/14 14:16:22 by rkrechun          #+#    #+#             */
-/*   Updated: 2024/05/17 16:02:14 by debizhan         ###   ########.fr       */
+/*   Updated: 2024/07/05 11:45:28 by debizhan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-static size_t	words_count(char *s, char c)
+static int	count_return_array_size(char const *s, char c,
+									int i, int del_cnt)
 {
-	size_t	i;
-	size_t	j;
+	int	enter_flag;
 
-	i = 0;
-	j = 0;
-	while (*s)
+	enter_flag = 0;
+	if (!s)
+		return (0);
+	while (s[i])
 	{
-		if (*s != c)
-			i++;
-		else if (*s == c && i != 0)
+		if (s[i] != c && enter_flag == 0)
 		{
-			j++;
-			i = 0;
+			enter_flag = 1;
+			del_cnt++;
 		}
-		s++;
-	}
-	if (i != 0)
-		j++;
-	return (j);
-}
-
-static char	*word(char *s, char c)
-{
-	char	*buf;
-
-	while (*s == c)
-		s++;
-	buf = s;
-	while (*buf && *buf != c)
-		buf++;
-	*buf = '\0';
-	return (ft_strdup(s));
-}
-
-static char	**free_arr(char **arr, char *s)
-{
-	size_t	i;
-
-	i = 0;
-	while (arr[i])
-	{
-		free(arr[i]);
+		else if (s[i] == c)
+			enter_flag = 0;
 		i++;
 	}
-	free(arr);
-	free(s);
-	return (NULL);
+	return (del_cnt);
 }
 
-static char	**worker(char **arr, char *s1, char c, size_t j)
+static char	*extract_word(char *word_start, int *word_size)
 {
-	size_t	i;
-	char	*str;
+	int		count;
+	int		word_start_cnt;
+	char	*word;
 
-	str = s1;
-	i = 0;
-	while (i < j)
+	count = 0;
+	word_start_cnt = 0;
+	word = malloc(sizeof(char) * (*word_size + 1));
+	if (!word)
+		return (0);
+	while (count != *word_size)
+		word[count++] = word_start[word_start_cnt++];
+	word[count] = '\0';
+	*word_size = 0;
+	return (word);
+}
+
+static int	change_values(char **word_start, const char *s,
+							int *word_size, int *i)
+{
+	*word_start = (char *)&s[*i];
+	*word_size = *word_size + 1;
+	return (1);
+}
+
+static char	**fill_return_array(char **rtn, char const *s, char c, int i)
+{
+	char	*word_start;
+	int		word_size;
+	int		enter_flag;
+	int		cnt;
+
+	cnt = 0;
+	word_start = NULL;
+	enter_flag = 0;
+	word_size = 0;
+	while (s[i])
 	{
-		if (*s1 != c)
-		{
-			arr[i] = word(s1, c);
-			if (!arr[i])
-				return (free_arr(arr, s1));
-			s1 = s1 + ft_strlen(arr[i]);
-			i++;
-		}
-		s1++;
+		if (s[i] != c && enter_flag != 1)
+			enter_flag = change_values(&word_start, s, &word_size, &i);
+		else if (s[i] == c)
+			enter_flag = 0;
+		else
+			word_size++;
+		if (enter_flag == 0 && word_size > 0)
+			rtn[cnt++] = extract_word(word_start, &word_size);
+		i++;
+		if ((size_t)i >= ft_strlen(s) && enter_flag == 1 && word_size > 0)
+			rtn[cnt++] = extract_word(word_start, &word_size);
 	}
-	arr[i] = NULL;
-	free(str);
-	return (arr);
+	rtn[cnt] = 0;
+	return (rtn);
 }
 
 char	**ft_split(char const *s, char c)
 {
-	char	**w_arr;
-	char	*s1;
-	size_t	j;
+	char	**rtn;
+	int		del_cnt;
+	int		i;
 
-	s1 = ft_strdup(s);
-	if (!s1)
+	if (!s)
+	{
 		return (NULL);
-	j = words_count(s1, c);
-	w_arr = (char **)malloc(sizeof(char *) * (j + 1));
-	if (!w_arr)
+	}
+	i = 0;
+	del_cnt = 0;
+	del_cnt = count_return_array_size(s, c, i, del_cnt);
+	rtn = malloc(sizeof(char *) * (del_cnt + 1));
+	if (!rtn)
 		return (NULL);
-	return (worker(w_arr, s1, c, j));
+	i = 0;
+	rtn = fill_return_array(rtn, s, c, i);
+	return (rtn);
 }

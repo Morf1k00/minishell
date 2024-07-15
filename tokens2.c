@@ -6,7 +6,7 @@
 /*   By: rkrechun <rkrechun@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/15 15:24:57 by rkrechun          #+#    #+#             */
-/*   Updated: 2024/05/21 18:15:39 by rkrechun         ###   ########.fr       */
+/*   Updated: 2024/07/03 14:04:44 by rkrechun         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,4 +28,23 @@ int	tokens_init(char *arv)
 		return (WORD);
 	else
 		return (SPACE_T);
+}
+
+char	**create_envp(void)
+{
+	char	**envp;
+	char	cwd[100];
+
+	envp = malloc(sizeof(char *) * 4);
+	envp[0] = ft_strdup("SHLVL=1");
+	envp[1] = ft_strdup("PATH=/bin/");
+	if (getcwd(envp[1], 100))
+		envp[2] = ft_strjoin("PWD=", cwd);
+	else
+	{
+		ft_putstr_fd("getcwd() error\n", 2);
+		exit(1);
+	}
+	envp[3] = NULL;
+	return (envp);
 }

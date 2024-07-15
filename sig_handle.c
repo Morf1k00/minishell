@@ -1,25 +1,30 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   error.c                                            :+:      :+:    :+:   */
+/*   sig_handle.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rkrechun <rkrechun@student.42.fr>          +#+  +:+       +#+        */
+/*   By: debizhan <debizhan@student.42wolfsburg.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/03/15 14:42:28 by rkrechun          #+#    #+#             */
-/*   Updated: 2024/03/28 16:56:11 by rkrechun         ###   ########.fr       */
+/*   Created: 2024/05/28 16:48:37 by debizhan          #+#    #+#             */
+/*   Updated: 2024/07/04 17:00:11 by debizhan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../include/pipex.h"
+#include "minishell.h"
 
-int	msg(char *err)
+void	setup_signal_handlers(void)
 {
-	write(2, err, ft_strlen(err));
-	return (1);
+	signal(SIGINT, handle_sigint);
+	signal(SIGQUIT, handle_sigquit);
 }
 
-int	msg_error(char *err)
+void	handle_sigint(int sig)
 {
-	perror(err);
-	exit(1);
+	(void)sig;
+	write(STDOUT_FILENO, "\nminishell: ", 12);
+}
+
+void	handle_sigquit(int sig)
+{
+	(void)sig;
 }

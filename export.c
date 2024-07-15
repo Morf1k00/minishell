@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   export.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: debizhan <debizhan@student.42wolfsburg.    +#+  +:+       +#+        */
+/*   By: rkrechun <rkrechun@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/21 16:03:52 by debizhan          #+#    #+#             */
-/*   Updated: 2024/05/28 14:19:36 by debizhan         ###   ########.fr       */
+/*   Updated: 2024/07/04 15:02:23 by rkrechun         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,7 +67,7 @@ void	upd_env_var(t_env_path *env_shell, char *name, char *value)
 	}
 	env_shell->env_paths = (char **)ft_realloc(env_shell->env_paths,
 			sizeof(char *) * env_shell->count,
-			sizeof(char *) * (env_shell->count + 1));
+			sizeof(char *) * (env_shell->count + 2));
 	if (!env_shell->env_paths)
 		ft_error_exit("realloc");
 	ft_add_var(env_shell, name, value, env_shell->count);
@@ -80,12 +80,12 @@ void	execute_export_command(char **args, t_env_path *env_shell)
 	char	*name;
 	char	*value;
 
-	if (args[2] == NULL)
+	if (args[1] == NULL)
 	{
-		write(2, "export: not enough arguments\n", 29);
+		ft_env(env_shell);
 		return ;
 	}
-	if (parse_export_command(args[2], &name, &value) == 0)
+	if (parse_export_command(args[1], &name, &value) == 0)
 	{
 		upd_env_var(env_shell, name, value);
 		free(name);

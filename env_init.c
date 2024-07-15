@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   env_init.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: debizhan <debizhan@student.42wolfsburg.    +#+  +:+       +#+        */
+/*   By: rkrechun <rkrechun@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/08 13:06:34 by rkrechun          #+#    #+#             */
-/*   Updated: 2024/05/27 17:22:08 by debizhan         ###   ########.fr       */
+/*   Updated: 2024/07/04 12:55:59 by rkrechun         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ void	init_path(char **env, t_env_path *env_shell)
 		ft_error_exit("malloc");
 	while (i < count)
 	{
-		tmp[i] = strdup(env[i]);
+		tmp[i] = ft_strdup(env[i]);
 		i++;
 	}
 	tmp[i] = NULL;

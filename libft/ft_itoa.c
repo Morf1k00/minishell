@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_itoa.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dbizjano <dbizjano@students.42wolfsburg    +#+  +:+       +#+        */
+/*   By: debizhan <debizhan@student.42wolfsburg.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/21 17:14:36 by dbizjano          #+#    #+#             */
-/*   Updated: 2022/12/22 20:17:04 by dbizjano         ###   ########.fr       */
+/*   Updated: 2024/07/05 11:13:27 by debizhan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 

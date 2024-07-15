@@ -1,27 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strncmp.c                                       :+:      :+:    :+:   */
+/*   ft_strcmp.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rkrechun <rkrechun@student.42.fr>          +#+  +:+       +#+        */
+/*   By: debizhan <debizhan@student.42wolfsburg.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/11/13 10:46:16 by rkrechun          #+#    #+#             */
-/*   Updated: 2024/03/18 13:03:32 by rkrechun         ###   ########.fr       */
+/*   Created: 2024/07/02 14:00:24 by debizhan          #+#    #+#             */
+/*   Updated: 2024/07/02 17:21:00 by debizhan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../include/pipex.h"
+#include "libft.h"
 
-int	ft_strncmp(char *s1, char *s2, unsigned int n)
+int	ft_strcmp(const char *s1, const char *s2)
 {
-	size_t	i;
-
-	i = 0;
-	while (i < n && (s1[i] != '\0' || s2[i] != '\0'))
+	while (*s1 && (*s1 == *s2))
 	{
-		if (s1[i] != s2[i])
-			return ((unsigned char)s1[i] - (unsigned char)s2[i]);
-		i++;
+		s1++;
+		s2++;
 	}
-	return (0);
+	return (*(unsigned char *)s1 - *(unsigned char *)s2);
 }

@@ -6,7 +6,7 @@
 /*   By: debizhan <debizhan@student.42wolfsburg.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/16 14:57:06 by rkrechun          #+#    #+#             */
-/*   Updated: 2024/05/22 16:32:01 by debizhan         ###   ########.fr       */
+/*   Updated: 2024/07/02 16:31:08 by debizhan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,7 @@ static bool	check_double_quote(char **line, int *i, int *dq)
 	return (true);
 }
 
-bool	close_quote(char **line)
+int	close_quote(char **line)
 {
 	int	i;
 	int	sq;
@@ -54,17 +54,15 @@ bool	close_quote(char **line)
 		if (line[i][0] == '\'')
 		{
 			if (!check_single_quote(line, &i, &sq))
-				return (false);
+				return (1);
 		}
 		else if (line[i][0] == '\"')
-		{
 			if (!check_double_quote(line, &i, &dq))
-				return (false);
-		}
+				return (2);
 		if (line[i] != NULL)
 			i++;
 	}
 	if (sq % 2 == 0 && dq % 2 == 0)
-		return (true);
-	return (false);
+		return (0);
+	return (3);
 }
